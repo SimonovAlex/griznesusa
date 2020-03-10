@@ -2,12 +2,12 @@ const {Router} = require("express");
 const path = require("path");
 const pdf = require('html-pdf');
 
-const CopartTmp = require("../pdfTemplates/copart");
-const GGTmp = require("../pdfTemplates/GG");
-const AIIATmp = require("../pdfTemplates/IAAI");
-const W8Tmp = require("../pdfTemplates/W8");
-const blue = require("../pdfTemplates/blue");
-const seaway = require("../pdfTemplates/saeway");
+const CopartTmp = require(path.join(__dirname, "../pdfTemplates/copart"));
+const GGTmp = require(path.join(__dirname, "../pdfTemplates/GG"));
+const AIIATmp = require(path.join(__dirname, "../pdfTemplates/IAAI"));
+const W8Tmp = require(path.join(__dirname, "../pdfTemplates/W8"));
+const blue = require(path.join(__dirname, "../pdfTemplates/blue"));
+const seaway = require(path.join(__dirname, "../pdfTemplates/saeway"));
 
 const router = Router();
 
