@@ -5,6 +5,8 @@ const CopartTmp = require("../pdfTemplates/copart");
 const GGTmp = require("../pdfTemplates/GG");
 const AIIATmp = require("../pdfTemplates/IAAI");
 const W8Tmp = require("../pdfTemplates/W8");
+const blue = require("../pdfTemplates/blue");
+const seaway = require("../pdfTemplates/saeway");
 
 const router = Router();
 
@@ -22,6 +24,12 @@ const getPdfTmp = req => {
             break;
         case "W8":
             pdfTMP = W8Tmp(req.body);
+            break;
+        case "blue":
+            pdfTMP = blue(req.body);
+            break;
+           case "seaway":
+            pdfTMP = seaway(req.body);
             break;
     }
     return pdfTMP;
