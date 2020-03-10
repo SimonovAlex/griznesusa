@@ -4,7 +4,7 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "start": "node app.js",
+    "start": "cross-env NODE_ENV=prod NODE_ENV=prod node app.js",
     "server": "nodemon app.js",
     "client": "npm run start --prefix client",
     "client:install": "npm install --prefix client",
@@ -19,6 +19,7 @@
   },
   "devDependencies": {
     "concurrently": "^5.0.2",
+    "cross-env": "^7.0.2",
     "nodemon": "^2.0.2"
   }
 }
