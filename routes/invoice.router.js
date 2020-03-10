@@ -1,4 +1,5 @@
 const {Router} = require("express");
+const path = require("path");
 const pdf = require('html-pdf');
 
 const CopartTmp = require("../pdfTemplates/copart");
@@ -41,11 +42,11 @@ router.post(
     async (req, res) => {
         try {
             const pdfTMP = getPdfTmp(req);
-            pdf.create(pdfTMP, {}).toFile(`/pdfTemplates/result.pdf`, (err) => {
+            pdf.create(pdfTMP, {}).toFile(path.join(__dirname, "../",`/pdfTemplates/result.pdf`), (err) => {
                 if (err) {
                     res.send(Promise.reject());
                 }
-                res.sendFile(`/pdfTemplates/result.pdf`);
+                res.sendFile(path.join(__dirname, "../",`/pdfTemplates/result.pdf`));
             });
         } catch (e) {
             console.error('pdf.create', e);
