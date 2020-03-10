@@ -41,15 +41,19 @@ router.post(
     '/invoice',
     async (req, res) => {
         try {
+
             const pdfTMP = getPdfTmp(req);
             pdf.create(pdfTMP, {}).toFile(path.join(__dirname, "../",`/pdfTemplates/result.pdf`), (err) => {
                 if (err) {
+                    console.log('pdf.create exception');
+                    console.log(err);
+
                     res.send(Promise.reject());
                 }
                 res.sendFile(path.join(__dirname, "../",`/pdfTemplates/result.pdf`));
             });
         } catch (e) {
-            console.error('pdf.create', e);
+            console.error('invoice exception', e);
         }
     });
 
