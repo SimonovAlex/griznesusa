@@ -1,6 +1,7 @@
 const {Router} = require("express");
 const path = require("path");
 const pdf = require('html-pdf');
+const wkhtmltopdf = require('wkhtmltopdf');
 
 const CopartTmp = require(path.join(__dirname, "../pdfTemplates/copart"));
 const GGTmp = require(path.join(__dirname, "../pdfTemplates/GG"));
@@ -39,17 +40,19 @@ const getPdfTmp = req => {
 // /api/invoice
 router.post(
     '/invoice',
-    async (req, res) => {
+    async (request, result) => {
         try {
-            const pdfTMP = getPdfTmp(req);
-            pdf.create(pdfTMP, {}).toFile(path.join(__dirname, "../",`/pdfTemplates/result.pdf`), (err) => {
-                if (err) {
-                    console.log('pdf.create exception');
-                    console.log(err);
-                    res.send(Promise.reject());
-                }
-                res.sendFile(path.join(__dirname, "../",`/pdfTemplates/result.pdf`));
-            });
+            const pdfTMP = getPdfTmp(request);
+            // pdf.create(pdfTMP, {}).toFile(path.join(__dirname, "../",`/pdfTemplates/result.pdf`), (err) => {
+            //     if (err) {
+            //         console.log('pdf.create exception');
+            //         console.log(err);
+            //         result.send(Promise.reject());
+            //     }
+            //     result.sendFile(path.join(__dirname, "../",`/pdfTemplates/result.pdf`));
+            // });
+            wkhtmltopdf(pdfTMP).pipe(res);
+
         } catch (e) {
             console.log('invoice exception', e);
         }
