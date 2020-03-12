@@ -9,10 +9,10 @@ module.exports = ({name, country, city, home, apartment, invoiceNumber, MemberBu
 
 body {margin-top: 0px;margin-left: 0px;}
 
-#page_1 {position:relative; overflow: hidden;margin: 1px 0px 49px 0px;padding: 0px;border: none;width: 816px;}
+#page_1 {position:relative; overflow: hidden;margin: 1px 0px 49px 0px;padding: 0px;border: none;width: 612px;}
 
-#page_1 #p1dimg1 {position:absolute;top:924px;left:0px;z-index:-1;width:816px;height:1px;font-size: 1px;line-height:inherit;}
-#page_1 #p1dimg1 #p1img1 {width:816px;height:1px;}
+#page_1 #p1dimg1 {position:absolute;top:924px;left:0px;z-index:-1;width:612px;height:1px;font-size: 1px;line-height:inherit;}
+#page_1 #p1dimg1 #p1img1 {width:612px;height:1px;}
 
 
 
