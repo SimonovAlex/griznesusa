@@ -17,23 +17,23 @@ body {margin-top: 0px;margin-left: 0px;}
 
 
 
-.ft0{font: 29px 'Arial';line-height: 33px;}
-.ft1{font: 13px 'Arial';line-height: 16px;}
+.ft0{font: 15px 'Arial';line-height: 33px;}
+.ft1{font: 7px 'Arial';line-height: 16px;}
 .ft2{font: 1px 'Arial';line-height: 16px;}
 .ft3{font: 1px 'Arial';line-height: 1px;}
-.ft4{font: 13px 'Arial';color: #8c959a;line-height: 16px;}
-.ft5{font: bold 13px 'Arial';color: #4c5357;line-height: 16px;}
-.ft6{font: 13px 'Arial';color: #4c5357;line-height: 16px;}
+.ft4{font: 7px 'Arial';color: #8c959a;line-height: 16px;}
+.ft5{font: bold 7px 'Arial';color: #4c5357;line-height: 16px;}
+.ft6{font: 7px 'Arial';color: #4c5357;line-height: 16px;}
 .ft7{font: 1px 'Arial';line-height: 2px;}
-.ft8{font: bold 13px 'Arial';color: #4c5357;line-height: 15px;}
+.ft8{font: bold 7px 'Arial';color: #4c5357;line-height: 15px;}
 .ft9{font: 1px 'Arial';line-height: 15px;}
 .ft10{font: 1px 'Arial';line-height: 7px;}
 .ft11{font: 1px 'Arial';line-height: 5px;}
-.ft12{font: bold 13px 'Arial';color: #b3b9bc;line-height: 16px;}
+.ft12{font: bold 7px 'Arial';color: #b3b9bc;line-height: 16px;}
 .ft13{font: 1px 'Arial';line-height: 13px;}
-.ft14{font: 13px 'Arial';color: #808080;line-height: 16px;}
-.ft15{font: bold 13px 'Arial';line-height: 16px;}
-.ft16{font: 13px 'Arial';line-height: 14px;}
+.ft14{font: 7px 'Arial';color: #808080;line-height: 16px;}
+.ft15{font: bold 7px 'Arial';line-height: 16px;}
+.ft16{font: 7px 'Arial';line-height: 14px;}
 
 .p0{text-align: left;padding-left: 29px;margin-top: 0px;margin-bottom: 0px;white-space: nowrap;}
 .p1{text-align: left;padding-left: 84px;margin-top: 0px;margin-bottom: 0px;white-space: nowrap;}
