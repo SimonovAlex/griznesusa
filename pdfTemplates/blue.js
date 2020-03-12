@@ -92,8 +92,8 @@ body {margin-top: 0px;margin-left: 0px;}
 .tr18{height: 20px;}
 .tr19{height: 56px;}
 
-.t0{width: 816px;font: 29px 'Arial';}
-.t1{width: 816px;margin-top: 37px;font: 13px 'Arial';color: #4c5357;}
+.t0{width: 612px;font: 29px 'Arial';}
+.t1{width: 612px;margin-top: 37px;font: 13px 'Arial';color: #4c5357;}
 
 </STYLE>
 </HEAD>
