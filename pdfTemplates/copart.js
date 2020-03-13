@@ -25,13 +25,13 @@ body {margin-top: 0px;margin-left: 0px;}
 .p1{text-align: left;margin-top: 7px;margin-bottom: 0px;}
 .p2{text-align: left;margin-top: 0px;margin-bottom: 0px;white-space: nowrap;}
 .p3{text-align: left;padding-left: 45px;margin-top: 31px;margin-bottom: 0px;}
-.p4{text-align: left;padding-left: 45px;margin-top: 38px;margin-bottom: 0px;}
+.p4{text-align: left;padding-left: 45px;margin-top: 45px;margin-bottom: 0px;}
 .p5{text-align: left;padding-left: 42px;margin-top: 75px;margin-bottom: 0px;}
 .p6{text-align: left;padding-left: 42px;margin-top: 8px;margin-bottom: 0px;}
 .p7{text-align: left;padding-left: 42px;margin-top: 9px;margin-bottom: 0px;}
-.p8{text-align: left;padding-left: 122px;margin-top: 20px;margin-bottom: 0px;}
-.p9{text-align: left;padding-left: 174px;margin-top: 9px;margin-bottom: 0px;}
-.p10{text-align: left;padding-left: 207px;margin-top: 9px;margin-bottom: 0px;}
+.p8{text-align: left;padding-left: 65px;margin-top: 20px;margin-bottom: 0px;}
+.p9{text-align: left;padding-left: 95px;margin-top: 9px;margin-bottom: 0px;}
+.p10{text-align: left;padding-left: 125px;margin-top: 9px;margin-bottom: 0px;}
 .p11{text-align: left;margin-top: 74px;margin-bottom: 0px;}
 .td0{padding: 0px;margin: 0px;width: 312px;vertical-align: bottom;}
 .td1{padding: 0px;margin: 0px;width: 160px;vertical-align: bottom;}
