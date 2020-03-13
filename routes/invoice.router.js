@@ -1,7 +1,6 @@
 const {Router} = require("express");
 const path = require("path");
 const pdf = require('html-pdf');
-// const wkhtmltopdf = require('wkhtmltopdf');
 
 const CopartTmp = require(path.join(__dirname, "../pdfTemplates/copart"));
 const GGTmp = require(path.join(__dirname, "../pdfTemplates/GG"));
@@ -51,8 +50,6 @@ router.post(
                 }
                 result.sendFile(path.join(__dirname, "../",`/pdfTemplates/result.pdf`));
             });
-            // wkhtmltopdf(pdfTMP).pipe(res);
-
         } catch (e) {
             console.log('invoice exception', e);
         }
