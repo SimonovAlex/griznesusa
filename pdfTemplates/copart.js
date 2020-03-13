@@ -76,7 +76,7 @@ body {margin-top: 0px;margin-left: 0px;}
 </TR>
 <TR>
 	<TD class="tr3 td0"><P class="p2 ft0">138 CHRISIAN LANE</P></TD>
-	<TD class="tr3 td1"><P class="p2 ft0">${street} str. bld ${home}, ap. ${apartment}</P></TD>
+	<TD class="tr3 td1"><P class="p2 ft0">${street} str. bld ${home}, </P></TD>
 </TR>
 <TR>
 	<TD class="tr2 td0"><P class="p2 ft0">NEW BRITAIN, CT 06051</P></TD>
@@ -84,7 +84,7 @@ body {margin-top: 0px;margin-left: 0px;}
 </TR>
 <TR>
 	<TD class="tr3 td0"><P class="p2 ft0">Phone: (860) <NOBR>666-1183</NOBR></P></TD>
-	<TD class="tr3 td1"><P class="p2 ft3">&nbsp;</P></TD>
+	<TD class="tr3 td1"><P class="p2 ft3">ap. ${apartment}</P></TD>
 </TR>
 <TR>
 	<TD class="tr2 td0"><P class="p2 ft0">Tax ID: 061423251</P></TD>

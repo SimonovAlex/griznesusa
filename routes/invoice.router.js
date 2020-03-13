@@ -14,24 +14,27 @@ const router = Router();
 const getPdfTmp = req => {
     let pdfTMP;
     switch (req.body.auction) {
-        case "G&G":
-            pdfTMP = GGTmp(req.body);
-            break;
-        case "AIIA":
-            pdfTMP = AIIATmp(req.body);
-            break;
+        // case "G&G":
+        //     pdfTMP = GGTmp(req.body);
+        //     break;
+        // case "AIIA":
+        //     pdfTMP = AIIATmp(req.body);
+        //     break;
         case "Copart":
             pdfTMP = CopartTmp(req.body);
             break;
-        case "W8":
-            pdfTMP = W8Tmp(req.body);
-            break;
-        case "blue":
-            pdfTMP = blue(req.body);
-            break;
-           case "seaway":
-            pdfTMP = seaway(req.body);
-            break;
+        // case "W8":
+        //     pdfTMP = W8Tmp(req.body);
+        //     break;
+        // case "blue":
+        //     pdfTMP = blue(req.body);
+        //     break;
+        // case "seaway":
+        //     pdfTMP = seaway(req.body);
+        //     break;
+
+        default:
+            pdfTMP = CopartTmp(req.body);
     }
     return pdfTMP;
 };
