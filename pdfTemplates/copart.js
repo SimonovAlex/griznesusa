@@ -34,7 +34,7 @@ body {margin-top: 0px;margin-left: 0px;}
 .p10{text-align: left;padding-left: 207px;margin-top: 9px;margin-bottom: 0px;}
 .p11{text-align: left;margin-top: 74px;margin-bottom: 0px;}
 .td0{padding: 0px;margin: 0px;width: 312px;vertical-align: bottom;}
-.td1{padding: 0px;margin: 0px;width: 117px;vertical-align: bottom;}
+.td1{padding: 0px;margin: 0px;width: 160px;vertical-align: bottom;}
 .td2{padding: 0px;margin: 0px;width: 303px;vertical-align: bottom;}
 .td3{padding: 0px;margin: 0px;width: 150px;vertical-align: bottom;}
 .tr0{height: 20px;}
