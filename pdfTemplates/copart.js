@@ -15,8 +15,8 @@ body {margin-top: 0px;margin-left: 0px;}
 #page_1 #id1_1 #id1_1_2 {float:left;border:none;margin: 0px 0px 0px 0px;padding: 0px;border:none;width: 77px;overflow: hidden;}
 #page_1 #id1_2 {border:none;margin: 33px 0px 0px 0px;padding: 0px;border:none;width: 400px;overflow: hidden;}
 
-#page_1 #p1dimg1 {position:absolute;top:0px;left:28px;z-index:-1;width:335px;height:316px;}
-#page_1 #p1dimg1 #p1img1 {width:337px;height:316px;}
+#page_1 #p1dimg1 {position:absolute;top:0px;left:56px;z-index:-1;width:505px;height:475px;}
+#page_1 #p1dimg1 #p1img1 {width:673px;height:633px;}
 
 
 
