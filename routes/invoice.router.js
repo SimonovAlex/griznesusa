@@ -26,12 +26,12 @@ const getPdfTmp = req => {
         case "W8":
             pdfTMP = W8Tmp(req.body);
             break;
-        // case "blue":
-        //     pdfTMP = blue(req.body);
-        //     break;
-        // case "seaway":
-        //     pdfTMP = seaway(req.body);
-        //     break;
+        case "blue":
+            pdfTMP = blue(req.body);
+            break;
+        case "seaway":
+            pdfTMP = seaway(req.body);
+            break;
 
         default:
             pdfTMP = CopartTmp(req.body);
