@@ -14,9 +14,9 @@ const router = Router();
 const getPdfTmp = req => {
     let pdfTMP;
     switch (req.body.auction) {
-        // case "G&G":
-        //     pdfTMP = GGTmp(req.body);
-        //     break;
+        case "G&G":
+            pdfTMP = GGTmp(req.body);
+            break;
         // case "AIIA":
         //     pdfTMP = AIIATmp(req.body);
         //     break;
