@@ -23,9 +23,9 @@ const getPdfTmp = req => {
         case "Copart":
             pdfTMP = CopartTmp(req.body);
             break;
-        // case "W8":
-        //     pdfTMP = W8Tmp(req.body);
-        //     break;
+        case "W8":
+            pdfTMP = W8Tmp(req.body);
+            break;
         // case "blue":
         //     pdfTMP = blue(req.body);
         //     break;
