@@ -17,9 +17,9 @@ const getPdfTmp = req => {
         case "G&G":
             pdfTMP = GGTmp(req.body);
             break;
-        // case "AIIA":
-        //     pdfTMP = AIIATmp(req.body);
-        //     break;
+        case "AIIA":
+            pdfTMP = AIIATmp(req.body);
+            break;
         case "Copart":
             pdfTMP = CopartTmp(req.body);
             break;
