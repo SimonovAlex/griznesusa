@@ -222,8 +222,8 @@ body {margin-top: 0px;margin-left: 0px;}
 	<TD class="tr13 td18"><P class="p17 ft2">$${total}</P></TD>
 </TR>
 </TABLE>
-<P class="p19 ft19">**NO ACCOUNT CASH DEPOSITS ACCEPTED AS PAYMENT METHOD**</P>
-<P class="p20 ft19">THANK YOU FOR YOUR BUSINESS!</P>
+<!--<P class="p19 ft19">**NO ACCOUNT CASH DEPOSITS ACCEPTED AS PAYMENT METHOD**</P>-->
+<!--<P class="p20 ft19">THANK YOU FOR YOUR BUSINESS!</P>-->
 </DIV>
 </BODY>
 </HTML>`
