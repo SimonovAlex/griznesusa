@@ -43,7 +43,7 @@ body {margin-top: 0px;margin-left: 0px;}
 .p0{text-align: left;padding-left: 22px;margin-top: 137px;margin-bottom: 0px;}
 .p1{text-align: left;padding-left: 22px;margin-top: 4px;margin-bottom: 0px;}
 .p2{text-align: left;margin-top: 0px;margin-bottom: 0px;white-space: nowrap;}
-.p3{text-align: right;margin-top: 0px;margin-bottom: 0px;white-space: nowrap;}
+.p3{text-align: left;padding: 0 0 5px 70px;margin-top: 0px;margin-bottom: 0px;white-space: nowrap;}
 .p4{text-align: left;padding-left: 22px;margin-top: 98px;margin-bottom: 0px;}
 .p5{text-align: left;padding-left: 22px;margin-top: 11px;margin-bottom: 0px;}
 .p6{text-align: left;padding-left: 22px;padding-right: 450px;margin-top: 1px;margin-bottom: 0px;}
@@ -118,17 +118,20 @@ body {margin-top: 0px;margin-left: 0px;}
 <TABLE cellpadding=0 cellspacing=0 class="t0">
 <TR>
 	<TD class="tr0 td0"><P class="p2 ft4">Invoice number:</P></TD>
-	<TD class="tr0 td1"><P class="p2 ft5">&nbsp;</P></TD>
+	<TD class="tr0 td1"><P class="p2 ft5">${invoiceNumber}</P></TD>
 </TR>
 <TR>
 	<TD class="tr1 td0"><P class="p2 ft6">Invoice date:</P></TD>
-	<TD class="tr1 td1"><P class="p3 ft4">2020-02-03</P></TD>
+	<TD class="tr1 td1"><P class="p3 ft4">${invoiceDate}</P></TD>
 </TR>
 </TABLE>
 <P class="p4 ft7">BANK DETAILS:</P>
 <P class="p5 ft7">Bank of America</P>
 <P class="p6 ft7">4401 Augusta Rd, Savannah, GA 31408 Seaway Export UA Account# 3340 5594 0431 Routing# 061000052 Swift code U.S.D. bofaus3n Swift code Foreign bofaus6s</P>
 <P class="p7 ft2">BILL TO:</P>
+<P class="p6 ft7">${name}</P>
+<P class="p6 ft7">${country}, ${city},</P>
+<P class="p6 ft7">${street} str. bld ${home}, ap. ${apartment}</P>
 <P class="p8 ft4">Please detach top portion and return with your payment.</P>
 <TABLE cellpadding=0 cellspacing=0 class="t1">
 <TR>
@@ -148,13 +151,13 @@ body {margin-top: 0px;margin-left: 0px;}
 <TR>
 	<TD class="tr4 td2"></TD>
 	<TD rowspan=2 class="tr5 td11"><P class="p13 ft10">Delivery</P></TD>
-	<TD class="tr4 td12"><P class="p2 ft10">Transport service <SPAN class="ft7">2010</SPAN><SPAN class="ft11">​ </SPAN><SPAN class="ft7">Auto</SPAN></P></TD>
-	<TD rowspan=2 class="tr5 td13"><P class="p14 ft10">$1327.00</P></TD>
-	<TD rowspan=2 class="tr5 td14"><P class="p15 ft10">$1327.00</P></TD>
+	<TD class="tr4 td12"><P class="p2 ft10">Transport service <SPAN class="ft7">Auto</SPAN></P></TD>
+	<TD rowspan=2 class="tr5 td13"><P class="p14 ft10">$${total}</P></TD>
+	<TD rowspan=2 class="tr5 td14"><P class="p15 ft10">$${total}</P></TD>
 </TR>
 <TR>
 	<TD class="tr3 td2"></TD>
-	<TD rowspan=2 class="tr6 td12"><P class="p16 ft12">MITSUBISHI OUTLANDER GT</P></TD>
+	<TD rowspan=2 class="tr6 td12"><P class="p16 ft12">${YMM}</P></TD>
 </TR>
 <TR>
 	<TD class="tr7 td2"></TD>
@@ -165,14 +168,14 @@ body {margin-top: 0px;margin-left: 0px;}
 <TR>
 	<TD class="tr0 td2"></TD>
 	<TD class="tr0 td11"><P class="p2 ft5">&nbsp;</P></TD>
-	<TD class="tr0 td12"><P class="p16 ft7">JA4JT5AX0AZ003847 <SPAN class="ft10">lot#</SPAN><SPAN class="ft11">​</SPAN></P></TD>
+	<TD class="tr0 td12"><P class="p16 ft7">${vinCode} <SPAN class="ft10">lot#</SPAN><SPAN class="ft11">​</SPAN></P></TD>
 	<TD class="tr0 td13"><P class="p2 ft5">&nbsp;</P></TD>
 	<TD class="tr0 td14"><P class="p2 ft5">&nbsp;</P></TD>
 </TR>
 <TR>
 	<TD class="tr0 td2"></TD>
 	<TD class="tr0 td11"><P class="p2 ft5">&nbsp;</P></TD>
-	<TD class="tr0 td12"><P class="p16 ft7">25993052</P></TD>
+	<TD class="tr0 td12"><P class="p16 ft7">${lotNumber}</P></TD>
 	<TD class="tr0 td13"><P class="p2 ft5">&nbsp;</P></TD>
 	<TD class="tr0 td14"><P class="p2 ft5">&nbsp;</P></TD>
 </TR>
@@ -188,7 +191,7 @@ body {margin-top: 0px;margin-left: 0px;}
 	<TD class="tr9 td19"><P class="p2 ft5">&nbsp;</P></TD>
 	<TD class="tr9 td20"><P class="p2 ft5">&nbsp;</P></TD>
 	<TD class="tr9 td13"><P class="p17 ft14">Total:</P></TD>
-	<TD class="tr9 td14"><P class="p17 ft10">$1327.00</P></TD>
+	<TD class="tr9 td14"><P class="p17 ft10">$${total}</P></TD>
 </TR>
 <TR>
 	<TD class="tr10 td2"></TD>
@@ -216,7 +219,7 @@ body {margin-top: 0px;margin-left: 0px;}
 	<TD class="tr14 td19"><P class="p2 ft5">&nbsp;</P></TD>
 	<TD class="tr14 td20"><P class="p2 ft5">&nbsp;</P></TD>
 	<TD class="tr14 td13"><P class="p18 ft18">Balance Due:</P></TD>
-	<TD class="tr13 td18"><P class="p17 ft2">$1327.00</P></TD>
+	<TD class="tr13 td18"><P class="p17 ft2">$${total}</P></TD>
 </TR>
 </TABLE>
 <P class="p19 ft19">**NO ACCOUNT CASH DEPOSITS ACCEPTED AS PAYMENT METHOD**</P>
