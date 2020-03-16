@@ -13,7 +13,7 @@ body {margin-top: 0px;margin-left: 0px;}
 #page_1 {position:relative; overflow: hidden;margin: 22px 0px 55px 0px;padding: 0px;border: none;width: 600px;}
 
 #page_1 #p1dimg1 {position:absolute;top:73px;left:22px;z-index:-1;width:553px;height:450px;}
-#page_1 #p1dimg1 #p1img1 {width:553px;height:600px;}
+#page_1 #p1dimg1 #p1img1 {width:553px;height:459px;}
 
 
 
