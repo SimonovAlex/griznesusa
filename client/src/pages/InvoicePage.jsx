@@ -75,13 +75,13 @@ export const InvoicePage = () => {
                         <p>
                             <label>
                                 <input name="auction" type="radio" value="familyGreat" onChange={changeHandler}/>
-                                <span>familyGreat</span>
+                                <span>Family Great</span>
                             </label>
                         </p>
                         <p>
                             <label>
                                 <input name="auction" type="radio" value="seaway" onChange={changeHandler}/>
-                                <span>seaway</span>
+                                <span>Seaway</span>
                             </label>
                         </p>
                     </div>

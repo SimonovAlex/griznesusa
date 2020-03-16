@@ -7,7 +7,7 @@ const GGTmp = require(path.join(__dirname, "../pdfTemplates/GG"));
 const AIIATmp = require(path.join(__dirname, "../pdfTemplates/IAAI"));
 const W8Tmp = require(path.join(__dirname, "../pdfTemplates/W8"));
 const familyGreat = require(path.join(__dirname, "../pdfTemplates/familyGreat"));
-const seaway = require(path.join(__dirname, "../pdfTemplates/saeway"));
+const seaway = require(path.join(__dirname, "../pdfTemplates/seaway"));
 
 const router = Router();
 
