@@ -6,7 +6,7 @@ const CopartTmp = require(path.join(__dirname, "../pdfTemplates/copart"));
 const GGTmp = require(path.join(__dirname, "../pdfTemplates/GG"));
 const AIIATmp = require(path.join(__dirname, "../pdfTemplates/IAAI"));
 const W8Tmp = require(path.join(__dirname, "../pdfTemplates/W8"));
-const blue = require(path.join(__dirname, "../pdfTemplates/blue"));
+const familyGreat = require(path.join(__dirname, "../pdfTemplates/familyGreat"));
 const seaway = require(path.join(__dirname, "../pdfTemplates/saeway"));
 
 const router = Router();
@@ -26,8 +26,8 @@ const getPdfTmp = req => {
         case "W8":
             pdfTMP = W8Tmp(req.body);
             break;
-        case "blue":
-            pdfTMP = blue(req.body);
+        case "familyGreat":
+            pdfTMP = familyGreat(req.body);
             break;
         case "seaway":
             pdfTMP = seaway(req.body);

@@ -74,8 +74,8 @@ export const InvoicePage = () => {
                         </p>
                         <p>
                             <label>
-                                <input name="auction" type="radio" value="blue" onChange={changeHandler}/>
-                                <span>blue</span>
+                                <input name="auction" type="radio" value="familyGreat" onChange={changeHandler}/>
+                                <span>familyGreat</span>
                             </label>
                         </p>
                         <p>
