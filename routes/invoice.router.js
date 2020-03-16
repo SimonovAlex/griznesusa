@@ -4,7 +4,7 @@ const pdf = require('html-pdf');
 
 const CopartTmp = require(path.join(__dirname, "../pdfTemplates/copart"));
 const GGTmp = require(path.join(__dirname, "../pdfTemplates/GG"));
-const AIIATmp = require(path.join(__dirname, "../pdfTemplates/IAAI"));
+const IAAITmp = require(path.join(__dirname, "../pdfTemplates/IAAI"));
 const W8Tmp = require(path.join(__dirname, "../pdfTemplates/W8"));
 const familyGreat = require(path.join(__dirname, "../pdfTemplates/familyGreat"));
 const seaway = require(path.join(__dirname, "../pdfTemplates/seaway"));
@@ -17,8 +17,8 @@ const getPdfTmp = req => {
         case "G&G":
             pdfTMP = GGTmp(req.body);
             break;
-        case "AIIA":
-            pdfTMP = AIIATmp(req.body);
+        case "IAAI":
+            pdfTMP = IAAITmp(req.body);
             break;
         case "Copart":
             pdfTMP = CopartTmp(req.body);
