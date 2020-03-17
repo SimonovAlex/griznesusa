@@ -47,7 +47,7 @@ export const InvoicePage = () => {
         <div className="row">
             <form onSubmit={e => submitHandler(e)}>
                 <div className="col s6 offset-s3">
-                    <div className="input-field display-flex">
+                    <div className="input-field display-flex radioWrapper">
                         <p>
                             <label>
                                 <input name="auction" type="radio" value="G&G" onChange={changeHandler}/>

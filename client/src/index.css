@@ -4,3 +4,14 @@ div.display-flex{
     display: flex;
 }
 
+.radioWrapper > p > label{
+    margin-right: 5px;
+}
+
+.radioWrapper > p{
+    border-right: gray 1px solid;
+}
+
+.radioWrapper > p:last-child{
+    border-right: none;
+}
