@@ -123,11 +123,11 @@ body {margin-top: 0px;margin-left: 0px;}
 <TABLE cellpadding=0 cellspacing=0 class="t0">
 <TR>
 \t<TD class="tr0 td0"><P class="p4 ft6">Invoice number:</P></TD>
-\t<TD class="tr0 td1"><P class="p5 ft6">${invoiceNumber}</P></TD>
+\t<TD class="tr0 td1"><P class="p4 ft6">${invoiceNumber}</P></TD>
 </TR>
 <TR>
 \t<TD class="tr1 td0"><P class="p4 ft8">Invoice date:</P></TD>
-\t<TD class="tr1 td1"><P class="p5 ft6">${invoiceDate}</P></TD>
+\t<TD class="tr1 td1"><P class="p4 ft6">${invoiceDate}</P></TD>
 </TR>
 </TABLE>
 <P class="p6 ft9">Wire Transfer Information:</P>
