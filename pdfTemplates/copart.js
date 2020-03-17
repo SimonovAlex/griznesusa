@@ -29,7 +29,7 @@ body {margin-top: 0px;margin-left: 0px;}
 .p5{text-align: left;padding-left: 42px;margin-top: 75px;margin-bottom: 0px;}
 .p6{text-align: left;padding-left: 42px;margin-top: 8px;margin-bottom: 0px;}
 .p7{text-align: left;padding-left: 42px;margin-top: 9px;margin-bottom: 0px;}
-.p8{text-align: left;padding-left: 35px;margin-top: 20px;margin-bottom: 0px;width:600px}
+.p8{text-align: left;padding-left: 35px;margin-top: 20px;margin-bottom: 0px;width:600px; overflow: visible}
 .p9{text-align: left;padding-left: 95px;margin-top: 9px;margin-bottom: 0px;width:593px}
 .p10{text-align: left;padding-left: 125px;margin-top: 9px;margin-bottom: 0px;width:593px}
 .p11{text-align: left;margin-top: 74px;margin-bottom: 0px;}
