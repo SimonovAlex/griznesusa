@@ -17,7 +17,7 @@ body {margin-top: 0px;margin-left: 0px;}
 .dclr {clear:both;float:none;height:1px;margin:0px;padding:0px;overflow:hidden;}
 .ft0{font: 12px 'Arial';line-height: 11px;}
 .ft1{font: bold 21px 'Arial';line-height: 18px;}
-.ft2{font: bold 10px 'Arial';line-height: 11px;}
+.ft2{font: bold 8px 'Arial';line-height: 11px;}
 .ft3{font: 1px 'Arial';line-height: 1px;}
 .ft4{font: 21px 'Arial';line-height: 18px;}
 .ft5{font: 1px 'Helvetica';line-height: 2px;}
@@ -123,9 +123,9 @@ body {margin-top: 0px;margin-left: 0px;}
 <P class="p6 ft0">420 Montgomery Street 7h Floor</P>
 <P class="p7 ft0">San Francisco, CA 94104</P>
 <P class="p7 ft0">Swift Code: WFBIUS6S (Internation Wires)</P>
-<P class="p8 ft0">**NO ACCOUNT CASH DEPOSITS ACCEPTED AS PAYMENT METHOD**</P>
-<P class="p9 ft0">*Please put LOT and BUYER at payment detail*</P>
-<P class="p10 ft0">THANK YOU FOR YOUR BUSINESS!</P>
+<P class="p8 ft2">**NO ACCOUNT CASH DEPOSITS ACCEPTED AS PAYMENT METHOD**</P>
+<P class="p9 ft2">*Please put LOT and BUYER at payment detail*</P>
+<P class="p10 ft2">THANK YOU FOR YOUR BUSINESS!</P>
 </DIV>
 </DIV>
 </BODY>
