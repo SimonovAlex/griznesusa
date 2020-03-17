@@ -17,7 +17,7 @@ body {margin-top: 0px;margin-left: 0px;}
 .dclr {clear:both;float:none;height:1px;margin:0px;padding:0px;overflow:hidden;}
 .ft0{font: 12px 'Arial';line-height: 11px;}
 .ft1{font: bold 21px 'Arial';line-height: 18px;}
-.ft2{font: bold 12px 'Arial';line-height: 11px;}
+.ft2{font: bold 10px 'Arial';line-height: 11px;}
 .ft3{font: 1px 'Arial';line-height: 1px;}
 .ft4{font: 21px 'Arial';line-height: 18px;}
 .ft5{font: 1px 'Helvetica';line-height: 2px;}
@@ -29,9 +29,9 @@ body {margin-top: 0px;margin-left: 0px;}
 .p5{text-align: left;padding-left: 42px;margin-top: 75px;margin-bottom: 0px;}
 .p6{text-align: left;padding-left: 42px;margin-top: 8px;margin-bottom: 0px;}
 .p7{text-align: left;padding-left: 42px;margin-top: 9px;margin-bottom: 0px;}
-.p8{text-align: left;padding-left: 65px;margin-top: 20px;margin-bottom: 0px;}
-.p9{text-align: left;padding-left: 95px;margin-top: 9px;margin-bottom: 0px;}
-.p10{text-align: left;padding-left: 125px;margin-top: 9px;margin-bottom: 0px;}
+.p8{text-align: left;padding-left: 35px;margin-top: 20px;margin-bottom: 0px;width:600px}
+.p9{text-align: left;padding-left: 95px;margin-top: 9px;margin-bottom: 0px;width:593px}
+.p10{text-align: left;padding-left: 125px;margin-top: 9px;margin-bottom: 0px;width:593px}
 .p11{text-align: left;margin-top: 74px;margin-bottom: 0px;}
 .td0{padding: 0px;margin: 0px;width: 312px;vertical-align: bottom;}
 .td1{padding: 0px;margin: 0px;width: 160px;vertical-align: bottom;}
