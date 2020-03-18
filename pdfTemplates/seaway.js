@@ -118,11 +118,11 @@ body {margin-top: 0px;margin-left: 0px;}
 <TABLE cellpadding=0 cellspacing=0 class="t0">
 <TR>
 	<TD class="tr0 td0"><P class="p2 ft4">Invoice number:</P></TD>
-	<TD class="tr0 td1"><P class="p3 ft4">${invoiceNumber}</P></TD>
+	<TD class="tr0 td1"><P class="p2 ft4">${invoiceNumber}</P></TD>
 </TR>
 <TR>
 	<TD class="tr1 td0"><P class="p2 ft6">Invoice date:</P></TD>
-	<TD class="tr1 td1"><P class="p3 ft4">${invoiceDate}</P></TD>
+	<TD class="tr1 td1"><P class="p2 ft4">${invoiceDate}</P></TD>
 </TR>
 </TABLE>
 <P class="p4 ft7">BANK DETAILS:</P>
