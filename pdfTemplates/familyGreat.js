@@ -117,7 +117,7 @@ body {margin-top: 0px;margin-left: 0px;}
 
 
 <P class="p0 ft0">Family Great Deals Inc</P>
-<P class="p1 ft1">800 Ocean Parkway, 1E Brooklyn, New York 11230 United States +19174568688</P>
+<P class="p1 ft1">1587 E 19th St., apart 7I Brooklyn, New York 11230 United States +19174568688</P>
 <P class="p2 ft4">SELLER:<SPAN style="padding-left:325px;"><SPAN class="ft2">INVOICE</SPAN><SPAN class="ft3">​</SPAN></SPAN></P>
 <P class="p3 ft5">Family Great Deals Inc</P>
 <TABLE cellpadding=0 cellspacing=0 class="t0">
