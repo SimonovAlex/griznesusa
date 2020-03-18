@@ -76,7 +76,7 @@ body {margin-top: 0px;margin-left: 0px;}
 .tr6{height: 32px;}
 .tr7{height: 10px;}
 
-.t0{width: 506px;font: 9px 'Arial';}
+.t0{width:450px;font: 9px 'Arial';}
 
 </STYLE>
 </HEAD>
