@@ -36,7 +36,7 @@ export const InvoicePage = () => {
                     data: {...form}
                 });
                 const pdfBlob = await new Blob([data.data], { type: 'application/pdf' });
-                saveAs(pdfBlob, `${form.name}|${form.invoiceDate}.pdf`);
+                saveAs(pdfBlob, `${form.invoiceNumber}.pdf`);
                 setLoading(false)
             } catch (e) {
                 console.log(e)
