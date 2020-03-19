@@ -62,7 +62,7 @@ body {margin-top: 0px;margin-left: 0px;}
 .p17{text-align: right;padding-right: 34px;margin-top: 0px;margin-bottom: 0px;white-space: nowrap;}
 .p18{text-align: right;padding-right: 1px;margin-top: 0px;margin-bottom: 0px;white-space: nowrap;}
 .p19{text-align: right;padding-right: 2px;margin-top: 0px;margin-bottom: 0px;white-space: nowrap;}
-.p20{text-align: left;padding-left: 122px;margin-top: 17px;margin-bottom: 0px;}
+.p20{text-align: left;padding-left: 122px;margin-top: 10px;margin-bottom: 0px;}
 .p21{text-align: left;padding-left: 200px;margin-top: 1px;margin-bottom: 0px;}
 
 .td0{padding: 0px;margin: 0px;width: 204px;vertical-align: bottom;}
