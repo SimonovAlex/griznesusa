@@ -37,7 +37,7 @@ body {margin-top: 0px;margin-left: 0px;}
 .td1{padding: 0px;margin: 0px;width: 160px;vertical-align: bottom;}
 .td2{padding: 0px;margin: 0px;width: 303px;vertical-align: bottom;}
 .td3{padding: 0px;margin: 0px;width: 150px;vertical-align: bottom;}
-.td4{padding: 0px;margin: 0px;width: 200px;vertical-align: bottom;left: 298px;top: 362px;position: absolute}
+.td4{padding: 0px;margin: 0px;width: 200px;vertical-align: bottom;left: 298px;top: 350px;position: absolute}
 .tr0{height: 20px;}
 .tr1{height: 15px;}
 .tr2{height: 16px;}
