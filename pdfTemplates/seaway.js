@@ -107,8 +107,8 @@ body {margin-top: 0px;margin-left: 0px;}
 .tr17{height: 20px;}
 .tr18{height: 21px;}
 
-.t0{width: 366px;margin-top: 131px;font: 9px 'Verdana';}
-.t1{width: 540px;margin-left: 6px;margin-top: 17px;font: 10px 'Verdana';}
+.t0{width: 300px;margin-top: 131px;font: 9px 'Verdana';}
+.t1{width: 500px;margin-left: 6px;margin-top: 17px;font: 10px 'Verdana';}
 
 </STYLE>
 </HEAD>
