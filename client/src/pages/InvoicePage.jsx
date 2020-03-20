@@ -9,7 +9,6 @@ const getCurrentDate = () => {
     let mm = today.getMonth() >= 9 ? today.getMonth()+1 : '0' + (today.getMonth()+1);
     const yyyy = today.getFullYear();
 
-
     return `${dd}/${mm}/${yyyy}`;
 };
 
@@ -36,7 +35,7 @@ export const InvoicePage = () => {
                     data: {...form}
                 });
                 const pdfBlob = await new Blob([data.data], { type: 'application/pdf' });
-                saveAs(pdfBlob, `${form.YMM}|${form.invoiceNumber}.pdf`);
+                saveAs(pdfBlob, `${form.YMM}|${form.vinCode}.pdf`);
                 setLoading(false)
             } catch (e) {
                 console.log(e)
