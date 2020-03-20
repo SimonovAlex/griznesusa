@@ -93,14 +93,14 @@ body {margin-top: 0px;margin-left: 0px;}
 <TR>
 	<TD colspan=2 class="tr0 td0"><P class="p0 ft0">Buyer information</P></TD>
 	<TD class="tr0 td1"><P class="p1 ft1">&nbsp;</P></TD>
-	<TD class="tr0 td1"><P class="p1 ft1">&nbsp;</P></TD>
+<!--	<TD class="tr0 td1"><P class="p1 ft1">&nbsp;</P></TD>-->
 	<TD colspan=2 class="tr0 td2"><P class="p1 ft0">Total Amount Due: $${total}</P></TD>
 </TR>
 <TR>
 	<TD class="tr1 td3"><P class="p0 ft2">Buyer: <SPAN class="ft0">${MemberBuyer}</SPAN></P></TD>
 	<TD class="tr1 td4"><P class="p1 ft1">&nbsp;</P></TD>
 	<TD class="tr1 td1"><P class="p1 ft1">&nbsp;</P></TD>
-	<TD class="tr1 td1"><P class="p1 ft1">&nbsp;</P></TD>
+<!--	<TD class="tr1 td1"><P class="p1 ft1">&nbsp;</P></TD>-->
 	<TD colspan=2 class="tr1 td2"><P class="p1 ft2">Currency in U.S Dollars</P></TD>
 </TR>
 <TR>

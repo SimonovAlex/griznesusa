@@ -36,7 +36,7 @@ export const InvoicePage = () => {
                     data: {...form}
                 });
                 const pdfBlob = await new Blob([data.data], { type: 'application/pdf' });
-                saveAs(pdfBlob, `${form.invoiceNumber}.pdf`);
+                saveAs(pdfBlob, `${form.YMM}|${form.invoiceNumber}.pdf`);
                 setLoading(false)
             } catch (e) {
                 console.log(e)
@@ -218,7 +218,7 @@ export const InvoicePage = () => {
                             pattern="^[a-zA-Z0-9\D]+$"
                             required
                         />
-                        <label htmlFor="Y/M/M">Год, марка, модель</label>
+                        <label htmlFor="YMM">Год, марка, модель</label>
                     </div>
                     <div className="input-field">
                         <input
