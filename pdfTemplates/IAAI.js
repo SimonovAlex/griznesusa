@@ -10,7 +10,7 @@ module.exports = ({name, country, city, home, apartment, invoiceNumber, MemberBu
 body {margin-top: 0px;margin-left: 0px;}
 
 #page_1 {position:relative; overflow: hidden;margin: 43px 0px 1px 3px;padding: 0px;border: none;width: 600px;}
-#page_1 #id1_1 {border:none;margin: 150px 0px 0px 42px;padding: 0px;border:none;width: 549px;overflow: hidden;}
+#page_1 #id1_1 {border:none;margin: 150px 0px 0px 21px;padding: 0px;border:none;width: 549px;overflow: hidden;}
 #page_1 #id1_2 {border:none;margin: 318px 0px 0px 0px;padding: 0px;border:none;width: 600px;overflow: hidden;}
 
 #page_1 #p1dimg1 {position:absolute;top:0px;left:53px;z-index:-1;width:510px;height:151px;}
@@ -138,7 +138,7 @@ body {margin-top: 0px;margin-left: 0px;}
 	<TD class="tr6 td8"><P class="p1 ft1">&nbsp;</P></TD>
 	<TD class="tr6 td8"><P class="p1 ft1">&nbsp;</P></TD>
 </TR>
-<TR>
+<TR class="toLeft one">
 	<TD class="tr3 td9"><P class="p4 ft0">Stock#</P></TD>
 	<TD class="tr3 td10"><P class="p5 ft0">VIN</P></TD>
 	<TD class="tr3 td11"><P class="p6 ft0">Description</P></TD>
@@ -146,7 +146,7 @@ body {margin-top: 0px;margin-left: 0px;}
 	<TD class="tr3 td11"><P class="p8 ft0">Partially Paid</P></TD>
 	<TD class="tr3 td11"><P class="p9 ft0">Balance Due</P></TD>
 </TR>
-<TR>
+<TR class="toLeft two">
 	<TD class="tr4 td12"><P class="p10 ft0">${lotNumber}</P></TD>
 	<TD class="tr4 td13"><P class="p11 ft2">${vinCode}</P></TD>
 	<TD class="tr4 td14"><P class="p11 ft2">${YMM}</P></TD>
@@ -154,7 +154,7 @@ body {margin-top: 0px;margin-left: 0px;}
 	<TD class="tr4 td14"><P class="p13 ft2">($0,00)</P></TD>
 	<TD class="tr4 td14"><P class="p12 ft2">$${total}</P></TD>
 </TR>
-<TR>
+<TR class="toLeft three">
 	<TD class="tr7 td15"><P class="p1 ft3">&nbsp;</P></TD>
 	<TD class="tr7 td16"><P class="p1 ft3">&nbsp;</P></TD>
 	<TD class="tr7 td17"><P class="p1 ft3">&nbsp;</P></TD>
@@ -162,7 +162,7 @@ body {margin-top: 0px;margin-left: 0px;}
 	<TD class="tr7 td17"><P class="p1 ft3">&nbsp;</P></TD>
 	<TD class="tr7 td17"><P class="p1 ft3">&nbsp;</P></TD>
 </TR>
-<TR>
+<TR class="toLeft four">
 	<TD class="tr1 td18"><P class="p1 ft1">&nbsp;</P></TD>
 	<TD class="tr1 td7"><P class="p1 ft1">&nbsp;</P></TD>
 	<TD class="tr1 td17"><P class="p1 ft1">&nbsp;</P></TD>
