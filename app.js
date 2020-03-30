@@ -4,8 +4,14 @@ const axios = require('axios').default;
 const express = require("express");
 const bodyParser = require('body-parser'); 
 const mysql = require('mysql2');
+const fs = require('fs');
 const Parser = require('./Parser');
 
+
+let settings = {
+	enable: false,
+	scan_interval: 30 // In minutes
+};
 
 // Connect to mysql DB
 const connection = mysql.createConnection({
@@ -15,8 +21,8 @@ const connection = mysql.createConnection({
 	password: 'root'
 }).promise();
 
-let parser = new Parser(connection);
-//parser.startParsing();
+let parser = new Parser(connection, fs);
+// For test (Delete in prodaction!)
 parser.getFullCopartList(0, false);
 
 // ========== ROUTING - START ==========
@@ -27,14 +33,34 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(bodyParser.json());
 
-// Show index.html
-app.get("/", function(req, res){
-	res.sendFile(__dirname + '/index.html');
+
+/*
+Дать возможность получать отдельно данные по аукционам и по всем сразу
+Сортировка:
+	- по марке
+	- топливе 
+	- модель (если выбрана марка)
+	- году выпуска
+*/
+
+
+app.get("/getAllLots", function(req, res){
+	
 });
 
+app.get("/getCopartAllLots", function(req, res){
+	
+});
 
+app.get("/getAiiaAllLots", function(req, res){
+	
+});
 
+setTimeout(function tick(){
+	if(settings.enable) parser.startParsing();
 
+	setTimeout(tick, 60000 * settings.scan_interval);
+}, 60000 * settings.scan_interval);
 
 
 /*

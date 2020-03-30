@@ -1,6 +1,5 @@
 /*jshint esversion: 6 */
 const axios = require('axios').default;
-const fs = require('fs');
 
 /*
 Class Parser
@@ -28,13 +27,17 @@ PARAMETERS:
 6) getDataFromDB - this method give data from DB
 PARAMETERS: 
 	auction - current auction (optional. If you want get all data just set auction = *)
-
+7) toLog - this method allow write logs to the certain file
+PARAMETERS:
+	type - type of logs
+	text - text of logs
 */
 
 class Parser{
-	constructor(connection){
+	constructor(connection, fs){
 		this.stopPage = 1;
 		this.connection = connection;
+		this.fs = fs;
 	}
 
 	sendRequest(url, method){
@@ -56,7 +59,7 @@ class Parser{
 
 	startParsing(){
 		console.log('Parsing Copart...');
-		this.setFullCopartList(0, true);
+		this.getFullCopartList(0, true);
 	}
 
 	getFullCopartList(page, isAuto){
@@ -65,13 +68,13 @@ class Parser{
 			let results = result.data.results;
 			if(results !== undefined){
 				this.stopPage = Math.floor(results.totalElements / 30000);
-				
+				//console.log(results.content);
 				// Data to DB
 				this.setDataToDB(results.content, 'Copart'); 
 				// Recursion while last page of copart > current page
 				if(this.stopPage > page && isAuto){
 					console.log(`Copart: ${page} page of ${this.stopPage}`);
-					this.setFullCopartList(page + 1, true);
+					this.getFullCopartList(page + 1, true);
 				}else{
 					console.log('Parsing finish!');
 				}
@@ -84,6 +87,19 @@ class Parser{
 	
 	getFullAiiaList(page, isAuto){
 
+	}
+
+	toLog(type, text){
+		let log_name = null;
+		if(type === 'query'){
+			log_name = 'query_log.txt';
+		}
+
+		this.fs.appendFile(`logs/${log_name}`, text, function(err){
+			if(err){
+			    return console.log(err);
+			}
+		}); 
 	}
 
 	setDataToDB(data, auction){
@@ -125,22 +141,21 @@ class Parser{
 				query += `(NULL, 2, ${lot.ln}, "${lot.mkn}", "${lot.lm}",
 				${lot.lcy}, ${lot.la}, ${lot.orr}, "${lot.egn}", ${lot.cy},
 				"${lot.cuc}", ${lot.hb}, "${lot.tims}", "${lot.tmtp}",
-				"${lot.bstl}", "${lot.lcd}", "${lot.ft}")${delimiter}`;
+				"${lot.bstl}", "${lot.lcd}", "${lot.ft}", "${lot.ord}",
+				"${auction}")${delimiter}`;
 			}
 
-			fs.writeFile("test", query, function(err){
-			    if(err){
-			        return console.log(err);
-			    }
-			}); 
+			this.toLog('query', query);
 
 			this.connection.query(query).then(result => {
-				console.log(result);
+				console.log("DATA IN DB!");
 			});
+
 		}else{
 
 		}
 	}
+
 	getDataFromDB(auction){
 		if(auction === '*'){
 
