@@ -1,5 +1,6 @@
 /*jshint esversion: 6 */
 const axios = require('axios').default;
+const fs = require('fs');
 
 /*
 Class Parser
@@ -59,12 +60,12 @@ class Parser{
 	}
 
 	getFullCopartList(page, isAuto){
-		let url = `https://www.copart.com/public/lots/search?size=10&page=${page}`;
+		let url = `https://www.copart.com/public/lots/search?size=30000&page=${page}`;
 		this.sendRequest(url, 'POST').then(result => {
 			let results = result.data.results;
 			if(results !== undefined){
 				this.stopPage = Math.floor(results.totalElements / 30000);
-				console.log(results.content);
+				
 				// Data to DB
 				this.setDataToDB(results.content, 'Copart'); 
 				// Recursion while last page of copart > current page
@@ -94,12 +95,45 @@ class Parser{
 				let lot = data[i];
 				let delimiter = i == data.length - 1 ? '' : ',';
 
-				query += `(NULL, 2, ${lot.ln}, '${lot.mkn}', '${lot.lm}',
-				${lot.lcy}, ${lot.la}, ${lot.orr}, '${lot.egn}', ${lot.cy},
-				'${lot.cuc}', ${lot.hb}, '${lot.tims}', '${lot.tmtp}',
-				'${lot.bstl}', '${lot.lcd}', '${lot.ft}')${delimiter}`;
+				// Check value for undefined
+				// CHANGE THIS CODE WHEN YOU WILL HAVE TIME! 
+
+				lot.ln = lot.ln ? lot.ln : 0;
+				lot.mkn = lot.mkn ? lot.mkn.replace(/"/g, " ") : 0;
+				lot.lm = lot.lm ? lot.lm.replace(/"/g, " ") : 0;
+				lot.lcy = lot.lcy ? lot.lcy : 0;
+				lot.la = lot.la ? lot.la : 0;
+				lot.orr = lot.orr ? lot.orr : 0;
+				lot.egn = lot.egn ? lot.egn : 0;
+				lot.cy = lot.cy ? lot.cy : 0;
+				lot.cuc = lot.cuc ? lot.cuc : 0;
+				lot.hb = lot.hb ? lot.hb : 0;
+				lot.tims = lot.tims ? lot.tims : 0;
+				lot.tmtp = lot.tmtp ? lot.tmtp : 0;
+				lot.bstl = lot.bstl ? lot.bstl : 0;
+				lot.lcd = lot.lcd ? lot.lcd : 0;
+				lot.ft = lot.ft ? lot.ft : 0;
+
+				lot.ln = isNaN(+lot.ln) ? 0 : lot.ln;
+				lot.lcy = isNaN(+lot.lcy) ? 0 : lot.lcy;
+				lot.la = isNaN(+lot.la) ? 0 : lot.la;
+				lot.orr = isNaN(+lot.orr) ? 0 : lot.orr;
+				lot.cy = isNaN(+lot.cy) ? 0 : lot.cy;
+				lot.hb = isNaN(+lot.hb) ? 0 : lot.hb;
+
+				// Create INSERT query 
+				query += `(NULL, 2, ${lot.ln}, "${lot.mkn}", "${lot.lm}",
+				${lot.lcy}, ${lot.la}, ${lot.orr}, "${lot.egn}", ${lot.cy},
+				"${lot.cuc}", ${lot.hb}, "${lot.tims}", "${lot.tmtp}",
+				"${lot.bstl}", "${lot.lcd}", "${lot.ft}")${delimiter}`;
 			}
-			console.log(query);
+
+			fs.writeFile("test", query, function(err){
+			    if(err){
+			        return console.log(err);
+			    }
+			}); 
+
 			this.connection.query(query).then(result => {
 				console.log(result);
 			});

@@ -15,17 +15,6 @@ const connection = mysql.createConnection({
 	password: 'root'
 }).promise();
 
-/*
-connection.connect(function(err){
-	if(err){
-		console.log('Error: ' + err.message);
-		process.exit(-1);
-	}else{
-		console.log('Подключение к БД прошло успешно!');
-	}
-}).promise();
-*/
-
 let parser = new Parser(connection);
 //parser.startParsing();
 parser.getFullCopartList(0, false);
@@ -49,9 +38,6 @@ app.get("/", function(req, res){
 
 
 /*
-
-sendRequest('https://www.copart.com/public/lots/search?size=15&filter%5BMAKE%5D=lot_make_desc%3A%22AIRS%22%2Clot_make_desc%3A%22ALFA+ROMEO%22%2Clot_make_desc%3A%22AERO%22', function(res){
-	console.log(res);
-});
-
+EXAMPLE COOPART WITH FILTERS FIELDS
+https://www.copart.com/public/lots/search?size=15&filter%5BMAKE%5D=lot_make_desc%3A%22AIRS%22%2Clot_make_desc%3A%22ALFA+ROMEO%22%2Clot_make_desc%3A%22AERO%22
 */
