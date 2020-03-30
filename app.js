@@ -1,25 +1,57 @@
+/*jshint esversion: 6 */
+//const FormData = require('form-data');
+const axios = require('axios').default;
 const express = require("express");
-const path = require("path");
+const bodyParser = require('body-parser'); 
+const mysql = require('mysql2');
+const Parser = require('./Parser');
+
+
+// Connect to mysql DB
+const connection = mysql.createConnection({
+	host: 'localhost',
+	user: 'root',
+	database: 'car_parser',
+	password: 'root'
+}).promise();
+
+/*
+connection.connect(function(err){
+	if(err){
+		console.log('Error: ' + err.message);
+		process.exit(-1);
+	}else{
+		console.log('Подключение к БД прошло успешно!');
+	}
+}).promise();
+*/
+
+let parser = new Parser(connection);
+//parser.startParsing();
+parser.getFullCopartList(0, false);
+
+// ========== ROUTING - START ==========
 const app = express();
+app.use(express.static(__dirname));
+app.use(bodyParser.urlencoded({
+    extended: true
+}));
+app.use(bodyParser.json());
 
-app.use(express.json({extended: true}));
-app.use('/api', require('./routes/invoice.router'));
-
-const PORT = process.env.PORT || 5000;
-
-if (process.env.NODE_ENV === 'prod'){
-    app.use('/', express.static(path.join(__dirname, 'client', "build")));
-
-    app.use('*', (req, res) => {
-        res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'))
-    })
-}
+// Show index.html
+app.get("/", function(req, res){
+	res.sendFile(__dirname + '/index.html');
+});
 
 
-async function start() {
-    app.listen(PORT, () => {
-        console.log(`Server started on port: ${PORT}...`)
-    });
-}
 
-start();
+
+
+
+/*
+
+sendRequest('https://www.copart.com/public/lots/search?size=15&filter%5BMAKE%5D=lot_make_desc%3A%22AIRS%22%2Clot_make_desc%3A%22ALFA+ROMEO%22%2Clot_make_desc%3A%22AERO%22', function(res){
+	console.log(res);
+});
+
+*/
