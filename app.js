@@ -1,5 +1,4 @@
 /*jshint esversion: 6 */
-//const FormData = require('form-data');
 const axios = require('axios').default;
 const express = require("express");
 const bodyParser = require('body-parser'); 
@@ -23,7 +22,8 @@ const connection = mysql.createConnection({
 
 let parser = new Parser(connection, fs);
 // For test (Delete in prodaction!)
-parser.getFullCopartList(0, false);
+//parser.getFullCopartList(0, false);
+parser.getFullAiiaList(1, false);
 
 // ========== ROUTING - START ==========
 const app = express();
