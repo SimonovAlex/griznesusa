@@ -1,3 +1,13 @@
+function formatYMM(YMM){
+    const str = YMM.trim().split(" ");
+    const first = str[0]? `${str[0]}<br>` : "";
+    const second = str[1]? `${str[1]}<br>`: "";
+    const third  = str[2]? `${str[2]} ${str[3]? str[3]: ""}`: "";
+    const all = str[4]? str.slice(4).join(" "): "";
+
+    return `${first} ${second} ${third} ${all}`
+}
+
 module.exports = ({name, country, city, home, apartment, invoiceNumber, MemberBuyer, vinCode, invoiceDate, lotNumber, street, total, YMM}) => {
     return `<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <HTML>
@@ -70,11 +80,11 @@ body {margin-top: 0px;margin-left: 0px;}
 .td16{border-right: #000000 1px solid;border-bottom: #cccccc 1px solid;padding: 0px;margin: 0px;width: 83px;vertical-align: bottom;background: #cccccc;}
 .td17{border-bottom: #cccccc 1px solid;padding: 0px;margin: 0px;width: 72px;vertical-align: bottom;background: #cccccc;}
 .td18{border-right: #000000 1px solid;border-bottom: #cccccc 1px solid;padding: 0px;margin: 0px;width: 11px;vertical-align: bottom;background: #cccccc;}
-.td19{border-left: #000000 1px solid;border-right: #000000 1px solid;border-top: #000000 1px solid;padding: 0px;margin: 0px;width: 60px;vertical-align: bottom;}
-.td20{border-right: #000000 1px solid;border-top: #000000 1px solid;padding: 0px;margin: 0px;width: 110px;vertical-align: bottom;}
-.td21{border-right: #000000 1px solid;border-top: #000000 1px solid;padding: 0px;margin: 0px;width: 83px;vertical-align: bottom;}
-.td22{border-top: #000000 1px solid;padding: 0px;margin: 0px;width: 72px;vertical-align: bottom;}
-.td23{border-right: #000000 1px solid;border-top: #000000 1px solid;padding: 0px;margin: 0px;width: 11px;vertical-align: bottom;}
+.td19{border-left: #000000 1px solid;border-right: #000000 1px solid;border-top: #000000 1px solid;padding: 0px;margin: 0px;width: 60px;vertical-align: bottom;vertical-align: text-top;}
+.td20{border-right: #000000 1px solid;border-top: #000000 1px solid;padding: 0px;margin: 0px;width: 110px;vertical-align: bottom; vertical-align: text-top;}
+.td21{border-right: #000000 1px solid;border-top: #000000 1px solid;padding: 0px;margin: 0px;width: 83px;vertical-align: bottom; vertical-align: text-top;}
+.td22{border-top: #000000 1px solid;padding: 0px;margin: 0px;width: 72px;vertical-align: bottom; vertical-align: text-top;}
+.td23{border-right: #000000 1px solid;border-top: #000000 1px solid;padding: 0px;margin: 0px;width: 11px;vertical-align: bottom; vertical-align: text-top;}
 .td24{border-left: #000000 1px solid;border-right: #000000 1px solid;border-bottom: #000000 1px solid;padding: 0px;margin: 0px;width: 60px;vertical-align: bottom;}
 .td25{border-right: #000000 1px solid;border-bottom: #000000 1px solid;padding: 0px;margin: 0px;width: 110px;vertical-align: bottom;}
 .td26{border-right: #000000 1px solid;border-bottom: #000000 1px solid;padding: 0px;margin: 0px;width: 83px;vertical-align: bottom;}
@@ -184,7 +194,7 @@ body {margin-top: 0px;margin-left: 0px;}
 <TR>
 \t<TD class="tr8 td19"><P class="p10 ft0">${lotNumber}</P></TD>
 \t<TD class="tr8 td20"><P class="p11 ft2">${vinCode}</P></TD>
-\t<TD class="tr8 td21"><P class="p11 ft2">${YMM}</P></TD>
+\t<TD class="tr8 td21"><P class="p11 ft2">${formatYMM(YMM)}</P></TD>
 \t<TD class="tr8 td22"><P class="p12 ft2">$${total}</P></TD>
 \t<TD class="tr8 td23"><P class="p1 ft1">&nbsp;</P></TD>
 \t<TD class="tr8 td21"><P class="p13 ft2">($0,00)</P></TD>
