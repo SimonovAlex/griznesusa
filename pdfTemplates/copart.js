@@ -8,53 +8,53 @@ module.exports = ({name, country, city, home, apartment, invoiceNumber, MemberBu
 <STYLE type="text/css">
 body {margin-top: 0px;margin-left: 0px;}
 
-#page_1 {position:relative; overflow: hidden;margin: 67px 0px 1px 4px;padding: 0px;border: none;width: 790px;}
-#page_1 #id1_1 {border:none;margin: 24px 0px 0px 397px;padding: 0px;border:none;width: 393px;overflow: hidden;}
-#page_1 #id1_1 #id1_1_1 {float:left;border:none;margin: 8px 0px 0px 0px;padding: 0px;border:none;width: 239px;overflow: hidden;}
-#page_1 #id1_1 #id1_1_2 {float:left;border:none;margin: 0px 0px 0px 0px;padding: 0px;border:none;width: 154px;overflow: hidden;}
-#page_1 #id1_2 {border:none;margin: 66px 0px 0px 0px;padding: 0px;border:none;width: 790px;overflow: hidden;}
+#page_1 {position:relative; overflow: hidden;margin: 50px 0px 1px 3px;padding: 0px;border: none;width: 600px;}
+#page_1 #id1_1 {border:none;margin: 18px 0px 0px 300px;padding: 0px;border:none;width: 300px;overflow: hidden;}
+#page_1 #id1_1 #id1_1_1 {float:left;border:none;margin: 6px 0px 0px 0px;padding: 0px;border:none;width: 180px;overflow: hidden;}
+#page_1 #id1_1 #id1_1_2 {float:left;border:none;margin: 0px 0px 0px 0px;padding: 0px;border:none;width: 116px;overflow: hidden;}
+#page_1 #id1_2 {border:none;margin: 50px 0px 0px 0px;padding: 0px;border:none;width: 600px;overflow: hidden;}
 
-#page_1 #p1dimg1 {position:absolute;top:0px;left:56px;z-index:-1;width:673px;height:633px;}
-#page_1 #p1dimg1 #p1img1 {width:673px;height:633px;}
+#page_1 #p1dimg1 {position:absolute;top:0px;left:42px;z-index:-1;width:505px;height:475px;}
+#page_1 #p1dimg1 #p1img1 {width:505px;height:475px;}
 
 
 
 
 .dclr {clear:both;float:none;height:1px;margin:0px;padding:0px;overflow:hidden;}
 
-.ft0{font: 12px 'Arial';line-height: 15px;}
-.ft1{font: bold 21px 'Arial';line-height: 24px;}
-.ft2{font: bold 12px 'Arial';line-height: 15px;}
+.ft0{font: 9px 'Arial';line-height: 11px;}
+.ft1{font: bold 16px 'Arial';line-height: 18px;}
+.ft2{font: bold 9px 'Arial';line-height: 11px;}
 .ft3{font: 1px 'Arial';line-height: 1px;}
-.ft4{font: 21px 'Arial';line-height: 24px;}
+.ft4{font: 16px 'Arial';line-height: 18px;}
 .ft5{font: 1px 'Helvetica';line-height: 2px;}
 
 .p0{text-align: left;margin-top: 0px;margin-bottom: 0px;}
-.p1{text-align: left;margin-top: 9px;margin-bottom: 0px;}
+.p1{text-align: left;margin-top: 7px;margin-bottom: 0px;}
 .p2{text-align: left;margin-top: 0px;margin-bottom: 0px;white-space: nowrap;}
-.p3{text-align: left;padding-left: 60px;margin-top: 42px;margin-bottom: 0px;}
-.p4{text-align: left;padding-left: 60px;margin-top: 50px;margin-bottom: 0px;}
-.p5{text-align: left;padding-left: 56px;margin-top: 98px;margin-bottom: 0px;}
-.p6{text-align: left;padding-left: 56px;margin-top: 11px;margin-bottom: 0px;}
-.p7{text-align: left;padding-left: 56px;margin-top: 12px;margin-bottom: 0px;}
-.p8{text-align: left;padding-left: 163px;margin-top: 26px;margin-bottom: 0px;}
-.p9{text-align: left;padding-left: 232px;margin-top: 12px;margin-bottom: 0px;}
-.p10{text-align: left;padding-left: 276px;margin-top: 12px;margin-bottom: 0px;}
-.p11{text-align: left;margin-top: 96px;margin-bottom: 0px;}
+.p3{text-align: left;padding-left: 45px;margin-top: 32px;margin-bottom: 0px;}
+.p4{text-align: left;padding-left: 45px;margin-top: 38px;margin-bottom: 0px;}
+.p5{text-align: left;padding-left: 42px;margin-top: 74px;margin-bottom: 0px;}
+.p6{text-align: left;padding-left: 42px;margin-top: 8px;margin-bottom: 0px;}
+.p7{text-align: left;padding-left: 42px;margin-top: 9px;margin-bottom: 0px;}
+.p8{text-align: left;padding-left: 122px;margin-top: 20px;margin-bottom: 0px;}
+.p9{text-align: left;padding-left: 174px;margin-top: 9px;margin-bottom: 0px;}
+.p10{text-align: left;padding-left: 207px;margin-top: 9px;margin-bottom: 0px;}
+.p11{text-align: left;margin-top: 72px;margin-bottom: 0px;}
 
-.td0{padding: 0px;margin: 0px;width: 337px;vertical-align: bottom;}
-.td1{padding: 0px;margin: 0px;width: 156px;vertical-align: bottom;}
-.td2{padding: 0px;margin: 0px;width: 404px;vertical-align: bottom;}
-.td3{padding: 0px;margin: 0px;width: 199px;vertical-align: bottom;}
+.td0{padding: 0px;margin: 0px;width: 300px;vertical-align: bottom;}
+.td1{padding: 0px;margin: 0px;width: 117px;vertical-align: bottom;}
+.td2{padding: 0px;margin: 0px;width: 303px;vertical-align: bottom;}
+.td3{padding: 0px;margin: 0px;width: 150px;vertical-align: bottom;}
 
-.tr0{height: 26px;}
-.tr1{height: 21px;}
-.tr2{height: 23px;}
-.tr3{height: 24px;}
-.tr4{height: 25px;}
+.tr0{height: 20px;}
+.tr1{height: 16px;}
+.tr2{height: 17px;}
+.tr3{height: 18px;}
+.tr4{height: 19px;}
 
-.t0{width: 493px;margin-left: 60px;font: 12px 'Arial';}
-.t1{width: 603px;margin-left: 60px;margin-top: 13px;font: 12px 'Arial';}
+.t0{width: 500px;margin-left: 45px;font: 9px 'Arial';}
+.t1{width: 452px;margin-left: 45px;margin-top: 10px;font: 9px 'Arial';}
 
 </STYLE>
 </HEAD>
