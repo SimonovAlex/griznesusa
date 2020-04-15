@@ -23,6 +23,7 @@
     "mysql2": "^2.1.0",
     "query-string": "^6.11.1",
     "requestify": "^0.2.5",
+    "socket.io": "^2.3.0",
     "wkhtmltopdf": "^0.3.4"
   },
   "devDependencies": {
