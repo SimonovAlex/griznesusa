@@ -6,10 +6,9 @@ const mysql = require('mysql2');
 const fs = require('fs');
 const Parser = require('./Parser');
 
-
 let settings = {
 	enable: false,
-	port: 3000,
+	port: 5000,
 	scan_interval: 30 // In minutes
 };
 
@@ -25,7 +24,7 @@ let parser = new Parser(connection, fs);
 // For test (Delete in prodaction!)
 //parser.getFullCopartList(0, false);
 //parser.getFullAiiaList(1, false);
-parser.startParsing();
+// parser.startParsing();
 
 // ========== ROUTING - START ==========
 const app = express();
@@ -34,10 +33,27 @@ app.use(bodyParser.urlencoded({
     extended: true
 }));
 app.use(bodyParser.json());
+app.use('/api', require('./routes/invoice.router'));
 
-const io = require('socket.io').listen(app.listen(settings.port, function(){
-	console.log('SERVER STARTED AT ' + new Date());
-}));
+
+if (process.env.NODE_ENV === 'prod'){
+    app.use('/', express.static(path.join(__dirname, 'client', "build")));
+
+    app.use('*', (req, res) => {
+        res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'))
+    })
+}
+
+let io;
+
+function start() {
+    io = require('socket.io').listen(app.listen(settings.port, function(){
+        console.log('SERVER STARTED AT ' + new Date());
+    }));
+}
+
+start();
+
 /*
 Дать возможность получать отдельно данные по аукционам и по всем сразу
 Сортировка:
@@ -85,7 +101,7 @@ setInterval(function(){
 	io.sockets.emit('update_session');
 }, 900000);
 
- 
+
 /*
 EXAMPLE COOPART WITH FILTERS FIELDS
 https://www.copart.com/public/lots/search?size=15&filter%5BMAKE%5D=lot_make_desc%3A%22AIRS%22%2Clot_make_desc%3A%22ALFA+ROMEO%22%2Clot_make_desc%3A%22AERO%22

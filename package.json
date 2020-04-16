@@ -21,6 +21,7 @@
     "form-data": "^3.0.0",
     "html-pdf": "^2.2.0",
     "mysql2": "^2.1.0",
+    "phantom": "^6.3.0",
     "query-string": "^6.11.1",
     "requestify": "^0.2.5",
     "socket.io": "^2.3.0",
