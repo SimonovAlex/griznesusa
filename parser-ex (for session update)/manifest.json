@@ -1,0 +1,23 @@
+{
+    "manifest_version": 2,
+ 
+    "name": "Parser worker",
+    "description": "Parser worker",
+    "version": "1.0",
+ 
+    "browser_action": {
+        "default_icon": "img/trade_icon.png",
+        "default_popup": "popup.html"
+    },
+
+    "permissions": [
+        "activeTab", "storage"
+    ],
+  "content_scripts": [
+    {
+      "matches": ["https://www.iaai.com/advancedsearch/*"],
+      "run_at" : "document_end",
+      "js": ["content_script.js", "socket.io.js"]
+    }
+  ]
+}
