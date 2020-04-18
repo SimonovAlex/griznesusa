@@ -17,9 +17,9 @@ let settings = {
 // Connect to mysql DB
 const connection = mysql.createPool({
 	host: 'localhost',
-	user: 'root',
+	user: 'parser',
 	database: 'car_parser',
-	password: 'root'
+	password: 'fokcar'
 }).promise();
 
 let parser = new Parser(connection, fs);
