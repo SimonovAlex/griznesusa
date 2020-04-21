@@ -9,7 +9,7 @@ const Parser = require('./Parser');
 let settings = {
 	enable: false,
 	port: 5000,
-	scan_interval: 30, // In minutes
+	scan_interval: 1440, // In minutes
 	ready: false,
 	min_count: 100000
 };
@@ -19,7 +19,7 @@ const connection = mysql.createPool({
 	host: 'localhost',
 	user: 'parser',
 	database: 'car_parser',
-	password: 'fokcar'
+	password: 'root' //fokcar
 }).promise();
 
 let parser = new Parser(connection, fs);
@@ -42,23 +42,13 @@ if (process.env.NODE_ENV === 'prod'){
     });
 }
 
-app.post("/getAllLots", function(req, res){
-	let data = req.body;
-	connection.query(`SELECT * FROM car_lots WHERE wave = (SELECT MAX(wave) FROM car_lots GROUP BY wave HAVING COUNT(id) > ${settings.min_count} AND MAX(wave)) LIMIT ${data.limit} OFFSET ${data.page};`).then(result => {
-		res.send(result[0]);
-	});
-});
+app.get("/car", function(req, res){
+	let data = req.query;
+	let auction = data.auction === 'copart' ? '"Copart"' : data.auction === 'aiia' ? '"AIIA"' : 'auction'; 
+	data.limit = data.limit > 0 ? data.limit : 0;
+	data.page = data.page > 0 ? data.page : 0;
 
-app.post("/getCopartAllLots", function(req, res){
-	let data = req.body;
-	connection.query(`SELECT * FROM car_lots WHERE auction='Copart' AND wave = (SELECT MAX(wave) FROM car_lots GROUP BY wave HAVING COUNT(id) > ${settings.min_count} AND MAX(wave)) LIMIT ${data.limit} OFFSET ${data.page};`).then(result => {
-		res.send(result[0]);
-	});
-});
-
-app.post("/getAiiaAllLots", function(req, res){
-	let data = req.body;
-	connection.query(`SELECT * FROM car_lots WHERE auction='AIIA' AND wave = (SELECT MAX(wave) FROM car_lots GROUP BY wave HAVING COUNT(id) > ${settings.min_count} AND MAX(wave)) LIMIT ${data.limit} OFFSET ${data.page};`).then(result => {
+	connection.query(`SELECT * FROM car_lots WHERE auction = ${auction} AND wave = (SELECT MAX(wave) FROM car_lots GROUP BY wave HAVING COUNT(id) > ${settings.min_count} AND MAX(wave)) LIMIT ${data.limit} OFFSET ${data.page};`).then(result => {
 		res.send(result[0]);
 	});
 });
@@ -80,7 +70,7 @@ function start() {
 		console.log("I FIND EXTENSION");
 		io.sockets.emit('update_session');
 		setTimeout(() => {
-			//parser.startParsing();
+			parser.startParsing();
 		}, 5000);
 	});
 
