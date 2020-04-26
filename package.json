@@ -11,7 +11,10 @@
     "client:build": "npm run build --prefix client",
     "dev": "concurrently \"npm run server\" \"npm run client\""
   },
-  "author": ["Simonov Alex <simonovalexprogrammer@gmail.com>", "Kaluzny Leonid <Leon9539@gmail.com>"],
+  "author": [
+    "Simonov Alex <simonovalexprogrammer@gmail.com>",
+    "Kaluzny Leonid <Leon9539@gmail.com>"
+  ],
   "license": "ISC",
   "dependencies": {
     "axios": "^0.19.2",
