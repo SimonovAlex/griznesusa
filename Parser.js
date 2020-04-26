@@ -283,8 +283,23 @@ class Parser{
 						}
 				     	});
 				    }, 2000);
+			    }).catch(err => {
+			    	console.log(err);
+					that.toLog('error', `Load page error. Auction - AIIA, Date - ${new Date()}`);
+					ph.exit();
+					that.getAiiaVehicle(auction_obj, wave, isAuto);
 			    });
+			}).catch(err => {
+			    console.log(err);
+				that.toLog('error', `Load page error. Auction - AIIA, Date - ${new Date()}`);
+				ph.exit();
+				that.getAiiaVehicle(auction_obj, wave, isAuto);
 			});
+		}).catch(err => {
+			console.log(err);
+			that.toLog('error', `Load page error. Auction - AIIA, Date - ${new Date()}`);
+			ph.exit();
+			that.getAiiaVehicle(auction_obj, wave, isAuto);
 		});
 	}
 
