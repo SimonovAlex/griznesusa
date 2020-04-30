@@ -37,6 +37,7 @@ class Parser{
 		this.stopPage = 1;
 		this.connection = connection;
 		this.fs = fs;
+		this.last_AIIA_value = null;
 	}
 
 	sendRequest(url, method, data){
@@ -59,7 +60,7 @@ class Parser{
 	}
 
 	startParsing(){
-		console.log('Parsing Copart...');
+		console.log('Parsing data...');
 			this.connection.query("SELECT MAX(wave) FROM car_lots;").then(result => {
 				let wave = result[0][0]['MAX(wave)'];
 				// Set wave of parsing cycle
@@ -110,10 +111,10 @@ class Parser{
 				console.log("AIIA ERROR! Parsing finish.");
 				this.toLog('error', `Parser error. Auction - AIIA, Date - ${new Date()}`);
 				return false;
-			}else if(data.length === 0 && page > 1){
+			}else if(data[0].attribs.href === this.last_AIIA_value && page > 1){
 				console.log('AIIA parsing finish!');
 			}else{
-
+				this.last_AIIA_value = data[0].attribs.href;
 				for(let i = 0; i < data.length; i++){
 					let url = data[i].attribs.href;
 					if(url.indexOf("/Vehicle?itemID") !== -1){

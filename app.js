@@ -8,7 +8,7 @@ const path = require('path');
 const Parser = require('./Parser');
 
 let settings = {
-	enable: false,
+	enable: true,
 	port: 5000,
 	scan_interval: 1440, // In minutes
 	ready: false,
@@ -32,7 +32,16 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(bodyParser.json());
 app.use('/api', require('./routes/invoice.router'));
+app.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+    next();
 
+    app.options('*', (req, res) => {
+        res.header('Access-Control-Allow-Methods', 'GET, PATCH, PUT, POST, DELETE, OPTIONS');
+        res.send();
+    });
+});
 
 if (process.env.NODE_ENV === 'prod'){
     app.use('/', express.static(path.join(__dirname, 'client', "build")));
@@ -50,11 +59,15 @@ app.get("/car", function(req, res){
 	let mark = data.mark;
 	let year = parseInt(data.year);
 
-	if(isNaN(parseInt(data.id))){
+	if(isNaN(parseInt(data.id)) && model){ // model, mark, year
 		query = `SELECT AVG(price) * 0.3, MIN(price) * 0.3, MAX(price) * 0.3 FROM car_lots 
 		WHERE auction=${auction} AND price > 0 AND model = "${model}" 
 		AND mark = "${mark}" AND year = ${year};`;
-	}else{
+	}else if(!model){
+		query = `SELECT AVG(price) * 0.3, MIN(price) * 0.3, MAX(price) * 0.3 FROM car_lots 
+		WHERE auction=${auction} AND price > 0 AND model = "${model}" 
+		AND mark = "${mark}" AND year = ${year};`;
+	}else{ // id
 		query = `SELECT * FROM car_lots WHERE lotNumber = ${data.id} AND 
 		auction=${auction} AND wave = (SELECT MAX(wave) 
 		FROM car_lots GROUP BY wave HAVING COUNT(id) > ${settings.min_count} 
