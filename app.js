@@ -32,7 +32,16 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(bodyParser.json());
 app.use('/api', require('./routes/invoice.router'));
+app.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+    next();
 
+    app.options('*', (req, res) => {
+        res.header('Access-Control-Allow-Methods', 'GET, PATCH, PUT, POST, DELETE, OPTIONS');
+        res.send();
+    });
+});
 
 if (process.env.NODE_ENV === 'prod'){
     app.use('/', express.static(path.join(__dirname, 'client', "build")));
@@ -41,6 +50,7 @@ if (process.env.NODE_ENV === 'prod'){
         res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
     });
 }
+
 
 app.get("/car", function(req, res){
 	let query = null;
