@@ -51,6 +51,7 @@ if (process.env.NODE_ENV === 'prod'){
     });
 }
 
+
 app.get("/car", function(req, res){
 	let query = null;
 	let data = req.query;
