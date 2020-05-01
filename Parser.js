@@ -353,7 +353,7 @@ class Parser{
 				lot.hb = isNaN(+lot.hb) ? 0 : lot.hb;
 
 				// Create INSERT query 
-				query += `(NULL, ${wave}, ${lot.ln}, "${lot.mkn}", "${lot.lm}",
+				query += `(NULL, ${wave}, ${lot.ln}, "${lot.mkn.toLowerCase()}", "${lot.lm.toLowerCase()}",
 				${lot.lcy}, ${lot.la}, ${lot.orr}, "${lot.egn}", ${lot.cy},
 				"${lot.cuc}", ${lot.hb}, "${lot.tims}", "${lot.tmtp}",
 				"${lot.bstl}", "${lot.lcd}", "${lot.ft}", "${lot.ord}",
