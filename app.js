@@ -64,10 +64,10 @@ app.get("/car", function(req, res){
 		query = `SELECT AVG(price) * 0.3, MIN(price) * 0.3, MAX(price) * 0.3 FROM car_lots 
 		WHERE auction=${auction} AND price > 0 AND model = "${model}" 
 		AND mark = "${mark}" AND year = ${year};`;
-	}else if(!model){
+	}else if(isNaN(parseInt(data.id)) && !model){
 		query = `SELECT AVG(price) * 0.3, MIN(price) * 0.3, MAX(price) * 0.3 FROM car_lots 
-		WHERE auction=${auction} AND price > 0 AND model = "${model}" 
-		AND mark = "${mark}" AND year = ${year};`;
+		WHERE auction=${auction} AND price > 0 AND mark = "${mark}" 
+		AND year = ${year};`;
 	}else{ // id
 		query = `SELECT * FROM car_lots WHERE lotNumber = ${data.id} AND 
 		auction=${auction} AND wave = (SELECT MAX(wave) 
