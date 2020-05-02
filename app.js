@@ -33,12 +33,13 @@ app.use(bodyParser.urlencoded({
 app.use(bodyParser.json());
 app.use('/api', require('./routes/invoice.router'));
 app.use((req, res, next) => {
-    res.header('Access-Control-Allow-Origin', '*');
-    res.header('Access-Control-Allow-Headers', 'origin, content-type, accepts');
+	res.setHeader('Access-Control-Allow-Origin', '*');
+	res.setHeader("Access-Control-Allow-Methods", "*");
+    res.setHeader('Access-Control-Allow-Headers', 'origin, content-type, accepts');
     next();
 
     app.options('*', (req, res) => {
-        res.header('Access-Control-Allow-Methods', 'GET, PATCH, PUT, POST, DELETE, OPTIONS');
+        res.setHeader('Access-Control-Allow-Methods', 'GET, PATCH, PUT, POST, DELETE, OPTIONS');
         res.send();
     });
 });
