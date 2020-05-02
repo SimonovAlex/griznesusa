@@ -9,7 +9,7 @@ const Parser = require('./Parser');
 
 let settings = {
 	enable: true,
-	port: 5000,
+	port: 80,
 	scan_interval: 1440, // In minutes
 	ready: false,
 	min_count: 100000
