@@ -79,7 +79,6 @@ class Parser{
 			let results = result.data.results;
 			if(results !== undefined){
 				this.stopPage = Math.floor(results.totalElements / 30000);
-				console.log(results.content);
 				// Data to DB
 				this.setDataToDB(results.content, wave, 'Copart'); 
 				// Recursion while last page of copart > current page
