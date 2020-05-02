@@ -6,6 +6,7 @@ const mysql = require('mysql2');
 const fs = require('fs');
 const path = require('path');
 const Parser = require('./Parser');
+const cors = require('cors');
 
 let settings = {
 	enable: true,
@@ -45,11 +46,15 @@ app.use((req, res, next) => {
 });
 
 if (process.env.NODE_ENV === 'prod'){
-    app.use('/', express.static(path.join(__dirname, 'client', "build")));
+	app.use('/', express.static(path.join(__dirname, 'client', "build")));
+	
+	app.use('*', (req, res) => {
+        res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+    });
 }
 
 
-app.get("/car", function(req, res){
+app.get("/car", cors({ origin: false }) ,function(req, res){
 	let query = null;
 	let data = req.query;
 	let auction = data.auction === 'copart' ? '"Copart"' : data.auction === 'aiia' ? '"AIIA"' : 'auction'; 
@@ -80,7 +85,7 @@ app.get("/car", function(req, res){
 	});
 });
 
-app.get("/car/list", function(req, res){
+app.get("/car/list", cors({ origin: false }), function(req, res){
 	let query = `SELECT DISTINCT mark, model, year FROM car_lots 
 	WHERE model != "-1" AND mark != "-1" AND year != -1 ORDER BY model;`;
 
