@@ -34,7 +34,7 @@ app.use(bodyParser.json());
 app.use('/api', require('./routes/invoice.router'));
 app.use((req, res, next) => {
     res.header('Access-Control-Allow-Origin', '*');
-    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+    res.header('Access-Control-Allow-Headers', 'origin, content-type, accepts');
     next();
 
     app.options('*', (req, res) => {
