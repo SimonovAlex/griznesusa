@@ -119,6 +119,7 @@ function start() {
     const io = require('socket.io').listen(app.listen(settings.port, function(){
         console.log('SERVER STARTED AT ' + new Date());
         settings.ready = true;
+        setTimeout(() => {parser.startParsing();}, 5000);
     }));
 
     // Start parsing new data every settings.scan_interval min
@@ -134,9 +135,6 @@ function start() {
 	io.sockets.on('connection', function(client){
 		console.log("I FIND EXTENSION");
 		io.sockets.emit('update_session');
-		setTimeout(() => {
-			parser.startParsing();
-		}, 5000);
 	});
 
 	// Update session every hour
