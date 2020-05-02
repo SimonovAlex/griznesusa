@@ -33,6 +33,7 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(bodyParser.json());
 app.use('/api', require('./routes/invoice.router'));
+app.use('/', express.static(path.join(__dirname, 'client', "build")));
 app.use((req, res, next) => {
 	res.setHeader('Access-Control-Allow-Origin', '*');
 	res.setHeader("Access-Control-Allow-Methods", "*");
@@ -45,14 +46,9 @@ app.use((req, res, next) => {
     });
 });
 
-if (process.env.NODE_ENV === 'prod'){
-	app.use('/', express.static(path.join(__dirname, 'client', "build")));
-	
-	app.use('*', (req, res) => {
-        res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
-    });
-}
-
+app.get("/", function(req, res){
+	res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+});
 
 app.get("/car", cors({ origin: false }) ,function(req, res){
 	let query = null;

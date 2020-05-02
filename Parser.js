@@ -68,6 +68,8 @@ class Parser{
 
 				this.getFullCopartList(0, wave, true);
 				this.getFullAiiaList(1, wave, true);
+
+				this.toLog('work', `Parser start ${new Date()}`);
 			});
 	}
 
@@ -308,6 +310,8 @@ class Parser{
 		let log_name = null;
 		if(type === 'error'){
 			log_name = 'error_log.txt';
+		}else if(type === 'work'){
+			log_name = 'work_log.txt';
 		}
 
 		this.fs.appendFile(`logs/${log_name}`, text, function(err){
