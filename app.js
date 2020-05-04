@@ -69,8 +69,7 @@ app.get("/car", cors({ origin: false }) ,function(req, res){
 	}else{ // id
 		query = `SELECT * FROM car_lots WHERE lotNumber = ${data.id} AND 
 		auction=${auction} AND wave = (SELECT MAX(wave) 
-		FROM car_lots GROUP BY wave HAVING COUNT(id) > ${settings.min_count} 
-		AND MAX(wave))`;
+		FROM car_lots HAVING COUNT(id) > ${settings.min_count})`;
 	}
 	console.log(query);
 	connection.query(query).then(result => {
