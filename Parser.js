@@ -372,7 +372,7 @@ class Parser{
 			// buy_now_price
 
 			// Create INSERT query 
-			query += `(NULL, ${wave}, ${data.lot_num}, "${data.mark}", "${data.model}",
+			query += `(NULL, ${wave}, ${data.lot_num}, "${data.mark.toLowerCase()}", "${data.model.toLowerCase()}",
 			${data.year}, ${data.market_value}, ${data.odometer}, "${data.engine}", ${data.cylindres},
 			"${data.currency}", ${data.price}, "${data.carImage}", "${data.transmission}",
 			"${data.body_type}", "${data.driveUnit}", "${data.fuelType}", "${data.status}",
