@@ -1,17 +1,29 @@
 /*jshint esversion: 6 */
-const axios = require('axios').default;
-const express = require("express");
 const bodyParser = require('body-parser'); 
-const mysql = require('mysql2');
-const fs = require('fs');
-const path = require('path');
+const axios = require('axios').default;
 const Parser = require('./Parser');
+const express = require("express");
+const mysql = require('mysql2');
+const https = require('https');
+const path = require('path');
 const cors = require('cors');
+const fs = require('fs');
+
+// Certificate
+const privateKey = fs.readFileSync('/etc/letsencrypt/live/psminvoice.com/privkey.pem', 'utf8');
+const certificate = fs.readFileSync('/etc/letsencrypt/live/psminvoice.com/cert.pem', 'utf8');
+const ca = fs.readFileSync('/etc/letsencrypt/live/psminvoice.com/chain.pem', 'utf8');
+
+const credentials = {
+	key: privateKey,
+	cert: certificate,
+	ca: ca
+};
 
 let settings = {
 	enable: true,
 	port: 80,
-	scan_interval: 1440, // In minutes
+	scan_interval: 720, // In minutes
 	ready: false,
 	min_count: 100000
 };
@@ -19,15 +31,15 @@ let settings = {
 // Connect to mysql DB
 const connection = mysql.createPool({
 	host: 'localhost',
-	user: 'root', // parser
+	user: 'parser', // parser
 	database: 'car_parser',
-	password: 'root' // fokcar
+	password: 'fokcar' // fokcar
 }).promise();
 
 let parser = new Parser(connection, fs);
 // ========== ROUTING - START ==========
 const app = express();
-app.use(express.static(__dirname));
+app.use(express.static(__dirname, {dotfiles: 'allow'}));
 app.use(bodyParser.urlencoded({
     extended: true
 }));
@@ -38,12 +50,13 @@ app.use((req, res, next) => {
 	res.setHeader('Access-Control-Allow-Origin', '*');
 	res.setHeader("Access-Control-Allow-Methods", "*");
     res.setHeader('Access-Control-Allow-Headers', 'origin, content-type, accepts');
-    next();
 
     app.options('*', (req, res) => {
         res.setHeader('Access-Control-Allow-Methods', 'GET, PATCH, PUT, POST, DELETE, OPTIONS');
         res.send();
     });
+
+    next();
 });
 
 app.get("/", function(req, res){
@@ -67,9 +80,11 @@ app.get("/car", cors({ origin: false }) ,function(req, res){
 		WHERE auction=${auction} AND price > 0 AND mark = "${mark}" 
 		AND year = ${year};`;
 	}else{ // id
-		query = `SELECT * FROM car_lots WHERE lotNumber = ${data.id} AND 
+		query = `SELECT id, wave, lotNumber, mark, model, year, marketValue,
+		odometer, engine, numberOfCylinders, currency, price, carImage, transmission,
+		body_type, driveUnit, fuelType, status, auction FROM car_lots WHERE lotNumber = ${data.id} AND 
 		auction=${auction} AND wave = (SELECT MAX(wave) 
-		FROM car_lots HAVING COUNT(id) > ${settings.min_count})`;
+		FROM car_lots HAVING COUNT(id) > ${settings.min_count}) LIMIT 1;`;
 	}
 	console.log(query);
 	connection.query(query).then(result => {
@@ -78,6 +93,24 @@ app.get("/car", cors({ origin: false }) ,function(req, res){
 		console.log("SQL ERROR");
 		res.send([]);
 	});
+});
+
+app.post("/car", cors({ origin: false }) ,function(req, res){
+	let data = req.body;
+	console.log(data);
+	let vip = data.vip;
+	let auction = data.auction === 'copart' ? '"Copart"' : data.auction === 'aiia' ? '"AIIA"' : 'auction'; 
+	
+	if(vip){
+	let query = `SELECT * FROM car_lots WHERE lotNumber = ${data.id} AND 
+		auction=${auction} AND wave = (SELECT MAX(wave) 
+		FROM car_lots HAVING COUNT(id) > ${settings.min_count}) LIMIT 1;`;
+		connection.query(query).then(result => {
+			res.send(result[0]);
+		});
+	}else{
+		res.send([]);
+	}
 });
 
 app.get("/car/list", cors({ origin: false }), function(req, res){
@@ -118,8 +151,14 @@ function start() {
     const io = require('socket.io').listen(app.listen(settings.port, function(){
         console.log('SERVER STARTED AT ' + new Date());
         settings.ready = true;
-        setTimeout(() => {parser.startParsing();}, 5000);
+	setTimeout(() => {parser.startParsing();}, 5000);
     }));
+
+    const httpsServer = https.createServer(credentials, app);
+
+    httpsServer.listen(443, () => {
+	console.log('HTTPS Server running on port 443');
+    });
 
     // Start parsing new data every settings.scan_interval min
 	setTimeout(function tick(){

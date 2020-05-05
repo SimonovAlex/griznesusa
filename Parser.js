@@ -7,6 +7,7 @@ const phantom = require('phantom');
 Class Parser
 INPUT VALUE TO CONSTRUCTOR:
 	connection - object of mysql2 connector
+	fs - Object of fs module 
 METHODS:
 1) sendRequest - for send requests to the server
 PARAMETERS: 
@@ -38,6 +39,7 @@ class Parser{
 		this.connection = connection;
 		this.fs = fs;
 		this.last_AIIA_value = null;
+		this.deleteOldData = true; // Set false if you want save old lots in DB
 	}
 
 	sendRequest(url, method, data){
@@ -66,7 +68,13 @@ class Parser{
 				// Set wave of parsing cycle
 				wave = wave === null ? wave = 0 : wave + 1;
 
-				this.getFullCopartList(0, wave, true);
+				if(wave > 2 && this.deleteOldData){
+					this.connection.query(`DELETE FROM car_lots WHERE wave=${wave - 2};`).then(result => {
+						console.log(`!!!Delete ${wave - 2} wave from DB!!!`);
+					});
+				}
+
+				//this.getFullCopartList(0, wave, true);
 				this.getFullAiiaList(1, wave, true);
 
 				this.toLog('work', `Parser start ${new Date()}`);
@@ -171,6 +179,9 @@ class Parser{
 					       	let img = `https://vis.iaai.com:443/resizer?imageKeys=${auction_obj.img.split('=')[1]}&width=845&height=633`;
 				        	v_header = v_header[0].children[0].data.split(' ');
 
+				        	car.minBA = content.split('MinimumBidAmount')[1].split('"')[1];
+				        	car.minBA = car.minBA.substr(1, car.minBA.length - 2);
+				        	console.log(car.minBA);
 				        	car.mark = v_header[1];
 				        	car.year = parseInt(v_header[0]);
 				        	car.currency = 'USD';
@@ -360,7 +371,7 @@ class Parser{
 				${lot.lcy}, ${lot.la}, ${lot.orr}, "${lot.egn}", ${lot.cy},
 				"${lot.cuc}", ${lot.hb}, "${lot.tims}", "${lot.tmtp}",
 				"${lot.bstl}", "${lot.lcd}", "${lot.ft}", "${lot.ord}",
-				"${auction}")${delimiter}`;
+				"${auction}", -1)${delimiter}`;
 			}
 
 			this.connection.query(query).then(result => {
@@ -376,7 +387,7 @@ class Parser{
 			${data.year}, ${data.market_value}, ${data.odometer}, "${data.engine}", ${data.cylindres},
 			"${data.currency}", ${data.price}, "${data.carImage}", "${data.transmission}",
 			"${data.body_type}", "${data.driveUnit}", "${data.fuelType}", "${data.status}",
-			"${auction}");`;
+			"${auction}", ${data.minBA});`;
 
 			this.connection.query(query).then(result => {
 				//console.log("DATA IN DB!");
