@@ -68,9 +68,9 @@ class Parser{
 				// Set wave of parsing cycle
 				wave = wave === null ? wave = 0 : wave + 1;
 
-				if(wave > 2 && this.deleteOldData){
-					this.connection.query(`DELETE FROM car_lots WHERE wave=${wave - 2};`).then(result => {
-						console.log(`!!!Delete ${wave - 2} wave from DB!!!`);
+				if(wave > 3 && this.deleteOldData){
+					this.connection.query(`DELETE FROM car_lots WHERE wave=${wave - 3};`).then(result => {
+						console.log(`!!!Delete ${wave - 3} wave from DB!!!`);
 					});
 				}
 
