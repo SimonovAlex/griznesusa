@@ -108,7 +108,7 @@ class Parser{
 	getFullAiiaList(page, wave, isAuto){
 		console.log(`This is a ${page} page`);
 		let url = `https://www.iaai.com/VehicleSearch/OnChangeKey`;
-		let data = `URL=%2FVehicleSearch%2FSearchDetails%3FKeyword%3D%26url%3Dpd6JWbJ9kRzcBdFK3vKeyhemMpm%2FKU7A3DtM%2BlH1s0yxTvF4GlWIr4FPc5g5DUFcr6s73QlyLnPM1uEFyE8r%2F3GIZGqD%2FzBHc%2Bf3PcuVEO9uo7Kbx83wdFK2dFJdPIuH0YGHODPijk6eYT7HuiZZqg%3D%3D%26quickfilters%3D%26selectedRefiners%3D&Key=pg&Value=${page}`;
+		let data = `URL=%2FVehicleSearch%2FSearchDetails%3FKeyword%3D%26url%3DGG%2FSC8A8WWNiMrUWNHTjeILbgZhFnhs1qCYC997G0JK1%2BMNa7DqJU64tdx2JZ0mvhzzFfNzCMDWZdEvvNg%2BbX8THVuMIFYLbMJRqBwP8keQodNEgqVyVuoZAAHZD3Iv23HG8VvWdkulVdIFnLiRMPqp7BZF96trFUJcBNumZvsrdJGwL4L1nHya2vULmdBrxMpQyNhcXCpAi9g5V%2BRr1dxJnkTXAMkKRJ9hWa0Q4gTj4FEQELuE%2F66lZpD0%2BDr3SRqeDVvp2Fjh%2BSXwcWXKxgQ%3D%3D%26quickfilters%3D%26selectedRefiners%3D&Key=pg&Value=${page}`;
 		this.sendRequest(url, 'POST', data).then(result => {
 			let url = `https://www.iaai.com${result}`;
 			this.sendRequest(url, 'GET', '').then(res => {
@@ -257,7 +257,7 @@ class Parser{
 					}
 				}
 
-				//console.log(car);
+				console.log(car);
 
 				if(toDB){
 					that.setDataToDB(car, wave, 'AIIA');

@@ -18,7 +18,7 @@ const credentials = {
 	key: privateKey,
 	cert: certificate,
 	ca: ca
-};
+}; 
 
 let settings = {
 	enable: true,
