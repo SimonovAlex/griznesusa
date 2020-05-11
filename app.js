@@ -8,7 +8,7 @@ const https = require('https');
 const path = require('path');
 const cors = require('cors');
 const fs = require('fs');
-
+ 
 // Certificate
 const privateKey = fs.readFileSync('/etc/letsencrypt/live/psminvoice.com/privkey.pem', 'utf8');
 const certificate = fs.readFileSync('/etc/letsencrypt/live/psminvoice.com/cert.pem', 'utf8');
@@ -23,7 +23,7 @@ const credentials = {
 let settings = {
 	enable: true,
 	port: 80,
-	scan_interval: 720, // In minutes
+	scan_interval: 2880, // In minutes
 	ready: false,
 	min_count: 100000
 };
