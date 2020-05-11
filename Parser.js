@@ -268,6 +268,7 @@ class Parser{
 				}catch(e){
 					console.log(e);
 					that.toLog('error', `Load page error. Auction - AIIA, Date - ${new Date()}`);
+					if(!toDB) res.send([]);
 				}
 		});
 	}
