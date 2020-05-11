@@ -66,7 +66,8 @@ app.get("/", function(req, res){
 app.get("/car", cors({ origin: false }) ,function(req, res){
 	let query = null;
 	let data = req.query;
-	let auction = data.auction === 'copart' ? '"Copart"' : data.auction === 'aiia' ? '"AIIA"' : 'auction'; 
+	let auction = data.auction ? data.auction.toLowerCase() : data.auction;
+	auction = auction === 'copart' ? '"Copart"' : data.auction === 'aiia' ? '"AIIA"' : 'auction'; 
 	let model = data.model;
 	let mark = data.mark;
 	let year = parseInt(data.year);
@@ -79,13 +80,21 @@ app.get("/car", cors({ origin: false }) ,function(req, res){
 		query = `SELECT AVG(price) * 0.3, MIN(price) * 0.3, MAX(price) * 0.3 FROM car_lots 
 		WHERE auction=${auction} AND price > 0 AND mark = "${mark}" 
 		AND year = ${year};`;
-	}else{ // id
-		query = `SELECT id, wave, lotNumber, mark, model, year, marketValue,
-		odometer, engine, numberOfCylinders, currency, price, carImage, transmission,
-		body_type, driveUnit, fuelType, status, auction FROM car_lots WHERE lotNumber = ${data.id} AND 
+	}else if(!isNaN(parseInt(data.id)) && auction === '"Copart"'){ // id
+		query = `SELECT * FROM car_lots WHERE lotNumber = ${data.id} AND 
 		auction=${auction} AND wave = (SELECT MAX(wave) 
 		FROM car_lots HAVING COUNT(id) > ${settings.min_count}) LIMIT 1;`;
+	}else{
+		parser.getAiiaVehicleById(data.id, res, false);
 	}
+
+	/*
+	id, wave, lotNumber, mark, model, year, marketValue,
+	odometer, engine, numberOfCylinders, currency, price, carImage, transmission,
+	body_type, driveUnit, fuelType, status, auction
+	*/
+
+	if(query === null) return false;
 	console.log(query);
 	connection.query(query).then(result => {
 		res.send(result[0]);
@@ -93,24 +102,6 @@ app.get("/car", cors({ origin: false }) ,function(req, res){
 		console.log("SQL ERROR");
 		res.send([]);
 	});
-});
-
-app.post("/car", cors({ origin: false }) ,function(req, res){
-	let data = req.body;
-	console.log(data);
-	let vip = data.vip;
-	let auction = data.auction === 'copart' ? '"Copart"' : data.auction === 'aiia' ? '"AIIA"' : 'auction'; 
-	
-	if(vip){
-	let query = `SELECT * FROM car_lots WHERE lotNumber = ${data.id} AND 
-		auction=${auction} AND wave = (SELECT MAX(wave) 
-		FROM car_lots HAVING COUNT(id) > ${settings.min_count}) LIMIT 1;`;
-		connection.query(query).then(result => {
-			res.send(result[0]);
-		});
-	}else{
-		res.send([]);
-	}
 });
 
 app.get("/car/list", cors({ origin: false }), function(req, res){
