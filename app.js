@@ -95,7 +95,7 @@ app.get("/car", cors({ origin: false }) ,function(req, res){
 	*/
 
 	if(query === null) return false;
-	console.log(query);
+
 	connection.query(query).then(result => {
 		res.send(result[0]);
 	}).catch(err => {
@@ -106,7 +106,8 @@ app.get("/car", cors({ origin: false }) ,function(req, res){
 
 app.get("/car/list", cors({ origin: false }), function(req, res){
 	let query = `SELECT DISTINCT mark, model, year FROM car_lots 
-	WHERE model != "-1" AND mark != "-1" AND year != -1 ORDER BY model;`;
+	WHERE model != "-1" AND mark != "-1" AND year != -1 AND wave = (SELECT MAX(wave) 
+	FROM car_lots HAVING COUNT(id) > ${settings.min_count}) ORDER BY model;`;
 
 	connection.query(query).then(result => {
 		function groupBy(objectArray, mark, model){
@@ -146,7 +147,6 @@ function start() {
     }));
 
     const httpsServer = https.createServer(credentials, app);
-
     httpsServer.listen(443, () => {
 	console.log('HTTPS Server running on port 443');
     });

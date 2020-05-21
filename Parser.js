@@ -143,7 +143,6 @@ class Parser{
 
 				}
 			}).catch(err => {
-				console.log(err);
 				this.getFullAiiaList(page, wave, isAuto);
 			});
 		});
@@ -154,6 +153,7 @@ class Parser{
 		if(!toDB){
 			url = `https://www.iaai.com/VehicleSearch/SearchDetails?SearchStockNum=${id}`;
 		}
+
 		this.sendRequest(url, 'GET', '').then(result => {
 			try{
 				let car = {};
@@ -184,6 +184,7 @@ class Parser{
 				car.body_type = -1;
 				car.driveUnit = -1;
 				car.fuelType = -1;
+				car.location = -1;
 
 				for(let i = 1; i < v_inf.length; i++){
 				 	let title = v_inf[i];
@@ -254,10 +255,11 @@ class Parser{
 					 	case "Fuel Type:":
 					  		if(car.fuelType === -1) car.fuelType = info;
 					  		break;
+					  	case "Selling Branch:":
+					  		if(car.location === -1) car.location = info;
+					  		break;
 					}
 				}
-
-				console.log(car);
 
 				if(toDB){
 					that.setDataToDB(car, wave, 'AIIA');
@@ -266,7 +268,6 @@ class Parser{
 				}
 
 				}catch(e){
-					console.log(e);
 					that.toLog('error', `Load page error. Auction - AIIA, Date - ${new Date()}`);
 					if(!toDB) res.send([]);
 				}
@@ -315,6 +316,7 @@ class Parser{
 				lot.bstl = lot.bstl ? lot.bstl : 0;
 				lot.lcd = lot.lcd ? lot.lcd : 0;
 				lot.ft = lot.ft ? lot.ft : 0;
+				lot.yn = lot.yn ? lot.yn : 0;
 
 				lot.ln = isNaN(+lot.ln) ? 0 : lot.ln;
 				lot.lcy = isNaN(+lot.lcy) ? 0 : lot.lcy;
@@ -328,7 +330,7 @@ class Parser{
 				${lot.lcy}, ${lot.la}, ${lot.orr}, "${lot.egn}", ${lot.cy},
 				"${lot.cuc}", ${lot.hb}, "${lot.tims}", "${lot.tmtp}",
 				"${lot.bstl}", "${lot.lcd}", "${lot.ft}", "${lot.ord}",
-				"${auction}", -1)${delimiter}`;
+				"${auction}", -1, "${lot.yn}")${delimiter}`;
 			}
 
 			this.connection.query(query).then(result => {
@@ -344,12 +346,12 @@ class Parser{
 			${data.year}, ${data.market_value}, ${data.odometer}, "${data.engine}", ${data.cylindres},
 			"${data.currency}", ${data.price}, "${data.carImage}", "${data.transmission}",
 			"${data.body_type}", "${data.driveUnit}", "${data.fuelType}", "${data.status}",
-			"${auction}", ${data.minBA});`;
+			"${auction}", ${data.minBA}, "${data.location}");`;
 
 			this.connection.query(query).then(result => {
 				//console.log("DATA IN DB!");
 			}).catch(err => {
-				console.log(err);
+				//console.log(err);
 			});
 		}
 	}
