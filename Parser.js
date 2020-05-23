@@ -326,7 +326,7 @@ class Parser{
 				lot.hb = isNaN(+lot.hb) ? 0 : lot.hb;
 
 				// Create INSERT query 
-				query += `(NULL, ${wave}, ${lot.ln}, "${lot.mkn.toLowerCase()}", "${lot.lm.toLowerCase()}",
+				query += `(NULL, ${wave}, ${lot.ln}, "${lot.mkn.toLowerCase().trim()}", "${lot.lm.toLowerCase().trim()}",
 				${lot.lcy}, ${lot.la}, ${lot.orr}, "${lot.egn}", ${lot.cy},
 				"${lot.cuc}", ${lot.hb}, "${lot.tims}", "${lot.tmtp}",
 				"${lot.bstl}", "${lot.lcd}", "${lot.ft}", "${lot.ord}",
@@ -342,7 +342,7 @@ class Parser{
 			// buy_now_price
 
 			// Create INSERT query 
-			query += `(NULL, ${wave}, ${data.lot_num}, "${data.mark.toLowerCase()}", "${data.model.toLowerCase()}",
+			query += `(NULL, ${wave}, ${data.lot_num}, "${data.mark.toLowerCase().trim()}", "${data.model.toLowerCase().trim()}",
 			${data.year}, ${data.market_value}, ${data.odometer}, "${data.engine}", ${data.cylindres},
 			"${data.currency}", ${data.price}, "${data.carImage}", "${data.transmission}",
 			"${data.body_type}", "${data.driveUnit}", "${data.fuelType}", "${data.status}",

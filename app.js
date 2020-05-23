@@ -74,11 +74,11 @@ app.get("/car", cors({ origin: false }) ,function(req, res){
 
 	if(isNaN(parseInt(data.id)) && model){ // model, mark, year
 		query = `SELECT AVG(price) * 0.3, MIN(price) * 0.3, MAX(price) * 0.3 FROM car_lots 
-		WHERE auction=${auction} AND price > 0 AND model = "${model}" 
+		WHERE auction=${auction} AND model = "${model}" 
 		AND mark = "${mark}" AND year = ${year};`;
 	}else if(isNaN(parseInt(data.id)) && !model){
 		query = `SELECT AVG(price) * 0.3, MIN(price) * 0.3, MAX(price) * 0.3 FROM car_lots 
-		WHERE auction=${auction} AND price > 0 AND mark = "${mark}" 
+		WHERE auction=${auction} AND mark = "${mark}" 
 		AND year = ${year};`;
 	}else if(!isNaN(parseInt(data.id)) && auction === '"Copart"'){ // id
 		query = `SELECT * FROM car_lots WHERE lotNumber = ${data.id} AND 
