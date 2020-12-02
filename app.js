@@ -8,22 +8,17 @@ const https = require('https');
 const path = require('path');
 const cors = require('cors');
 const fs = require('fs');
- 
-// Certificate
-const privateKey = fs.readFileSync('/etc/letsencrypt/live/psminvoice.com/privkey.pem', 'utf8');
-const certificate = fs.readFileSync('/etc/letsencrypt/live/psminvoice.com/cert.pem', 'utf8');
-const ca = fs.readFileSync('/etc/letsencrypt/live/psminvoice.com/chain.pem', 'utf8');
 
-const credentials = {
-	key: privateKey,
-	cert: certificate,
-	ca: ca
-}; 
+const Nightmare = require('nightmare')
+const nightmare = Nightmare({ show: true,   switches: {
+    'ignore-certificate-errors': true
+  } })
+
 
 let settings = {
 	enable: true,
 	port: 80,
-	scan_interval: 2880, // In minutes
+	scan_interval: 4320, // In minutes
 	ready: false,
 	min_count: 100000
 };
@@ -139,23 +134,38 @@ app.get("/car/list", cors({ origin: false }), function(req, res){
 	});
 });
 
+
+
+function send(){
+	const Nightmare = require('nightmare')
+const nightmare = Nightmare({ show: true })
+
+nightmare
+  .goto('https://www.iaai.com/Images/EnlargeImages?stockNumber=27684010')
+  .wait(500)
+  .evaluate(() => document.querySelectorAll('.lazy')[0].src)
+  .end()
+  .then(console.log)
+  .catch(error => {
+    console.error('Search failed:', error)
+  })
+}
+
 function start() {
     const io = require('socket.io').listen(app.listen(settings.port, function(){
         console.log('SERVER STARTED AT ' + new Date());
         settings.ready = true;
-	setTimeout(() => {parser.startParsing();}, 5000);
+        //parser.getFullAiiaList(0, 40, true);
+		//setTimeout(() => {parser.startParsing();}, 5000);
+		send();
     }));
-
-    const httpsServer = https.createServer(credentials, app);
-    httpsServer.listen(443, () => {
-	console.log('HTTPS Server running on port 443');
-    });
 
     // Start parsing new data every settings.scan_interval min
 	setTimeout(function tick(){
 		if(settings.enable && settings.ready){
 			io.sockets.emit('update_session');
-			setTimeout(() => {parser.startParsing();}, 5000);
+			//parser.getFullAiiaList(0, 40, true);
+			//setTimeout(() => {parser.startParsing();}, 5000);
 		} 
 		setTimeout(tick, 60000 * settings.scan_interval);
 	}, 60000 * settings.scan_interval);

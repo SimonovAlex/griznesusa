@@ -83,6 +83,7 @@ class Parser{
 		let url = `https://www.copart.com/public/lots/search?size=30000&page=${page}`;
 		this.sendRequest(url, 'POST', '').then(result => {
 			let results = result.data.results;
+			console.log(result);
 			if(results !== undefined){
 				this.stopPage = Math.floor(results.totalElements / 30000);
 				// Data to DB
@@ -112,9 +113,10 @@ class Parser{
 		this.sendRequest(url, 'POST', data).then(result => {
 			let url = `https://www.iaai.com${result}`;
 			this.sendRequest(url, 'GET', '').then(res => {
+
 				let $ = cheerio.load(res);
 				let url_array = [];
-				let data = $(".data-list__item > a");
+				let data = $("a > img");
 				let img = $(".img-responsive");
 
 				if(data.length === 0 && page === 1){
@@ -124,11 +126,11 @@ class Parser{
 				}else{
 					let img_counter = 0;
 					for(let i = 0; i < data.length; i++){
-						let url = data[i].attribs.href;
+						let url = data[i].parent.attribs.href;
 						if(url.indexOf("/vehicledetails/") !== -1){
 							//url_array.push({url: url, img: img[img_counter].attribs.src});
 							//img_counter++;
-
+							console.log(url + "     " + data[i].attribs.src);
 							this.getAiiaVehicleById(null, null, true, wave, url);
 						}
 					}
