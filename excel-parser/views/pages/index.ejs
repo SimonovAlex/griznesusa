@@ -1,10 +1,76 @@
 <html>
     <head>
-        <title>Excel car parser</title>
+        <title>trackyourvin</title>
         <meta charset="utf-8">
+        <meta name="robots" content="noindex, nofollow"/>
         <link rel="stylesheet" href="css/main.css">
     </head>
     <body>
-        
+        <div class="container">
+            <div class="settings-block">
+                <form action="/getInfo" method="GET" enctype="multipart/form-data">
+                    <input type="text" name="vin" placeholder="VIN">
+                    <br>
+                    <input type="password" name="password" placeholder="password">
+                    <input type="submit" value="Поиск">
+                </form>
+            </div>
+            <div class="data-block">
+                <% if(error){ %>
+                    <div class="showError">Неверный пароль или не найден лот!</div>
+                <% }else if(data){ %>
+                    <table class="lot-table">
+                        <tr>
+                            <th>Название</th>
+                            <th>Значение</th>
+                        </tr>
+                        <tr>
+                            <td>Клиент</td>
+                            <td><%= data.client %></td>
+                        </tr>
+                        <tr>
+                            <td>Авто</td>
+                            <td><%= data.car %></td>
+                        </tr>
+                        <tr>
+                            <td>Vin</td>
+                            <td><%= data.vin %></td>
+                        </tr>
+                        <tr>
+                            <td>Остаток услуг</td>
+                            <td><%= data.bServices %></td>
+                        </tr>
+                        <tr>
+                            <td>Портовые</td>
+                            <td><%= data.portCost %></td>
+                        </tr>
+                        <tr>
+                            <td>Итого к оплате</td>
+                            <td><%= data.totalCost %></td>
+                        </tr>
+                        <tr>
+                            <td>Оплата</td>
+                            <td><%= data.payment %></td>
+                        </tr>
+                        <tr>
+                            <td>Дата прихода</td>
+                            <td><%= data.date %></td>
+                        </tr>
+                        <tr>
+                            <td>Ремонт город</td>
+                            <td><%= data.fixCity %></td>
+                        </tr>
+                        <tr>
+                            <td>Эвакуатор</td>
+                            <td><%= data.towTruck %></td>
+                        </tr>
+                        <tr>
+                            <td>Ссылка</td>
+                            <td><a href="<%= data.ship_link %>"><img src="../../img/ship.png"></a></td>
+                        </tr>
+                    </table>
+                <% } %>
+            </div>
+        </div>
     </body>
 </html>

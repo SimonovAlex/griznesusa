@@ -68,7 +68,7 @@ const storage = multer.diskStorage({
     },
     filename: function (req, file, cb) {
         cb(null, file.fieldname + '-' + Date.now() + '.' + file.originalname.split('.')[file.originalname.split('.').length -1])
-  }
+    }
 })
 
 const upload = multer({
@@ -111,7 +111,7 @@ app.set('view engine', 'ejs');
 /* ROUTES */
   
 app.get('/', (req, res) => {
-    res.render('./pages/index.ejs');
+    res.render('./pages/index.ejs', {data: null, error: false});
 });
 
 app.get('/login', (req, res) => {
@@ -134,21 +134,67 @@ app.get('/admin', passport.authenticationMiddleware(), (req, res) => {
     res.render('./pages/admin.ejs');
 });
 
+app.get('/admin/fullList', passport.authenticationMiddleware(), (req, res) => {
+    const query = `SELECT * FROM car_arrival`;
+    connection.query(query, (e, r, f) => {
+        if(r.length > 0){
+            res.render('./pages/fullList.ejs', {list: r});  
+        }else{
+            res.render('./pages/fullList.ejs', {list: []}); 
+        } 
+    });
+});
+
 app.post('/loadFile', passport.authenticationMiddleware(), upload.single('excel'), (req, res) => {
     let file = req.file;
-    console.log(file.filename); // --> read excel file via this name
     readXlsxFile(fs.createReadStream(__dirname + "/files/excel/" + file.filename)).then((rows) => {
         for(let i = 1; i < rows.length; i++){
             let item = rows[i];
-            let bServices = item[4] ? parseInt(item[3]) : 0;
-            let portCost = item[5] ? parseInt(item[4]) : 0;
-            let totalCost = item[6] ? parseInt(item[5]) : 0;
-            let payment = item[7] ? parseInt(item[6]) : 0;
-            let query = `INSERT INTO car_arrival VALUES(NULL, '${item[0]}', '${item[1]}', '${item[2]}',
-            ${bServices}, ${portCost}, ${totalCost}, ${payment}, '${new Date(item[7])}', '${item[9]}', '${item[9]}');`;
-            console.log(query);
+
+            connection.query(`SELECT id FROM car_arrival WHERE vin = '${item[2]}'`, (error, result, fields) => {
+                if(result.length === 0){
+                    const client = item[0] ? item[0] : '-';
+                    const car = item[1] ? item[1] : '-';
+                    const vin = item[2] ? item[2] : '-';
+                    const bServices = item[3] ? parseInt(item[3]) : 0;
+                    const portCost = item[5] ? parseInt(item[5]) : 0;
+                    const totalCost = item[7] ? parseInt(item[7]) : 0;
+                    const payment = item[8] ? parseInt(item[8]) : 0;
+                    const date = item[9] ? item[9] : '-';
+                    const fixCity = item[10] ? item[10] : '-';
+                    const towTruck = item[11] ? item[11] : '-';
+                    const shipLink = item[12] ? item[12] : '#';
+
+                    let query = `INSERT INTO car_arrival VALUES(NULL, '${client}', '${car}', '${vin}',
+                    ${bServices}, ${portCost}, ${totalCost}, ${payment}, '${date}', '${fixCity}', '${towTruck}', '${shipLink}') 
+                    ON DUPLICATE KEY UPDATE vin = '${vin}';`;
+
+                    connection.query(query, (e, r, f) => {
+                        
+                    });
+                }
+            });
         }
-      })
+        res.render('./pages/admin.ejs');
+      });
+});
+
+app.get('/getInfo', (req, res) => {
+    const password = req.query.password;
+    const vin = req.query.vin;
+
+    if(password || vin){
+        const query = `SELECT * FROM car_arrival, users WHERE car_arrival.vin = '${vin}' AND users.password='${password}';`;
+        connection.query(query, (e, r, f) => {
+            if(r.length > 0){
+                res.render('./pages/index.ejs', {data: r[0], error: false});  
+            }else{
+                res.render('./pages/index.ejs', {data: null, error: true}); 
+            } 
+        });
+    }else{
+        res.render('./pages/index.ejs', {data: null, error: true}); 
+    }
 });
 
 app.listen(port, () => {
