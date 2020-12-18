@@ -8,7 +8,7 @@
     <body>
         <div class="container">
             <div class="settings-block">
-                <form action="/getInfo" method="GET" enctype="multipart/form-data">
+                <form action="/getInfo" method="POST">
                     <input type="text" name="vin" placeholder="VIN">
                     <br>
                     <input type="password" name="password" placeholder="password">
@@ -35,6 +35,10 @@
                         <tr>
                             <td>Vin</td>
                             <td><%= data.vin %></td>
+                        </tr>
+                        <tr>
+                            <td>Доставка</td>
+                            <td><%= data.delivery %></td>
                         </tr>
                         <tr>
                             <td>Остаток услуг</td>

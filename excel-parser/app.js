@@ -156,17 +156,18 @@ app.post('/loadFile', passport.authenticationMiddleware(), upload.single('excel'
                     const client = item[0] ? item[0] : '-';
                     const car = item[1] ? item[1] : '-';
                     const vin = item[2] ? item[2] : '-';
-                    const bServices = item[3] ? parseInt(item[3]) : 0;
+                    const delivery = item[3] ? item[3] : '-';
+                    const bServices = item[4] ? parseInt(item[4]) : 0;
                     const portCost = item[5] ? parseInt(item[5]) : 0;
-                    const totalCost = item[7] ? parseInt(item[7]) : 0;
-                    const payment = item[8] ? parseInt(item[8]) : 0;
-                    const date = item[9] ? item[9] : '-';
-                    const fixCity = item[10] ? item[10] : '-';
-                    const towTruck = item[11] ? item[11] : '-';
-                    const shipLink = item[12] ? item[12] : '#';
+                    const totalCost = item[6] ? parseInt(item[6]) : 0;
+                    const payment = item[7] ? parseInt(item[7]) : 0;
+                    const date = item[8] ? item[8] : '-';
+                    const fixCity = item[9] ? item[9] : '-';
+                    const towTruck = item[10] ? item[10] : '-';
+                    const shipLink = item[11] ? item[11] : '#';
 
                     let query = `INSERT INTO car_arrival VALUES(NULL, '${client}', '${car}', '${vin}',
-                    ${bServices}, ${portCost}, ${totalCost}, ${payment}, '${date}', '${fixCity}', '${towTruck}', '${shipLink}') 
+                    ${bServices}, ${portCost}, ${totalCost}, ${payment}, '${date}', '${fixCity}', '${towTruck}', '${shipLink}', '${delivery}') 
                     ON DUPLICATE KEY UPDATE vin = '${vin}';`;
 
                     connection.query(query, (e, r, f) => {
@@ -179,9 +180,9 @@ app.post('/loadFile', passport.authenticationMiddleware(), upload.single('excel'
       });
 });
 
-app.get('/getInfo', (req, res) => {
-    const password = req.query.password;
-    const vin = req.query.vin;
+app.post('/getInfo', (req, res) => {
+    const password = req.body.password, 
+    vin = req.body.vin;
 
     if(password || vin){
         const query = `SELECT * FROM car_arrival, users WHERE car_arrival.vin = '${vin}' AND users.password='${password}';`;
