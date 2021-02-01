@@ -1,0 +1,202 @@
+*{
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    list-style-type: none;
+}
+body{
+    width: 100%;
+    height: 100%;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.loginPage{
+    width: 100%;
+    height: 100%;
+    background-color: #3cc1ff;
+}
+.loginPage > form{
+    margin: 0 auto;
+    text-align: center;
+    width: 300px;
+    background-color: white;
+    position: relative;
+    top: 30%;
+    padding: 15px 0px;
+    border-radius: 15px;
+    box-sizing: border-box;
+}
+.loginPage > form > h2{
+    font-size: 1.2em;
+}
+.loginPage > form > input[type="text"], .loginPage > form > input[type="password"]{
+    width: 250px;
+    padding: 5px;
+    font-size: 1.05em;
+    outline: none;
+    border: solid 2px #b9b9b9;
+    border-radius: 10px;
+    margin-top: 5px;
+    transition: .3s;
+}
+.loginPage > form > input[type="text"]:focus{
+    border: solid 2px #585858;
+}
+
+.loginPage > form > input[type="password"]:focus{
+    border: solid 2px #585858;
+}
+
+.loginPage > form > input[type="submit"]{
+    width: 150px;
+    padding: 5px;
+    font-size: 1.05em;
+    font-weight: 600;
+    outline: none;
+    background-color: #3cc1ff;
+    border: solid 2px #3cc1ff;
+    color: white;
+    border-radius: 10px;
+    margin-top: 10px;
+    cursor: pointer;
+    transition: .3s;
+}
+.loginPage > form > input[type="submit"]:hover{
+    background-color: white;
+    color: #3cc1ff;
+}
+
+#newFile{
+    width: 100%;
+    height: 100%;
+    background-color: #f3f3f3;
+}
+#newFile > form{
+    margin: 0 auto;
+    text-align: center;
+    position: relative;
+    top: 35%;
+}
+#newFile > form > input[type="file"]{
+    background-color: #00d400;
+    color: white;
+    font-size: 1.1em;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: .3s;
+}
+#newFile > form > input[type="submit"]{
+    background-color: #00d400;
+    border: solid 2px #00d400;
+    color: white;
+    font-size: 1.1em;
+    cursor: pointer;
+    padding: 5px 10px;
+    border-radius: 5px;
+    margin-top: 10px;
+    transition: .3s;
+}
+#newFile > form > input[type="submit"]:hover{
+    background-color: white;
+    color: #00d400;
+}
+
+.container{
+    width: 100%;
+    height: 100%;
+}
+.settings-block{
+    width: 100%;
+    height: 100px;
+    background-color: #e6e6e6;
+    overflow: hidden;
+}
+.settings-block > form{
+    position: relative;
+    top: 12px;
+    left: 10%;
+}
+.settings-block > form > input[type="text"], .settings-block > form > input[type="password"]{
+    padding: 5px 10px;
+    border: solid 2px #c7c7c7;
+    border-radius: 5px;
+    margin-top: 5px;
+    font-size: 1em;
+    outline: none;
+}
+.settings-block > form > input[type="text"]:focus{
+    border: solid 2px #979797;
+}
+.settings-block > form > input[type="password"]:focus{
+    border: solid 2px #979797;
+}
+.settings-block > form > input[type="submit"]{
+    padding: 5px 10px;
+    background-color: #adff2f;
+    border: solid 2px #81d600;
+    color: white;
+    font-size: 1em;
+    font-weight: 600;
+    border-radius: 5px;
+    margin-left: 5px;
+    cursor: pointer;
+    transition: .3s;
+}
+.settings-block > form > input[type="submit"]:hover{
+    background-color: white;
+    border: solid 2px #adff2f;
+    color: #adff2f;
+}
+.data-block{
+    width: 100%;
+}
+#fullList{
+    padding-top: 25px;
+}
+#fullList > h1{
+    text-align: center;
+}
+.lot-table, .fullList-table{
+    width: 75%;
+    margin: 0 auto;
+    margin-top: 25px;
+    border-collapse: collapse;
+    text-align: center;
+}
+.fullList-table{
+    width: 95%;
+}
+.lot-table th, .lot-table td, .fullList-table th, .fullList-table td{
+    border: solid 1px #a5a5a5;
+    padding: 5px;
+    color: #797979;
+}
+.lot-table td:first-child{
+    font-weight: 600;
+}
+.lot-table th{
+    font-size: 1.2em;
+}
+.lot-table td{
+    font-size: 1.1em;
+}
+.fullList-table td:first-child{
+    font-weight: 600;
+}
+.fullList-table th{
+    font-size: 1.2em;
+}
+.fullList-table td{
+    font-size: 1.1em;
+}
+
+.lot-table a img, .fullList-table a img{
+    height: 25px;
+}
+.showError{
+    text-align: center;
+    font-size: 1.5em;
+    font-weight: 900;
+    color: red;
+    margin-top: 25px;
+}

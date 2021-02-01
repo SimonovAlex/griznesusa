@@ -1,0 +1,21 @@
+<html>
+    <head>
+        <title>trackyourvin</title>
+        <meta charset="utf-8">
+        <meta name="robots" content="noindex, nofollow"/>
+        <link rel="stylesheet" href="./css/main.css">
+    </head>
+    <body>
+        <section id="newFile">
+            <form action="/loadFile" method="POST" enctype="multipart/form-data">
+                <input type="file" name="excel" required>
+                <select name="user" required>
+                    <option value="Ralf" checked>Ralf</option>
+                    <option value="expert">expert</option>
+                </select>
+                <br>
+                <input type="submit">
+            </form>
+        </section>
+    </body>
+</html>

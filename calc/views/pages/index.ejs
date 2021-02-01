@@ -1,0 +1,1721 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Calculator</title>
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+</head>
+<body>
+<style>
+    .calculators {
+        display: flex;
+        align-content: center;
+        justify-content: center;
+    }
+
+    .calculators.autos {
+        max-width: 1215px;
+        margin: 30px auto;
+    }
+
+    .calculator {
+        width: 375px;
+        height: 525px;
+        text-align: left;
+        margin: 0px 15px;
+        border-radius: 4px;
+        position: relative;
+        box-sizing: border-box;
+        border: 1px solid #eaedf3;
+        padding: 25px 30px 14px 30px;
+        box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.04);
+    }
+
+    .calculator.auto {
+        width: 100%;
+        margin: 0px 15px;
+    }
+
+    .calculator .calculator-title {
+        font-size: 16px;
+        color: #3e3f42;
+        line-height: 24px;
+        font-weight: bold;
+        font-family: "Montserrat", sans-serif;
+    }
+
+    .calculator .calculator-title.auto {
+        display: block;
+        text-transform: uppercase;
+        margin-bottom: 8px;
+    }
+
+    .calculator .calculator-description {
+        font-size: 14px;
+        color: #b7b7b7;
+        line-height: 16px;
+        margin: 1px 0px 14px 0px;
+        font-family: "Montserrat", sans-serif;
+    }
+
+    .final-bet {
+        display: flex;
+        align-items: center;
+        margin-bottom: 12px;
+        justify-content: space-between;
+    }
+
+    .final-bet span {
+        font-weight: 800;
+        font-size: 14px;
+        color: #3e3f42;
+        line-height: 16px;
+        font-style: normal;
+        font-family: "Montserrat", sans-serif;
+    }
+
+    .final-bet input {
+        width: 104px;
+        height: 38px;
+        outline: none;
+        font-size: 14px;
+        color: #000;
+        font-weight: bold;
+        padding-left: 16px;
+        border-radius: 4px;
+        border: 1px solid #000;
+        font-family: "Montserrat", sans-serif;
+        box-shadow: inset 0px 1px 2px rgba(102, 113, 123, 0.21);
+    }
+
+    .extra-charges .extra-charges_item {
+        display: flex;
+        padding-left: 34px;
+        position: relative;
+        margin-bottom: 20px;
+        justify-content: space-between;
+    }
+
+    .extra-charges .extra-charges_item img {
+        top: 2px;
+        left: 0px;
+        position: absolute;
+    }
+
+    .extra-charges .extra-charges_item .extra-charges_item__name {
+        font-style: normal;
+        font-weight: 500;
+        font-size: 14px;
+        line-height: 16px;
+        color: #3e3f42;
+        font-family: "Montserrat", sans-serif;
+    }
+
+    .extra-charges .extra-charges_item .extra-charges_item__cost {
+        text-align: right;
+        color: #000;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 14px;
+        font-family: "Montserrat", sans-serif;
+    }
+
+    .extra-charges .extra-charges_item .extra-charges_item__description {
+        font-size: 12px;
+        line-height: 16px;
+        color: #b7b7b7;
+        font-style: normal;
+        font-family: "Montserrat", sans-serif;
+    }
+
+    .extra-charges .extra-charges_item .port {
+        width: 180px;
+    }
+
+    .extra-charges .extra-charges_item .port span {
+        display: block;
+    }
+
+    .total-cost {
+        left: 30px;
+        bottom: 14px;
+        width: calc(100% - 60px);
+        display: flex;
+        padding-top: 9px;
+        position: absolute;
+        align-items: center;
+        justify-content: space-between;
+        border-top: 1px solid #979797;
+    }
+
+    .total-cost .total-cost_text {
+        font-style: normal;
+        font-weight: 500;
+        font-size: 14px;
+        color: #3e3f42;
+        font-family: "Roboto", sans-serif;
+    }
+
+    .total-cost .total-cost_value {
+        font-style: normal;
+        font-weight: bold;
+        font-size: 16px;
+        line-height: 24px;
+        text-align: right;
+        color: #3e3f42;
+        font-family: "Montserrat", sans-serif;
+    }
+
+    .calculator .select span {
+        display: block;
+        font-style: normal;
+        font-weight: bolder;
+        font-size: 14px;
+        line-height: 16px;
+        color: #3e3f42;
+        margin-bottom: 14px;
+        font-family: "Montserrat", sans-serif;
+    }
+
+    .departure-city {
+        margin-top: 25px;
+    }
+
+    .departure-port {
+        margin-top: 18px;
+    }
+
+    .calculator select {
+        width: 100%;
+        height: 40px;
+        outline: none;
+        background: #ffffff;
+        box-sizing: border-box;
+        border: 1px solid #000;
+        box-shadow: inset 0px 1px 2px rgba(102, 113, 123, 0.21);
+        border-radius: 4px;
+        appearance: none;
+        -webkit-appearance: none;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 14px;
+        color: #000;
+        padding-left: 16px;
+        padding-right: 30px;
+        font-family: "Montserrat", sans-serif;
+    }
+
+    .calculator select.disabled {
+        opacity: 0.6;
+        pointer-events: none;
+        color: #9ea0a5;
+        border: 1px solid #9ea0a5;
+    }
+
+    .calculator .select-wrapper {
+        display: inline;
+        position: relative;
+    }
+
+    .calculator .select-wrapper::after {
+        content: "";
+        top: 50%;
+        right: 16px;
+        width: 8px;
+        height: 12px;
+        position: absolute;
+        pointer-events: none;
+        transform: translateY(-50%);
+        background: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iOSIgaGVpZ2h0PSI5IiB2aWV3Qm94PSIwIDAgOSA5IiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxwYXRoIGQ9Ik00LjE3MTM5IDguMzQzMTRMLTAuMDAwMTg2MjE4IDQuMTcxNTdMOC4zNDI5NiA0LjE3MTU3TDQuMTcxMzkgOC4zNDMxNFoiIGZpbGw9ImJsYWNrIi8+PC9zdmc+)
+        no-repeat;
+    }
+
+    .total-cost {
+        left: 30px;
+        bottom: 14px;
+        width: calc(100% - 60px);
+        display: flex;
+        padding-top: 9px;
+        position: absolute;
+        align-items: center;
+        justify-content: space-between;
+        border-top: 1px solid #979797;
+    }
+
+    .cost-grid {
+        display: grid;
+        position: absolute;
+        bottom: 15px;
+        width: 100%;
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+
+    .initial {
+        position: initial;
+        justify-content: right;
+        display: grid;
+        grid-template-rows: 1fr 1fr;
+    }
+
+    .total-cost .total-cost_text {
+        font-style: normal;
+        font-weight: 500;
+        font-size: 14px;
+        color: #3e3f42;
+        font-family: "Roboto", sans-serif;
+    }
+
+    .total-cost .total-cost_value {
+        font-style: normal;
+        font-weight: bold;
+        font-size: 16px;
+        line-height: 24px;
+        text-align: right;
+        color: #3e3f42;
+        font-family: "Montserrat", sans-serif;
+    }
+
+    .calculator .calculator-row {
+        display: flex;
+        margin-top: 19px;
+    }
+
+    .calculator .calculator-row .motor-size,
+    .calculator .calculator-row .type-of-motor,
+    .calculator .calculator-row .car-cost,
+    .calculator .calculator-row .date-create {
+        width: 50%;
+    }
+
+    .calculator .calculator-row .column-title {
+        color: #3e3f42 !important;
+        font-size: 14px !important;
+        display: block;
+        margin-bottom: 9px !important;
+        font-style: normal;
+        font-weight: bold !important;
+        padding-left: 0px !important;
+        cursor: default !important;
+        text-align: left;
+        font-family: "Montserrat", sans-serif;
+    }
+
+    .calculator .calculator-row .column-title:after,
+    .calculator .calculator-row .column-title:before {
+        display: none;
+    }
+
+    .calculator .calculator-row .type-of-motor span {
+        font-style: normal;
+        font-weight: 500;
+        font-size: 14px;
+        display: block;
+        color: #000000;
+        margin-bottom: 6px;
+        padding-left: 40px;
+        position: relative;
+        cursor: pointer;
+        text-align: left;
+        font-family: "Montserrat", sans-serif;
+    }
+
+    .calculator .calculator-row .type-of-motor span:after {
+        content: "";
+        top: 50%;
+        left: 0px;
+        width: 16px;
+        height: 16px;
+        position: absolute;
+        border-radius: 50%;
+        transform: translateY(-50%);
+        border: 1px solid #979797;
+    }
+
+    .calculator .calculator-row .type-of-motor span.active:before {
+        content: "";
+        top: 50%;
+        left: 4px;
+        width: 10px;
+        height: 10px;
+        position: absolute;
+        border-radius: 50%;
+        transform: translateY(-50%);
+        background: #249af3;
+    }
+
+    #calc-сustoms select {
+        width: 130px;
+    }
+
+    #calc-сustoms .calculator-row:first-child {
+        margin-top: 25px;
+    }
+
+    .calculator .calculator-row input {
+        width: 130px;
+        height: 40px;
+        outline: none;
+        border: 1px solid #000;
+        box-sizing: border-box;
+        box-shadow: inset 0px 1px 2px rgba(102, 113, 123, 0.21);
+        border-radius: 4px;
+        font-style: normal;
+        font-weight: 500;
+        font-size: 14px;
+        color: #000;
+        padding-left: 16px;
+    }
+
+    .calculator .calculator-row #for-electro input {
+        pointer-events: auto;
+    }
+
+    .calculator .calculator-row.hide {
+        display: none;
+    }
+
+    #ageRatio,
+    #currentExchange {
+        font-style: normal;
+        font-weight: 500;
+        font-size: 14px;
+        line-height: 17px;
+        color: #000000;
+        display: block;
+        margin-top: 10px;
+        text-align: left;
+        font-family: "Montserrat", sans-serif;
+        width: 95%;
+    }
+
+    .calculate {
+        width: 100%;
+        height: 40px;
+        border: none;
+        background: #249af3;
+        border-radius: 5px;
+        font-style: normal;
+        font-family: "Montserrat", sans-serif;
+        font-weight: bold;
+        font-size: 14px;
+        margin-top: 27px;
+        text-align: center;
+        color: #ffffff;
+        outline: none;
+        cursor: pointer;
+        padding: 0;
+    }
+
+    .lot-numbers {
+        width: 50%;
+        height: 40px;
+        border: 1px solid #000;
+        box-shadow: inset 0px 1px 2px rgba(102, 113, 123, 0.21);
+        font-style: normal;
+        outline: none;
+        font-size: 14px;
+        padding-left: 16px;
+        box-sizing: border-box;
+        border-radius: 2px;
+    }
+
+    .lot-result {
+        display: none;
+        padding: 30px;
+        margin: 30px auto;
+        max-width: 1180px;
+        justify-content: start;
+        height: 250px;
+        background: #ffffff;
+        border: 1px solid #eaedf3;
+        box-sizing: border-box;
+        box-shadow: 0px 1px 3px #249af3;
+        border-radius: 4px;
+    }
+    .lot-result div {
+        margin: 0 25px;
+    }
+
+    .lot-img {
+        width: 400px;
+        height: 100%;
+    }
+    .lot-data {
+        width: 100%;
+        height: 100%;
+        display: flex;
+    }
+    .lot-field {
+        font-family: "Montserrat", sans-serif;
+        font-size: 16px;
+        font-weight: 300;
+        margin: 5px 0;
+        text-transform: capitalize;
+    }
+    .lot-value {
+        font-family: "Montserrat", sans-serif;
+        font-size: 16px;
+        display: inline-block;
+        font-weight: bold;
+        text-transform: capitalize;
+        margin: 0;
+        padding-left: 5px;
+    }
+
+    .hidden {
+        display: none;
+    }
+
+    #all-cost {
+        display: flex;
+        padding: 30px;
+        margin: 30px auto;
+        max-width: 1170px;
+        justify-content: space-between;
+        height: 114px;
+        background: #ffffff;
+        border: 1px solid #eaedf3;
+        box-sizing: border-box;
+        box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.04);
+        border-radius: 4px;
+    }
+
+    #all-cost .all-cost_title span:first-child {
+        display: block;
+        font-family: "Montserrat", sans-serif;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 24px;
+        line-height: 24px;
+        color: #3e3f42;
+        text-align: left;
+    }
+
+    #all-cost .all-cost_title span:last-child {
+        display: block;
+        margin-top: 10px;
+        font-family: "Montserrat", sans-serif;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 14px;
+        line-height: 15px;
+        color: #b7b7b7;
+    }
+
+    #main-cost {
+        font-family: "Montserrat", sans-serif;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 24px;
+        line-height: 24px;
+        text-align: right;
+        color: #3e3f42;
+    }
+
+    .CopartAuction {
+        border: none;
+        background-color: white;
+        box-shadow: none;
+
+        font-size: 16px;
+        color: blue;
+        outline: none;
+        cursor: pointer;
+    }
+
+    .IAAIAuction {
+        border: none;
+        background-color: white;
+        box-shadow: none;
+
+        font-size: 16px;
+        color: red;
+        outline: none;
+        cursor: pointer;
+    }
+
+    .activeAuction {
+        text-decoration: underline;
+        font-weight: bold;
+        font-size: 24px;
+    }
+
+    #SUV__wrapper {
+        margin: 15px 0 0 0;
+    }
+
+    #SUV__wrapper > span {
+        font-size: 12px;
+        line-height: 16px;
+        color: #b7b7b7;
+        font-style: normal;
+        font-family: "Montserrat", sans-serif;
+    }
+
+    [type="checkbox"]:checked,
+    [type="checkbox"]:not(:checked) {
+        position: absolute;
+        left: -9999px;
+    }
+
+    [type="checkbox"]:checked + label,
+    [type="checkbox"]:not(:checked) + label {
+        position: relative;
+        padding-left: 28px;
+        cursor: pointer;
+        line-height: 20px;
+        display: inline-block;
+        color: #666;
+    }
+
+    [type="checkbox"]:checked + label:before,
+    [type="checkbox"]:not(:checked) + label:before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 18px;
+        height: 18px;
+        border: 1px solid #ddd;
+        background: #fff;
+    }
+
+    [type="checkbox"]:checked + label:after,
+    [type="checkbox"]:not(:checked) + label:after {
+        content: "";
+        width: 8px;
+        height: 8px;
+        background: #249af3;
+        position: absolute;
+        top: 6px;
+        left: 6px;
+        -webkit-transition: all 0.2s ease;
+        transition: all 0.2s ease;
+    }
+
+    [type="checkbox"]:not(:checked) + label:after {
+        opacity: 0;
+        -webkit-transform: scale(0);
+        transform: scale(0);
+    }
+
+    [type="checkbox"]:checked + label:after {
+        opacity: 1;
+        -webkit-transform: scale(1);
+        transform: scale(1);
+    }
+
+    /* LOGOUT */
+    .logout{
+        position: absolute;
+        top: 25px;
+        right: 25px;
+    }
+    .logout > a{
+        display: block;
+        text-decoration: none;
+        color: black;
+        font-family: Arial, Helvetica, sans-serif;
+        font-weight: 600;
+        padding: 5px 10px;
+        border:  solid 2px #2c2c2c;
+        border-radius: 10px;
+        cursor: pointer;
+        transition: .3s;
+    }
+    .logout > a:hover{
+        color: white;
+        background-color: #2c2c2c;
+    }
+    #preloader{
+        width: 100%;
+        height: 100vh;
+        position: fixed;
+        top: 0;
+        left: 0;
+        background-color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    #preloader > b{
+        font-size: 2em;
+        font-family: Arial, Helvetica, sans-serif;
+        color: #272727;
+        animation: pulse 3s infinite alternate-reverse;
+    }
+
+    @keyframes pulse{
+        50%{
+            transform: scale(1.1);
+        }
+        100%{
+            transform: scale(1);
+        }
+    }
+
+    @media (max-width: 1200px) {
+        .calculators {
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .calculators .calculator {
+            margin-bottom: 30px;
+        }
+
+        .calculators .calculator:last-child {
+            margin-bottom: 0px;
+        }
+    }
+
+    @media (max-width: 540px) {
+        #all-cost {
+            height: auto;
+            flex-direction: column;
+        }
+
+        #main-cost {
+            text-align: left;
+            margin-top: 20px;
+        }
+
+        .lot-result{
+            height: 100%;
+
+            flex-direction: column;
+        }
+
+        .lot-result div {
+            margin: 0 10px 0 0;
+        }
+
+        .lot-img{
+            width: 100%;
+        }
+    }
+
+    @media (max-width: 440px) {
+        .calculators .calculator {
+            margin-left: 0px;
+            margin-right: 0px;
+            padding: 25px 15px 14px 15px;
+        }
+
+        #all-cost {
+            padding: 25px 15px 14px 15px;
+        }
+
+        #all-cost .all-cost_title span:first-child {
+            font-size: 22px;
+            text-align: left;
+        }
+
+        #all-cost .all-cost_title span:last-child {
+            text-align: left;
+        }
+
+        .calculator-row .motor-size,
+        .calculator-row .car-cost {
+            padding-left: 10px;
+        }
+    }
+
+    .form {
+            display: inline-block;
+            position: absolute;
+            top: 9%;
+    
+        }
+    
+    @media screen and (max-width: 590px){
+        .form{
+            position: relative;
+    
+        }
+    }
+
+    @media (max-width: 380px) {
+        .calculators .calculator {
+            width: 100%;
+        }
+    }
+
+</style>
+<div class="logout">
+    <a href="/logout">Выйти</a>
+</div>
+<div>
+
+    <img src="../../img/carFox.png" alt="carFox">
+    <div class="form">
+        <input type="text" placeholder="VIN">
+        <button>send</button>
+    </div>
+</div>
+<div class="calculators autos">
+    <div class="calculator auto">
+        <span class="calculator-title auto">Средняя стоимость автомобиля</span>
+        <div class="departure-port select">
+            <div class="select-wrapper">
+                <select id="mark">
+                    <option selected value="Выберите марку автомобиля">Выберите марку автомобиля</option>
+                </select>
+            </div>
+        </div>
+        <div class="departure-port select">
+            <div class="select-wrapper">
+                <select id="modеl">
+                    <option selected value="Выберите модель автомобиля">Выберите модель автомобиля</option>
+                </select>
+            </div>
+        </div>
+        <div class="departure-port select">
+            <div class="select-wrapper">
+                <select id="year">
+                    <option selected value="Выберите год выпуска">Выберите год выпуска</option>
+                </select>
+            </div>
+        </div>
+        <button class="calculate" id="calculate_average">Расчитать</button>
+        <div class="cost-grid">
+            <div class="total-cost initial">
+                <span class="total-cost_text">Мин. стоимость</span>
+                <span class="total-cost_value" id="min-value__average">$ 0</span>
+            </div>
+            <div class="total-cost initial">
+                <span class="total-cost_text">Средняя стоимость</span>
+                <span class="total-cost_value" id="medium-value__average">$ 0</span>
+            </div>
+            <div class="total-cost initial">
+                <span class="total-cost_text">Макс. стоимость</span>
+                <span class="total-cost_value" id="max-value__average">$ 0</span>
+            </div>
+        </div>
+
+    </div>
+    <div class="calculator auto">
+        <span class="calculator-title auto">По номеру лота</span>
+        <div class="selectAuction">
+            <span>Выберите аукцион</span>
+            <button class="CopartAuction activeAuction">Copart</button>
+            <button class="IAAIAuction">IAAI</button>
+        </div>
+
+        <div class="departure-port select">
+            <input class="lot-numbers" type="text" id="lotInput" name="lotInputs" value>
+        </div>
+        <button class="calculate" id="calculateLot">Расчитать</button>
+    </div>
+</div>
+<div class="lot-result" id="lotResult"></div>
+<div class="calculators">
+    <div id="calc-cost" class="calculator">
+        <span class="calculator-title">Калькулятор конечной стоимости лота</span>
+        <p class="calculator-description">
+            Конечная стоимость лота, включая сборы за аукцион, оформление документации и транзакцию
+        </p>
+
+        <div class="selectAuction">
+            <span>Выберите аукцион</span>
+            <button class="CopartAuction activeAuction">Copart</button>
+            <button class="IAAIAuction">IAAI</button>
+        </div>
+
+        <div class="final-bet">
+            <span>Финальная ставка</span>
+            <input type="text" name="final-bet" id="final-bet" value="0" />
+        </div>
+        <div class="extra-charges">
+            <div class="extra-charges_item">
+                <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTUiIHZpZXdCb3g9IjAgMCAxNiAxNSIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBpZD0iSWNvbnMvU29saWQvVmVyaWZpZWQiPjxwYXRoIGlkPSJWZXJpZmllZCIgZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik0xNC4zMzUyIDcuMjMzNjJMMTUuNzY5NSA1Ljk2MTU1QzE2LjE5NyA1LjU5NDc1IDE1Ljk5NzcgNC45NDI5IDE1LjQzNjkgNC44MjEzNkwxMy40ODI5IDQuMzY5NEwxNC4wMzM3IDIuNjE2NTRDMTQuMTg5NCAyLjExMjM1IDEzLjY2NDggMS42MzY3OSAxMy4xMDg2IDEuNzc3ODlMMTEuMTc1MSAyLjI3NzI1TDEwLjY3NjYgMC41MDU4NDVDMTAuNTQ0NiAwLjAwNTU4MDc5IDkuODE3MjkgLTAuMTc3Mzc5IDkuNDE4ODUgMC4yMDQzMTNMOC4wMTU2NSAxLjUxNDE3TDYuNjEyNDkgMC4yMDQzNDFDNi4yMTg1NyAtMC4xNzMwMjYgNS40ODgyMiAtMC4wMDAxMjg3NzYgNS4zNTQ3OSAwLjUwNTg3M0w0Ljg1NjI2IDIuMjc3MjhMMi45MjI3IDEuNzc3OTJDMi4zNjYzOCAxLjYzNjc2IDEuODQxOTYgMi4xMTI0OSAxLjk5NzYgMi42MTY1N0wyLjU0ODQzIDQuMzY5NDNMMC41OTQ0MyA0LjgyMTM5QzAuMDMzNDAxMSA0Ljk0Mjk2IC0wLjE2NTU1NCA1LjU5NDkyIDAuMjYxNzk5IDUuOTYxNTVMMS42OTYwMyA3LjIzMzYyTDAuMjYxNzk5IDguNTA1NjZDLTAuMTY1NzQxIDguODcyNDYgMC4wMzM2MTkzIDkuNTI0MzEgMC41OTQzOTkgOS42NDU4NUwyLjU0ODQgMTAuMDk3OEwxLjk5NzU2IDExLjg1MDdDMS44NDE5IDEyLjM1NDkgMi4zNjY1IDEyLjgzMDQgMi45MjI2NiAxMi42ODkzTDQuODU2MiAxMi4xOUw1LjM1NDczIDEzLjk2MTRDNS40OTMxOCAxNC40ODY0IDYuMjE4NTQgMTQuNjQwMiA2LjYxMjQzIDE0LjI2MjlMOC4wMTU2NSAxMi45NjI3TDkuNDE4ODIgMTQuMjYyOUM5LjgwODY4IDE0LjY0NDEgMTAuNTQxMiAxNC40NzQ1IDEwLjY3NjUgMTMuOTYxNEwxMS4xNzUgMTIuMTlMMTMuMTA4NiAxMi42ODkzQzEzLjY2NDkgMTIuODMwNSAxNC4xODkzIDEyLjM1NDcgMTQuMDMzNyAxMS44NTA3TDEzLjQ4MjkgMTAuMDk3OEwxNS40MzY4IDkuNjQ1ODVDMTUuOTk3OCA5LjUyNDI1IDE2LjE5NjggOC44NzIzMiAxNS43Njk0IDguNTA1NjZMMTQuMzM1MiA3LjIzMzYyWiIgZmlsbD0id2hpdGUiIGZpbGwtb3BhY2l0eT0iMC4wMSIvPjxtYXNrIGlkPSJtYXNrMCIgbWFzay10eXBlPSJhbHBoYSIgbWFza1VuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeD0iMCIgeT0iMCIgd2lkdGg9IjE3IiBoZWlnaHQ9IjE1Ij48cGF0aCBpZD0iVmVyaWZpZWRfMiIgZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik0xNC4zMzUyIDcuMjMzNjJMMTUuNzY5NSA1Ljk2MTU1QzE2LjE5NyA1LjU5NDc1IDE1Ljk5NzcgNC45NDI5IDE1LjQzNjkgNC44MjEzNkwxMy40ODI5IDQuMzY5NEwxNC4wMzM3IDIuNjE2NTRDMTQuMTg5NCAyLjExMjM1IDEzLjY2NDggMS42MzY3OSAxMy4xMDg2IDEuNzc3ODlMMTEuMTc1MSAyLjI3NzI1TDEwLjY3NjYgMC41MDU4NDVDMTAuNTQ0NiAwLjAwNTU4MDc5IDkuODE3MjkgLTAuMTc3Mzc5IDkuNDE4ODUgMC4yMDQzMTNMOC4wMTU2NSAxLjUxNDE3TDYuNjEyNDkgMC4yMDQzNDFDNi4yMTg1NyAtMC4xNzMwMjYgNS40ODgyMiAtMC4wMDAxMjg3NzYgNS4zNTQ3OSAwLjUwNTg3M0w0Ljg1NjI2IDIuMjc3MjhMMi45MjI3IDEuNzc3OTJDMi4zNjYzOCAxLjYzNjc2IDEuODQxOTYgMi4xMTI0OSAxLjk5NzYgMi42MTY1N0wyLjU0ODQzIDQuMzY5NDNMMC41OTQ0MyA0LjgyMTM5QzAuMDMzNDAxMSA0Ljk0Mjk2IC0wLjE2NTU1NCA1LjU5NDkyIDAuMjYxNzk5IDUuOTYxNTVMMS42OTYwMyA3LjIzMzYyTDAuMjYxNzk5IDguNTA1NjZDLTAuMTY1NzQxIDguODcyNDYgMC4wMzM2MTkzIDkuNTI0MzEgMC41OTQzOTkgOS42NDU4NUwyLjU0ODQgMTAuMDk3OEwxLjk5NzU2IDExLjg1MDdDMS44NDE5IDEyLjM1NDkgMi4zNjY1IDEyLjgzMDQgMi45MjI2NiAxMi42ODkzTDQuODU2MiAxMi4xOUw1LjM1NDczIDEzLjk2MTRDNS40OTMxOCAxNC40ODY0IDYuMjE4NTQgMTQuNjQwMiA2LjYxMjQzIDE0LjI2MjlMOC4wMTU2NSAxMi45NjI3TDkuNDE4ODIgMTQuMjYyOUM5LjgwODY4IDE0LjY0NDEgMTAuNTQxMiAxNC40NzQ1IDEwLjY3NjUgMTMuOTYxNEwxMS4xNzUgMTIuMTlMMTMuMTA4NiAxMi42ODkzQzEzLjY2NDkgMTIuODMwNSAxNC4xODkzIDEyLjM1NDcgMTQuMDMzNyAxMS44NTA3TDEzLjQ4MjkgMTAuMDk3OEwxNS40MzY4IDkuNjQ1ODVDMTUuOTk3OCA5LjUyNDI1IDE2LjE5NjggOC44NzIzMiAxNS43Njk0IDguNTA1NjZMMTQuMzM1MiA3LjIzMzYyWiIgZmlsbD0id2hpdGUiLz48L21hc2s+PGcgbWFzaz0idXJsKCNtYXNrMCkiPjxnIGlkPSImIzIyNjsmIzEzNDsmIzE3OTsgJiMyNDA7JiMxNTk7JiMxNDI7JiMxNjg7IENoYW5nZSBDb2xvciI+PHJlY3QgaWQ9IlJlY3RhbmdsZSIgd2lkdGg9IjE2IiBoZWlnaHQ9IjE0LjUiIGZpbGw9IiMyNDlBRjMiLz48L2c+PHBhdGggaWQ9IkNoZWNrIiBkPSJNNy4zNzI0OSA5LjYyMjA3TDExLjM5NzUgNS45NzQ0MUMxMS41MzQyIDUuODUwNTUgMTEuNTM0MiA1LjY0OTcxIDExLjM5NzUgNS41MjU4NUwxMC45MDI1IDUuMDc3MjlDMTAuNzY1OSA0Ljk1MzQgMTAuNTQ0MiA0Ljk1MzQgMTAuNDA3NSA1LjA3NzI5TDcuMTI1IDguMDUyMDdMNS41OTI0NiA2LjY2MzJDNS40NTU3OCA2LjUzOTM0IDUuMjM0MTcgNi41MzkzNCA1LjA5NzQ3IDYuNjYzMkw0LjYwMjUxIDcuMTExNzdDNC40NjU4MyA3LjIzNTYzIDQuNDY1ODMgNy40MzY0NyA0LjYwMjUxIDcuNTYwMzNMNi44Nzc1MSA5LjYyMjA1QzcuMDE0MiA5Ljc0NTkzIDcuMjM1OCA5Ljc0NTkzIDcuMzcyNDkgOS42MjIwN1oiIGZpbGw9IndoaXRlIi8+PC9nPjwvZz48L3N2Zz4=" alt="" class="extra-charges_item__icon" />
+                <span class="extra-charges_item__name">Аукционный сбор</span>
+                <span class="extra-charges_item__cost auction">$ 0</span>
+            </div>
+            <div class="extra-charges_item">
+                <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTciIHZpZXdCb3g9IjAgMCAxNiAxNyIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBmaWxsLXJ1bGU9ImV2ZW5vZGQiIGNsaXAtcnVsZT0iZXZlbm9kZCIgZD0iTTE0LjY3IDkuODA3NDdMMTUuOTgzMSA0LjAyOTY5QzE2LjA3NzkgMy42MTI1MyAxNS43NjA5IDMuMjE1MjggMTUuMzMzMSAzLjIxNTI4SDQuNDIyNDRMNC4xNjc4MyAxLjk3MDU2QzQuMTA0MzkgMS42NjAzMSAzLjgzMTM5IDEuNDM3NSAzLjUxNDY5IDEuNDM3NUgwLjY2NjY2N0MwLjI5ODQ3MiAxLjQzNzUgMCAxLjczNTk3IDAgMi4xMDQxN1YyLjU0ODYxQzAgMi45MTY4MSAwLjI5ODQ3MiAzLjIxNTI4IDAuNjY2NjY3IDMuMjE1MjhIMi42MDc4Nkw0LjU1OTE5IDEyLjc1NTFDNC4wOTIzNiAxMy4wMjM2IDMuNzc3NzggMTMuNTI3IDMuNzc3NzggMTQuMTA0MkMzLjc3Nzc4IDE0Ljk2MzMgNC40NzQyMiAxNS42NTk3IDUuMzMzMzMgMTUuNjU5N0M2LjE5MjQ0IDE1LjY1OTcgNi44ODg4OSAxNC45NjMzIDYuODg4ODkgMTQuMTA0MkM2Ljg4ODg5IDEzLjY2ODggNi43MDk4MSAxMy4yNzU0IDYuNDIxNTYgMTIuOTkzMUgxMi4yNDUxQzExLjk1NjkgMTMuMjc1NCAxMS43Nzc4IDEzLjY2ODggMTEuNzc3OCAxNC4xMDQyQzExLjc3NzggMTQuOTYzMyAxMi40NzQyIDE1LjY1OTcgMTMuMzMzMyAxNS42NTk3QzE0LjE5MjQgMTUuNjU5NyAxNC44ODg5IDE0Ljk2MzMgMTQuODg4OSAxNC4xMDQyQzE0Ljg4ODkgMTMuNDg4MyAxNC41MzA5IDEyLjk1NjEgMTQuMDExNyAxMi43MDRMMTQuMTY0OSAxMi4wMjk3QzE0LjI1OTggMTEuNjEyNSAxMy45NDI3IDExLjIxNTMgMTMuNTE0OSAxMS4yMTUzSDYuMDU4ODFMNS44NzcgMTAuMzI2NEgxNC4wMTk5QzE0LjMzMTIgMTAuMzI2NCAxNC42MDEgMTAuMTExIDE0LjY3IDkuODA3NDdaIiBmaWxsPSJ3aGl0ZSIgZmlsbC1vcGFjaXR5PSIwLjAxIi8+PG1hc2sgaWQ9Im1hc2swIiBtYXNrLXR5cGU9ImFscGhhIiBtYXNrVW5pdHM9InVzZXJTcGFjZU9uVXNlIiB4PSIwIiB5PSIxIiB3aWR0aD0iMTYiIGhlaWdodD0iMTUiPjxwYXRoIGZpbGwtcnVsZT0iZXZlbm9kZCIgY2xpcC1ydWxlPSJldmVub2RkIiBkPSJNMTQuNjcgOS44MDc0N0wxNS45ODMxIDQuMDI5NjlDMTYuMDc3OSAzLjYxMjUzIDE1Ljc2MDkgMy4yMTUyOCAxNS4zMzMxIDMuMjE1MjhINC40MjI0NEw0LjE2NzgzIDEuOTcwNTZDNC4xMDQzOSAxLjY2MDMxIDMuODMxMzkgMS40Mzc1IDMuNTE0NjkgMS40Mzc1SDAuNjY2NjY3QzAuMjk4NDcyIDEuNDM3NSAwIDEuNzM1OTcgMCAyLjEwNDE3VjIuNTQ4NjFDMCAyLjkxNjgxIDAuMjk4NDcyIDMuMjE1MjggMC42NjY2NjcgMy4yMTUyOEgyLjYwNzg2TDQuNTU5MTkgMTIuNzU1MUM0LjA5MjM2IDEzLjAyMzYgMy43Nzc3OCAxMy41MjcgMy43Nzc3OCAxNC4xMDQyQzMuNzc3NzggMTQuOTYzMyA0LjQ3NDIyIDE1LjY1OTcgNS4zMzMzMyAxNS42NTk3QzYuMTkyNDQgMTUuNjU5NyA2Ljg4ODg5IDE0Ljk2MzMgNi44ODg4OSAxNC4xMDQyQzYuODg4ODkgMTMuNjY4OCA2LjcwOTgxIDEzLjI3NTQgNi40MjE1NiAxMi45OTMxSDEyLjI0NTFDMTEuOTU2OSAxMy4yNzU0IDExLjc3NzggMTMuNjY4OCAxMS43Nzc4IDE0LjEwNDJDMTEuNzc3OCAxNC45NjMzIDEyLjQ3NDIgMTUuNjU5NyAxMy4zMzMzIDE1LjY1OTdDMTQuMTkyNCAxNS42NTk3IDE0Ljg4ODkgMTQuOTYzMyAxNC44ODg5IDE0LjEwNDJDMTQuODg4OSAxMy40ODgzIDE0LjUzMDkgMTIuOTU2MSAxNC4wMTE3IDEyLjcwNEwxNC4xNjQ5IDEyLjAyOTdDMTQuMjU5OCAxMS42MTI1IDEzLjk0MjcgMTEuMjE1MyAxMy41MTQ5IDExLjIxNTNINi4wNTg4MUw1Ljg3NyAxMC4zMjY0SDE0LjAxOTlDMTQuMzMxMiAxMC4zMjY0IDE0LjYwMSAxMC4xMTEgMTQuNjcgOS44MDc0N1oiIGZpbGw9IndoaXRlIi8+PC9tYXNrPjxnIG1hc2s9InVybCgjbWFzazApIj48cmVjdCB5PSIwLjQzNzUiIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIgZmlsbD0iIzI0OUFGMyIvPjwvZz48L3N2Zz4=" alt="" class="extra-charges_item__icon" />
+                <span class="extra-charges_item__name">Услуги</span>
+                <span class="extra-charges_item__cost">$ 0</span>
+            </div>
+            <div class="extra-charges_item">
+                <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHZpZXdCb3g9IjAgMCAxNiAxNiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBpZD0iSWNvbnMvU29saWQvU2hpcHBpbmciPjxwYXRoIGlkPSJTaGlwcGluZyIgZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik0xNS4yIDEwLjMxODhIMTUuNkMxNS44MiAxMC4zMTg4IDE2IDEwLjQ4MTkgMTYgMTAuNjgxM1YxMS40MDYzQzE2IDExLjYwNTYgMTUuODIgMTEuNzY4OCAxNS42IDExLjc2ODhIMTQuNEMxNC40IDEyLjk2OTUgMTMuMzI1IDEzLjk0MzggMTIgMTMuOTQzOEMxMC42NzUgMTMuOTQzOCA5LjYgMTIuOTY5NSA5LjYgMTEuNzY4OEg2LjRDNi40IDEyLjk2OTUgNS4zMjUgMTMuOTQzOCA0IDEzLjk0MzhDMi42NzUgMTMuOTQzOCAxLjYgMTIuOTY5NSAxLjYgMTEuNzY4OFY4Ljg2ODc2SDUuNEM1LjUxIDguODY4NzYgNS42IDguNzg3MTkgNS42IDguNjg3NTFWOC4zMjUwMUM1LjYgOC4yMjUzMiA1LjUxIDguMTQzNzYgNS40IDguMTQzNzZIMC4yQzAuMDkgOC4xNDM3NiAwIDguMDYyMTkgMCA3Ljk2MjUxVjcuNjAwMDFDMCA3LjUwMDMyIDAuMDkgNy40MTg3NiAwLjIgNy40MTg3Nkg2LjJDNi4zMSA3LjQxODc2IDYuNCA3LjMzNzE5IDYuNCA3LjIzNzUxVjYuODc1MDFDNi40IDYuNzc1MzIgNi4zMSA2LjY5Mzc2IDYuMiA2LjY5Mzc2SDFDMC44OSA2LjY5Mzc2IDAuOCA2LjYxMjE5IDAuOCA2LjUxMjVWNi4xNUMwLjggNi4wNTAzMiAwLjg5IDUuOTY4NzUgMSA1Ljk2ODc1SDdDNy4xMSA1Ljk2ODc1IDcuMiA1Ljg4NzE5IDcuMiA1Ljc4NzVWNS40MjVDNy4yIDUuMzI1MzIgNy4xMSA1LjI0Mzc1IDcgNS4yNDM3NUgwLjJDMC4wOSA1LjI0Mzc1IDAgNS4xNjIxOSAwIDUuMDYyNVY0LjdDMCA0LjYwMDMxIDAuMDkgNC41MTg3NSAwLjIgNC41MTg3NUgxLjZWMy40MzEyNUMxLjYgMi44MzA4NiAyLjEzNzUgMi4zNDM3NSAyLjggMi4zNDM3NUg5LjJDOS44NjI1IDIuMzQzNzUgMTAuNCAyLjgzMDg2IDEwLjQgMy40MzEyNVY0LjUxODc1SDExLjUwMjVDMTEuODIgNC41MTg3NSAxMi4xMjUgNC42MzQzIDEyLjM1IDQuODM4MjFMMTQuODQ3NSA3LjEwMTU3QzE1LjA3MjUgNy4zMDU0NyAxNS4yIDcuNTgxODggMTUuMiA3Ljg2OTYyVjEwLjMxODhaTTIuOCAxMS43Njg4QzIuOCAxMi4zNjkyIDMuMzM3NSAxMi44NTYzIDQgMTIuODU2M0M0LjY2MjUgMTIuODU2MyA1LjIgMTIuMzY5MiA1LjIgMTEuNzY4OEM1LjIgMTEuMTY4NCA0LjY2MjUgMTAuNjgxMyA0IDEwLjY4MTNDMy4zMzc1IDEwLjY4MTMgMi44IDExLjE2ODQgMi44IDExLjc2ODhaTTEyIDEyLjg1NjNDMTEuMzM3NSAxMi44NTYzIDEwLjggMTIuMzY5MiAxMC44IDExLjc2ODhDMTAuOCAxMS4xNjg0IDExLjMzNzUgMTAuNjgxMyAxMiAxMC42ODEzQzEyLjY2MjUgMTAuNjgxMyAxMy4yIDExLjE2ODQgMTMuMiAxMS43Njg4QzEzLjIgMTIuMzY5MiAxMi42NjI1IDEyLjg1NjMgMTIgMTIuODU2M1pNMTAuNCA4LjE0Mzc1SDE0VjcuODY5NjFMMTEuNTAyNSA1LjYwNjI1SDEwLjRWOC4xNDM3NVoiIGZpbGw9IndoaXRlIiBmaWxsLW9wYWNpdHk9IjAuMDEiLz48bWFzayBpZD0ibWFzazAiIG1hc2stdHlwZT0iYWxwaGEiIG1hc2tVbml0cz0idXNlclNwYWNlT25Vc2UiIHg9IjAiIHk9IjIiIHdpZHRoPSIxNiIgaGVpZ2h0PSIxMiI+PHBhdGggaWQ9IlNoaXBwaW5nXzIiIGZpbGwtcnVsZT0iZXZlbm9kZCIgY2xpcC1ydWxlPSJldmVub2RkIiBkPSJNMTUuMiAxMC4zMTg4SDE1LjZDMTUuODIgMTAuMzE4OCAxNiAxMC40ODE5IDE2IDEwLjY4MTNWMTEuNDA2M0MxNiAxMS42MDU2IDE1LjgyIDExLjc2ODggMTUuNiAxMS43Njg4SDE0LjRDMTQuNCAxMi45Njk1IDEzLjMyNSAxMy45NDM4IDEyIDEzLjk0MzhDMTAuNjc1IDEzLjk0MzggOS42IDEyLjk2OTUgOS42IDExLjc2ODhINi40QzYuNCAxMi45Njk1IDUuMzI1IDEzLjk0MzggNCAxMy45NDM4QzIuNjc1IDEzLjk0MzggMS42IDEyLjk2OTUgMS42IDExLjc2ODhWOC44Njg3Nkg1LjRDNS41MSA4Ljg2ODc2IDUuNiA4Ljc4NzE5IDUuNiA4LjY4NzUxVjguMzI1MDFDNS42IDguMjI1MzIgNS41MSA4LjE0Mzc2IDUuNCA4LjE0Mzc2SDAuMkMwLjA5IDguMTQzNzYgMCA4LjA2MjE5IDAgNy45NjI1MVY3LjYwMDAxQzAgNy41MDAzMiAwLjA5IDcuNDE4NzYgMC4yIDcuNDE4NzZINi4yQzYuMzEgNy40MTg3NiA2LjQgNy4zMzcxOSA2LjQgNy4yMzc1MVY2Ljg3NTAxQzYuNCA2Ljc3NTMyIDYuMzEgNi42OTM3NiA2LjIgNi42OTM3NkgxQzAuODkgNi42OTM3NiAwLjggNi42MTIxOSAwLjggNi41MTI1VjYuMTVDMC44IDYuMDUwMzIgMC44OSA1Ljk2ODc1IDEgNS45Njg3NUg3QzcuMTEgNS45Njg3NSA3LjIgNS44ODcxOSA3LjIgNS43ODc1VjUuNDI1QzcuMiA1LjMyNTMyIDcuMTEgNS4yNDM3NSA3IDUuMjQzNzVIMC4yQzAuMDkgNS4yNDM3NSAwIDUuMTYyMTkgMCA1LjA2MjVWNC43QzAgNC42MDAzMSAwLjA5IDQuNTE4NzUgMC4yIDQuNTE4NzVIMS42VjMuNDMxMjVDMS42IDIuODMwODYgMi4xMzc1IDIuMzQzNzUgMi44IDIuMzQzNzVIOS4yQzkuODYyNSAyLjM0Mzc1IDEwLjQgMi44MzA4NiAxMC40IDMuNDMxMjVWNC41MTg3NUgxMS41MDI1QzExLjgyIDQuNTE4NzUgMTIuMTI1IDQuNjM0MyAxMi4zNSA0LjgzODIxTDE0Ljg0NzUgNy4xMDE1N0MxNS4wNzI1IDcuMzA1NDcgMTUuMiA3LjU4MTg4IDE1LjIgNy44Njk2MlYxMC4zMTg4Wk0yLjggMTEuNzY4OEMyLjggMTIuMzY5MiAzLjMzNzUgMTIuODU2MyA0IDEyLjg1NjNDNC42NjI1IDEyLjg1NjMgNS4yIDEyLjM2OTIgNS4yIDExLjc2ODhDNS4yIDExLjE2ODQgNC42NjI1IDEwLjY4MTMgNCAxMC42ODEzQzMuMzM3NSAxMC42ODEzIDIuOCAxMS4xNjg0IDIuOCAxMS43Njg4Wk0xMiAxMi44NTYzQzExLjMzNzUgMTIuODU2MyAxMC44IDEyLjM2OTIgMTAuOCAxMS43Njg4QzEwLjggMTEuMTY4NCAxMS4zMzc1IDEwLjY4MTMgMTIgMTAuNjgxM0MxMi42NjI1IDEwLjY4MTMgMTMuMiAxMS4xNjg0IDEzLjIgMTEuNzY4OEMxMy4yIDEyLjM2OTIgMTIuNjYyNSAxMi44NTYzIDEyIDEyLjg1NjNaTTEwLjQgOC4xNDM3NUgxNFY3Ljg2OTYxTDExLjUwMjUgNS42MDYyNUgxMC40VjguMTQzNzVaIiBmaWxsPSJ3aGl0ZSIvPjwvbWFzaz48ZyBtYXNrPSJ1cmwoI21hc2swKSI+PGcgaWQ9IiYjMjI2OyYjMTM0OyYjMTc5OyAmIzI0MDsmIzE1OTsmIzE0MjsmIzE2ODsgQ2hhbmdlIENvbG9yIj48cmVjdCBpZD0iUmVjdGFuZ2xlIiB5PSIwLjUzMTI1IiB3aWR0aD0iMTYiIGhlaWdodD0iMTQuNSIgZmlsbD0iIzI0OUFGMyIvPjwvZz48L2c+PC9nPjwvc3ZnPg==" alt="" class="extra-charges_item__icon" />
+                <div class="port">
+                    <span class="extra-charges_item__name">Порт</span>
+                    <span class="extra-charges_item__description">(Экспедирование, Брокер, экспертиза)</span>
+                </div>
+                <span class="extra-charges_item__cost">$ 0</span>
+            </div>
+
+            <div class="extra-charges_item">
+                <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTQiIGhlaWdodD0iMTQiIHZpZXdCb3g9IjAgMCAxNCAxNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayI+PG1hc2sgaWQ9Im1hc2swIiBtYXNrLXR5cGU9ImFscGhhIiBtYXNrVW5pdHM9InVzZXJTcGFjZU9uVXNlIiB4PSIwIiB5PSIwIiB3aWR0aD0iMTQiIGhlaWdodD0iMTQiPjxyZWN0IHdpZHRoPSIxNCIgaGVpZ2h0PSIxNCIgZmlsbD0idXJsKCNwYXR0ZXJuMCkiLz48L21hc2s+PGcgbWFzaz0idXJsKCNtYXNrMCkiPjxyZWN0IHdpZHRoPSIxNCIgaGVpZ2h0PSIxNCIgZmlsbD0iIzI0OUFGMyIvPjwvZz48ZGVmcz48cGF0dGVybiBpZD0icGF0dGVybjAiIHBhdHRlcm5Db250ZW50VW5pdHM9Im9iamVjdEJvdW5kaW5nQm94IiB3aWR0aD0iMSIgaGVpZ2h0PSIxIj48dXNlIHhsaW5rOmhyZWY9IiNpbWFnZTAiIHRyYW5zZm9ybT0ic2NhbGUoMC4wMDUpIi8+PC9wYXR0ZXJuPjxpbWFnZSBpZD0iaW1hZ2UwIiB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgeGxpbms6aHJlZj0iZGF0YTppbWFnZS9wbmc7YmFzZTY0LGlWQk9SdzBLR2dvQUFBQU5TVWhFVWdBQUFNZ0FBQURJQ0FZQUFBQ3RXSzZlQUFBUGFrbEVRVlI0QWUyZGVheGZSUlhIdjRxNFFGVmNFSkdDaWtYMlRjRVFRU0JpVVJSaVFTRlZGSUlDTWNaOUNZbmlQeXdoeGlVdWpjWmdVTVFxaVZZTTBTSzdXN1dLMmlwQ0VGU2dCVkpBYUtzc2xaWml2by83cS9lOTl2ZmU3M2ZQbWJsbjd2MmU1T1Z0djVrNTV6UG4zRHQzN3N3WlFDSUNJaUFDSWlBQ0lpQUNJaUFDSWlBQ0lpQUNJaUFDSWlBQ0lpQUNJaUFDSWlBQ0lpQUNJaUFDSWlBQ0lpQUNJaUFDSWlBQ0lpQUNJaUFDSWlBQ0lpQUNJaUFDSWlBQ0lsQVNnYWVVcE93TXVqNFZ3TzRBOWdXd0M0Q2RBTXdDOEN3QVQ1dWhyUDdkak1CNkFJOENXQXZnYmdCM0FMZ1J3RDhCUE5Hc3lsaWxTZytRSFFDY0NPQVlBRWNBMkRZVzN0NXFzeHJBZFFBV0ExaFVCVkJ2WWJSaCtLRUFmZ3hnUTNXbDR0VktYekVaOEE1ekNZRDkybkNVdnJXNUI0QXJGQXhGWGd3MkFsZ0lZSGJmbkRhSHZSd0tmZ3pBT2dWSGtjRlJ2N3V2QVhCS0RxZnBTeHQ4MFA2UkFxUDR3S2dIQ1gvK09vQ3QrK0xFcWV6Y0RzQlNCVWZuZ21NUUxKY0RlRVlxNStsNnZaeWUvYTJDbzdQQk1RaVN5d0J3aWo2a2JCVlNxeWVWdWhUQTBZSDFrMm8rQkRqeDhtd0FWL2xVMTQ5YVBxdzdSK2Z2SElNN3lPRDd2SWl1SGZGRklkK0dMd2Z3eklqQXBGTXlBdmNCMkF2QUE4bGFhRkJ4eENIVzk2c2xJdzNNVVpHQ0NYQVZCQ2RsZmhMSmhtaDNrRGRWTHdJak1aSXUrUWc4RG1BZkFMZmthM0w2bHFMZFFiNERZT2ZwVmRaL08weUFzMW5QQmNDWnJSQVM2UTV5U0RXdEd3S01sR2lOQUZjSWN6WDJxdFkwcURVY2FSbjQrMnA2ZWZ6STJaRzdxb2MrM3JvbC9nUTRBbmxodGJYQTYyTEx0K3VuQXpqUFg5MXlhK1J0OVdHbnFkMWZBemlwdWxXWFM2UXN6WjhQNEdRQWYzRHFRKzRuOFFxNHNrZ08wWlozajhGOGVOUHYvd1h3M2lIMTY4OTVDTkNwdWFqVVl4dkNVWGxVTHFPVkc0d0J3ZzU1U3htbTlrSkwzazJhWHVnRzViN1hDMUlqR01tTk5BTW9UYjkvWm9SMjlKRzhCTDVrN0ZkdXRIcGVYcFZqdHZZVkk4amJ0R3c2Wk1meXhSLzNxVGU5NkxIY0IwSmFsbEVwTG5YbTBnSUx4Tk15NnF1bXhpTmdYVk8zYkx6bXV2ZnArY2JnZUZEN0NVSTdCVmZwL3NmWXg2OXEwOEsyMStGYlo1MStDSUN6VjVLWUJCZ2N6R3BpRWF1UFdOcHV0ZXpMQUhBanYyVjRkV1NyRnFqeFVRak1OZll4VXdoeDgxenY1QndqdU52MU1xa0luK0VvWmFXeHI5OVZoS1dPU2hMYUNpTTBCcGlrREFJWEdQdjYrakxNOU5PU3k5b3RReXVXbmVPbmptcEtUSURiYWkzOXphSDRLeExyR0tyNkh4aUJjYjJWcEN3Q3Z6UDIrZmxsbWR0YzIrMnJtU2ZMRmVXTTVzMnJaRXNFM204TUVMNTBqTFovS1FsS0xtYXpCQWVYSUhEMXI2UXNBbHp4eXlsNVM5LzNZcjNkVFVaSTNMTXVLWk1BMzF0WkFvUVpOanN0M0RWb0FjU3lmTUNYbEVuZ09HUC9Qd2FBUjE1MFZpNDBBcnFuTCtQUWpub0FkN0F5dlkvbEl2bkpqcktaT08zSnVpN25jMTJGMHlPN3JNdmd3MlE4OGU2ejl4aXZITHpxTUNXTXBHd0NCenI0QVE5UTZwd3NNWUw1WStlSTlOZWd2eGg5NGFLdW9iTytTZVhkNDBOZGc5SmplejV1REpDSHFvVFhuVUg0ZVNNUXpsNHd2WXlrR3dSZTdKRFlnYW1CT2lITWMyU2R1ZUNCblpKdUVmaXA4YUxKczJNNklTY1lRWEI0ZFh3blNNaUlPZ0htTHJOTTk3THMzdlVLUy8zWmVxWDRGNENubDJxODlCNUtnUGtJdUJuS0VpUmZIRnA3SWYvWXlXR3N1YUFRVzZYbStBUytZUXlRKzB1L2VKNXRCTUNyeThIamMxZUpRZ2k4MXNFLzNsNklyWnVweVRTVXpMRnF1WVhldkZtdCtrUFhDTnhxOUpFclNnWHllcVBoREt5elNqVmVlbzlNd0RyS1lPYitJcytVV1dnTUVCck9aeGhKdHdtODFDRzdUWEdwWjVsVGxSdWJMTU9ySzd2dEY3S3VSdUE2bzY4a3kzQ1RLbkVjczN0YlQ2bTl1QVpRUDNhYmdMV3ZtV090cU9NU21GUFZjdmRZMjlka1lkMk9nNkhXelFMQTlWVVdueWxtcHlsenFWb01aZGx2RGtXcGYzU1ZBTzhpRnI5WkI0RDczc1BMMTR5R0V0TGg0YTJVZ3Q0RU9FU3lCQWpMZnRCYktlLzZtRU4xamRGUW5VL24zU3RsMU9lUmJYTzV0Nm5lRCtsdmMwakp3N1BTZVRXUTlJc0FzeWRlWWpSNWZ3Q3ZOdGFSdERoenFGcHVrNFMwYTFJTlZYbGtBcTgwK2c5OWowUDhrTUxjcWRiakRINFowaklwbFpNQTkzbFlMckljNHJzZGwrQTV4T0pCSjlhenJhM3o0VGs3VW0ybElXRDFBV2JkZEZ2QXlEeEZWbUVkZXdJNDFWcFJ0VEdLQjY1SStrdUF4N1paaFhtQWx3TDR1L1Y1dHVrVm4wbUVtU2YxM1FEZTJMVU45TmJlVWZrd0JMaGZoQnYydmczZ0Z6bTA0cENNcDhvT0l0TXlWbFJaMjFoYi9NYmo5eWNBODFJR3lVRUEySWc2Umd4SzlvRnJBZXptR1NnY2huMGF3SG9GaHk0T0hmR0Jod0djNlJFazJ3Qmd5dm1TcnhqU1hmMDN6QWU0SjM3YWlhcnBIdEk1bTdBWXdHRWVrYVk2UkNBb2djc0JNQVVSRC9mWlRJWUZDUGR5WEszZzJJeVgvdEJOQWd3UzVtL2pMdFpKTXV6TU42NnQxMEUxazFEcGx3NFQyQjBBejg3a2xQQWsyVktBZkJRQXZ5UWkwQ2NDVEMvMUR3RE1QTDlKcGc2eGVQNEdqeGxRSnNOTmlQUkRqd2h3VnlOajRNNkJ6VlBYWW5FbHBJSmpRRWZmKzBhQVczKy9YRGU2SGlCOFNIbGQvWi82V1FSNlNPQ3RBSmpUYlVMcVF5eStKZWZ4V0JJUjZEc0JydHM2a2hBR2Q1QWpGQng5OXduWlh5UEFlR0R5a1UwQjRyRlV2VmEvZmhTQjRnbE14QVNIV0h6Vi9nQ0E1MlF5YVJXQXZ3TGdtZWQ4ZThuZFg3TUI3QXZnQlpsMFVET3hDWENaT24za0xnQk01OE96UkppR2xqN3lva3lxM3d0Z1I3WjFTSWExVmd5S2M2cU5WY1BzWTdEeXR2WUZoOHdvdzliZTZPOXgxMlh4b0tRTEFPdzN6RUdxdnpOSStEbCtQblYvc3EySkRPcXBHbm9Fd0tjYTdCSGVEZ0JQRDlxUUFVSXEyMVh2YUE3TVVRUXZudHZPRUJoVC84MHAyZk1COElEWFZLd25UbFptcXBVVURmd053RjVUclJyemR5YVE0OTBuaFg2cXMzMnV6SUZtblRubEcvQVZpWHprUXZycjd4TlV6aWxqcjJPYm1TM2xqZ1E2S2tEYURSQStZL0E0YUEvaE15d3Z5TjU5K2lzcWQ3ZHp4YndxZUQ5STdlRnc0S00zUE5YWDNDRjV4WCtKUjJUVTZtQ0dkKy9SQmkvTStMZGpnSERYWWFvekJabktSVTVaUGdNK1YvSnN3aFJ5dEVOdXRycVBQVWdsdVFhKy9rZkx6Nm1QNWVXNmZZdCtLdHMrdjYrbWlJeGFuZFlzOFhVZjJjQ3BWZjdCUTdqUGR4Y0FFMUhuVWVFVzZ1REI4VGM2SktqYlF0WDZVd1lDbk5Ya2tXdWNvazBsUEsrUXk5YTM5bWhnc05URW82N3ZKZzRPNm5nVGdHczhsRlVkclJDZ2o2UU1EaHExRXNBaUwrczhBeVRYQ1QrNTJ2RmlySHIrVDRBQmtrTjRnS3lMZUEyeGVHQW5jNkx5SVQyMThCYktXUkJKV1FTNEdZbUh1L0loUGJYd0plTHFtVEtXaktLRTF4MkVRNThjd1VHYmVBdmwyakZKV1FTNGxUVkhjSkFLZzVIdlJjemlGU0FUODhWbWJVYXZnTWYrU3NvaXdQZGpPWVVQNm1ieENoQkdiRTdodXh0SldRUjRjbkZPNFRraFp2RUtrQzFsUnpFck4wMEZ1ZHViUmhYOWEwUUN1ZnNzMURRdkg3NXlpdmFONUtUdDA1YlgycnhSdFhGcHorc09NbWRVclIwK1I1MjVnRkZTRmdFbVo4c3BMdTE1QlFnUFg4eDFGem1nd2Y2U25CMmp0clpNZ0ZzZitDb2doM0IxTDFkMW1NVXJRRmpQTVdadFJxdmd6YU45VEo4S1JvRFBJTGw4NUZoUDIrdUxzeXcvWCttcDFKQzZHSWkzYXNGaXNRczJtUkE5aDNqdWNYS0ZiZDBkTmhNOExYbHZmeld1NVNMS3NxbTJRd3g4NXlqbkM2aHJnUHc4NFVwYkhzbkFsei9XRGxMNWRoa3VTZWdqek5EeloyY2ZjWGU0and4QzJmazc5eEhJdWJ2QjRDeG4zeGhVZDE0Q0gzRjNPbWFaNE00dVR6azlnZUVLdHZhQ2pXdXlqdk4wa09xVXFJMEovTVE5UU9oNDNCampOV1BCNENCUU9YUzNHREFoM1BGT1FUSS9ZZnFmWkk1SHArYnB1RTJYR0REajRnSUZSckwraVhEQjRYYnZjdzI3LzNoVXgyZWQ5NkZQNVpLOEE1WUJHT2ZkQmFkeTN3bUFxeituS3F2ZnU4bUUyeVY0TitIK3BGR0VuK054SGJlazloR3ZEVk9qR01YM0Y5d055SVBjdWErOHZ0cVM1OFB0RDJBdWdIY0E0S1lvU2Y4SWNCdkR3RWM0RzFYZjk4T1ZHdlNSTjFRK3Ntc09QRGtEWktvOWZFN2hGMU5PY2pnbEVZR3BCTGhUbGNsQXRxbStwdjQvK2U5dEJraHk0OVNBQ0ZnSmVLM0ZzdXFoOGlJUWtvQUNKR1MzU0trb0JCUWdVWHBDZW9Ra29BQUoyUzFTS2dvQkJVaVVucEFlSVFrb1FFSjJpNVNLUWtBQkVxVW5wRWRJQWdxUWtOMGlwYUlRVUlCRTZRbnBFWktBQWlSa3QwaXBLQVFVSUZGNlFucUVKS0FBQ2RrdFVpb0tBUVZJbEo2UUhpRUpLRUJDZG91VWlrSkFBUktsSjZSSFNBSUtrSkRkSXFXaUVGQ0FST2tKNlJHU2dBSWtaTGRJcVNnRUZDQlJla0o2aENTZ0FBblpMVklxQ2dFRlNKU2VrQjRoQ1NoQVFuYUxsSXBDUUFFU3BTZWtSMGdDQ3BDUTNTS2xvaEJRZ0VUcENla1Jrb0FDSkdTM1NLa29CQlFnVVhwQ2VvUWtvQUFKMlMxU0tnb0JCVWlVbnBBZUlRa29RRUoyaTVTS1FvREg1bDVzVUliSEo1eGlLTiswS0k5M1c5aTBzTXBsSjhEelBVN00zdXFURFZyOGUrUWpyNGJaeGdCYlAreWZDZi9PUTFWbUpheGZWZnNTbUExZ3BXK1ZJOWZHaTNoajBSQ3JNVG9WN0FNQkJVZ2ZlbGsyTmlhZ0FHbU1UZ1g3UUVBQjBvZGVsbzJOQ1NoQUdxTlR3VDRRVUlEMG9aZGxZMk1DQ3BERzZGU3dEd1FVSUgzb1pkblltSUFDcERFNkZld0RBUVZJSDNwWk5qWW1vQUJwakU0RiswQkFBZEtIWHBhTmpRa29RQnFqVThFK0VGQ0E5S0dYWldOakFncVF4dWhVc0E4RXJBSHlSRXVRMm1xM0pYT0xiN2JZL3JJR3lPTUFIbW1oKzlhMDBLYWFiRTVnYmZPaXBwSm1QN0VHQ0xXLzEyUkNzOEp0dE5sTVU1VWlnWWNBY0Jkb2JqSDdpVWVBM0pmYmFnQ3JXbWhUVGRvSW1KMjFRZk5tUC9FSWtEYjJHcTlvQUV0RjJpVndad3ZObTMzVEkwQ3ViY0h3cTF0b1UwM2FDRnhsSzk2bzlEV05TamtYMmhrQVp5bHlmYTFUUmhQbkhzeFQzZDRaZllTK3lBbWs3Zk9ZTm5Ncnl6TWF2M2htZGZTSm9BUnV5K2duU3lJeG1KL1I4RU1qR1M1ZHhpSndha1kvT1hZc3pSSi9tTW01YnNoZy9HV0o3VkQxYVFud21UZkhhT1A2dEdZMHEvMndLc3RpcW1jUnZtemFyWmxxS2hXSUFQM2tzWVFYMDBjQkhCakkza21xbkpISWNLWTNuVHVwSmYxU01vSFRFdm5KUmdBblJRZHpyclB4VEZSTm9KSnVFVGpiMlU4NGN2bEVLWWhPcnBZWFdJZGI5d0E0dkJTanBlZllCRTRBd0tHejFVOVdBNWczZHVzdEY5Z1R3TThhR3M4aDFiY0E3TkN5RFdvK1BZRTVBQllCNFBCbzNFQmhHVTdjdkR5OW11bGFPQWpBcFFBWTVUTUI0TktBQmFVYm5BNWxwMnZlQjhCRjFlTFhtZnprL3VwY0c1WkpLcWF6RThiVWJDc0FESmFEcXpzRDMzTHlDc0FGWlJ4Sy9RYkF6V1BXcVk5M2p3Qjk4Z0FBcndHd1kyMFV3VVd4WFBDNEZNQ3k2bUxiUGV0bGtRaUlnQWlJZ0FpSWdBaUlnQWlJZ0FpSWdBaUlnQWlJZ0FpSWdBaUlnQWlJZ0FpSWdBaUlnQWlJZ0FpSWdBaUlnQWlJZ0FpSWdBaUlnQWlJZ0FpSWdBaUlnQWlJZ0FpSWdJbkEvd0F0OHBoTURObFQrUUFBQUFCSlJVNUVya0pnZ2c9PSIvPjwvZGVmcz48L3N2Zz4=" alt="" class="extra-charges_item__icon" />
+                <div class="port">
+                    <span class="extra-charges_item__name">Стоянка в порту</span>
+                    <span class="extra-charges_item__description">(12$ + 4$ в день)</span>
+                </div>
+            </div>
+
+            <div class="extra-charges_item">
+                <div class="port">
+                    <input type="checkbox" id="insurance" name="insurance" value="insurance">
+                    <label for="insurance" class="extra-charges_item__name">Страховка</label>
+                    <span class="extra-charges_item__description">(0,6%)</span>
+                </div>
+                <span class="extra-charges_item__cost" id="insurance_cost">$ 0</span>
+            </div>
+
+
+        </div>
+        <div class="total-cost">
+            <span class="total-cost_text">Общая стоимость</span>
+            <span class="total-cost_value">$ 2200</span>
+        </div>
+    </div>
+    <div id="calc-delivery" class="calculator">
+        <span class="calculator-title">Калькулятор доставки c 1.02.21</span><br>
+        <div class="selectAuction">
+            <span>Aукцион:</span>
+            <button class="CopartAuction activeAuction">Copart</button>
+            <button class="IAAIAuction">IAAI</button>
+        </div>
+        <div class="total-cost">
+            <span class="total-cost_text">Общая стоимость Суша + Море; <br>Оформление экспортной<br> документации.</span>
+            <span class="total-cost_value">$ 0</span>
+        </div>
+        <div class="departure-city select">
+            <span>Штат аукциона</span>
+            <div class="select-wrapper">
+                <select name="departure-city" id="departure-city" >
+                </select>
+            </div>
+        </div>
+        <div class="departure-port select">
+            <span>Порт отправки</span>
+            <div class="select-wrapper">
+                <select name="departure-port" id="departure-port">
+                </select>
+            </div>
+        </div>
+
+        <div class="arrival-port select">
+            <span>Порт прибытия</span>
+            <div class="select-wrapper">
+                <select name="arrival-port" class="disabled">
+                    <option id="arrival-port-select">Chernomorsk</option>
+                </select>
+            </div>
+
+            <span>Доставка по Украине</span>
+            <div class="select-wrapper">
+                <select name="delivery" id="delivery-select">
+                </select>
+            </div>
+
+            <div id="SUV__wrapper">
+                <input type="checkbox" id="SUV" name="SUV" value="SUV">
+                <label for="SUV" title="автомобили, которые идут в 45 футовом контейнере, Q7, Tundra, Explorer и т.п">
+                    SUV
+                </label>
+                <span>для кроссоверов и больше</span>
+            </div>
+        </div>
+
+    </div>
+    <div id="calc-сustoms" class="calculator">
+        <span class="calculator-title">Таможенный калькулятор</span>
+        <div class="total-cost">
+            <span class="total-cost_text">Общая стоимость</span>
+            <span class="total-cost_value">$ 0</span>
+        </div>
+        <div class="calculator-row">
+            <div class="type-of-motor">
+                <span class="column-title">Тип двигателя</span>
+                <span class="motor-type active" id="gasoline">Бензин</span>
+                <span class="motor-type" id="diesel">Дизель</span>
+                <span class="motor-type" id="electro">Электро</span>
+            </div>
+            <div class="motor-size">
+                <div id="for-classic">
+                    <span class="column-title">Обьем двигателя</span>
+                    <div class="select-wrapper">
+                        <select name="motor-size" id="motor-size" >
+                        </select>
+                    </div>
+                </div>
+                <div id="for-electro" class="hidden">
+                    <span class="column-title">Мощность двигателя (кВт)</span>
+                    <input type="text" name="electro-size" id="electro-size" />
+                </div>
+            </div>
+        </div>
+        <div class="calculator-row" id="second-row">
+            <div class="date-create">
+                <span class="column-title">Год выпуска</span>
+                <div class="select-wrapper">
+                    <select name="date-create" id="date-create" >
+                    </select>
+                </div>
+                <span id="ageRatio">Коеффициент возраста - 1</span>
+            </div>
+            <div class="car-cost">
+                <span class="column-title">Стоимость Авто</span>
+                <input type="text" name="car-cost" id="car-cost" value="1" disabled/>
+                <span id="currentExchange"></span>
+            </div>
+        </div>
+        <div class="extra-charges" style="margin-top: 2rem">
+            <div class="extra-charges_item">
+                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAOCAYAAAAfSC3RAAAABmJLR0QA/wD/AP+gvaeTAAABDElEQVQokZWQoU4DQRRFz5tuIK0jBIuh4KqmdSgSEhQagUMUfgBFsk1weOhi+QAScFgCioLDdEHgG6AOyDIP05Zhd1jCTUbcO3Pe3BlhpFbysIYwT0CqvPW26yd+FgHY48eGqjvDyWUIxOgQKILi3Cww7O3UVwEaR08z/qHKlNPCrHxgk/7ptPl49lf0nr00u2mnFBSV5WBdIfbhAlgqIbZJf+//ICDIBow+5xddg95PABGrih37ElDvxHA+cUoVcqAak6HuNVdqC8emF1T93Qjgtr1wBSzlHrN70148HNtmN+0gxH9XVQ5aSbr/bQM3/pBhgDIH1BRqgYGDIOgyWa9ErIRKONSZT7kA+AKIt1geBkAJKAAAAABJRU5ErkJggg==" alt="" class="extra-charges_item__icon">
+                <span class="extra-charges_item__name">Сертификация</span>
+                <span class="extra-charges_item__cost auction">$ 0</span>
+            </div>
+            <div class="extra-charges_item" style="margin-bottom: 0">
+                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAOCAYAAAAfSC3RAAAABmJLR0QA/wD/AP+gvaeTAAACLUlEQVQokW2S32tSYRzGn/f1vB5FPTplTc2SYinbWBcbQf4Djc0GESxYbEEX4eii/6F/oIt2YzdBG2zQTZC2RhR0s0DIRsLKxH4IqdNNnXpMzzz6duGU0+i5euF5PvB9v9+H4JQyJWUiddReKsptNwCcMbOcz8bWvQ7xizZH+g/OuSWSqj2JJmtzu/mWlWsCUy5DNeiXXs37pRAhRAYAAQBKnEsbier249hhoNPtIReH9OAAflaOEc+3rJ8Lyu260rnAOb9GCJEFANhJ1cJayGvT4960HUxHsJ2u4+13GWqXYzVWDkiiLgxgiWZKykQ0WZvrQ8MmAWs3PbAadGgcd7E4aRv8S+1ybKXqwUxJGRe+VZQ7u/mWtW+O2vUwMoqH7wsoyCroYAs9fcw1bakjZZkWGqqTa4xP+SbiuSY2F85j5YodBoH+A3IAxQZ3UgKi5aCoHPcjWTzaOcDMqAWbC+cgibpTR+uCOs1sXzuNJFJIBh2iqTruvvgNl4Xh8ohh4FMCOE1sX7hkY+tTLmMonm/aAMAjMTy94UGm2oaJUZT/dLBXbA3AaZfxaGyYPaNeh7gX9Fu2hJMtfD1QEIpkkSi08O6HjFvPM6i0OgAAgRLM+ixRtyQmyUlrzBuJypvVWDmg/qcAfejBVfuHxcmhGUKIrK2c+WWyFn6drl+PZ5uDylHSG2/WZ4nO+6UVQkgD0HS1r1+Hyli63l4u1NpnAWBEYtlxB1tzS2JSm/sL25bq0WpAQFYAAAAASUVORK5CYII=" class="extra-charges_item__icon">
+                <span class="extra-charges_item__name">МРЭО</span>
+                <span class="extra-charges_item__cost" id="MREOCost">$ 0</span>
+            </div>
+        </div>
+        <button class="calculate" id="calculate">Расчитать</button>
+    </div>
+</div>
+<div id="all-cost">
+    <div class="all-cost_title">
+        <span>Всего, цена с доставкой</span>
+        <span>Для получения общей суммы, внесите данные в Таможенный калькулятор и нажмитe "Расчитать"</span>
+    </div>
+    <span id="main-cost">$ 0</span>
+</div>
+<div id="preloader">
+    <b>Загрузка...</b>
+</div>
+<script>
+    const fetchPromise = fetch("/getCalcData");
+    fetchPromise.then(response => {
+        return response.json();
+    }).then(result => {
+
+        const preloader = document.querySelector('#preloader');
+        preloader.style.display = 'none';
+
+        const consts = result[6][0];
+
+        const selectMark = document.getElementById("mark");
+        const selectModel = document.getElementById("modеl");
+        const selectYear = document.getElementById("year");
+        const lotInput = document.getElementById("lotInput");
+        const buttonLot = document.getElementById("calculateLot");
+        const lotResultWrapper = document.getElementById("lotResult");
+        const buttonAverage = document.getElementById("calculate_average");
+
+        const minAverage = document.getElementById("min-value__average");
+        const mediumAverage = document.getElementById("medium-value__average");
+        const maxAverage = document.getElementById("max-value__average");
+
+        let automobiles;
+
+        const i = "https://";
+        const ii = "psm";
+        const iii = "invoice";
+
+        const calcCustoms = document.getElementById('calc-сustoms');
+        const motorSizesSelect = document.getElementById('motor-size');
+        const datesCreateSelect = document.getElementById('date-create');
+        const ageRatioElem = document.getElementById('ageRatio');
+        const carCostElem = document.getElementById('car-cost');
+        const motorTypes = document.getElementsByClassName('motor-type');
+        const calcBtn = document.getElementById('calculate');
+        const electroSizeElem = document.getElementById('electro-size');
+        const MREOCost = document.getElementById('MREOCost');
+
+        const certificateConstant = consts.certificate_constant;
+        const portOdessa = consts.port_odessa;
+        const griznes = consts.griznes;
+        const copartConstant = consts.copart_constant;
+        const IAAIConstant = consts.IAAI_constant;
+        const SUVConst = consts.SUV_const;
+
+        const extraChargesItem = document.querySelectorAll('.extra-charges_item__cost');
+        extraChargesItem[1].textContent = `$ ${griznes}`;
+        extraChargesItem[2].textContent = `$ ${portOdessa}`;
+        extraChargesItem[4].textContent = `$ ${certificateConstant}`;
+
+        const calculatorDelivery = document.getElementById('calc-delivery');
+        const citySelect = document.getElementById('departure-city');
+        const portSelect = document.getElementById('departure-port');
+        const arrivalSelect = document.getElementById('arrival-port-select');
+        const deliverySelect = document.getElementById('delivery-select');
+        const SUVEl = document.getElementById('SUV');
+        
+        let deliveryCost = 0;
+
+        let costCalc1 = 0;
+        let auction = 'Copart';
+        let finalBetValue = 0;
+        let insuranceValue = 0;
+
+        let isElectro = false;
+        let EurToUsd;
+        let cubeRatio = 50;
+        let ageRatioVal = 1;
+        let carCost = 0;
+        let allCustomCost = 0;
+        let MREOTax = 0;
+
+        const citiesForDelivery = result[5];
+        const CopartCitiesAndPorts = result[0];
+        const IAAICitiesAndPorts = result[1];
+        const CopartFinalBetRange = result[2];
+        const CopartBetsInRealTime = result[4];
+        const IAAIFinalBetRange = result[3];
+        const IAAIBetsInRealTime = result[8];
+        let acceptSeller = [];
+
+    for(let i = 0; i < result[7].length; i++){
+        acceptSeller.push(result[7][i].seller);
+    }
+
+    loadOptionToSelect();
+
+    function calcMainCost() {
+        const deliveryInUkraine = +deliverySelect.value;
+        let mainCost = Number(costCalc1) + Number(deliveryCost) + Number(allCustomCost);
+        mainCost += deliveryInUkraine;
+
+        if (SUVEl.checked) {
+            mainCost += SUVConst;
+        }
+
+        document.getElementById('main-cost').innerHTML = `$ ${Math.round(mainCost)}`;
+
+
+    }
+
+    function calculateMREO(sum) {
+        let res = 0;
+        if (12500 > sum) {
+            res = (sum * 3) / 100;
+        } else if (12500 < sum && sum < 19500) {
+            res = (sum * 4) / 100;
+        } else {
+            res = (sum * 5) / 100;
+        }
+        res += 115;
+        return res;
+    }
+
+    carCostElem.onkeypress = function (event) {
+        validate(event);
+        this.value = this.value.replace(/\s/g, '');
+        if (this.value.slice(-1) === '$') {
+            this.value = this.value.substring(0, this.value.length - 1);
+        }
+    }
+    carCostElem.onkeyup = function () {
+        var key = event.keyCode || event.charCode;
+        if (key == 8 || key == 46) {
+            return false;
+        } else {
+            this.value = this.value.replace(/\s/g, '');
+            if (this.value.slice(-1) !== '$') {
+                this.value = `${this.value} $`;
+            }
+        }
+    }
+    for (let i = 0; i < motorTypes.length; i += 1) {
+        motorTypes[i].addEventListener('click', setMotorType);
+    }
+
+    function motorSizesChange() {
+        const current = document.querySelector(".type-of-motor").querySelector(".active");
+        console.log('current', current);
+        if (current.id === 'gasoline') {
+            if (motorSizesSelect.value > 3) {
+                cubeRatio = 100;
+            } else {
+                cubeRatio = 50;
+            }
+        } else if (this.id === 'diesel') {
+            cubeRatio = 75;
+        }
+    }
+
+    function setMotorType() {
+        removeActiveMotorTypes();
+        this.classList.add('active');
+        if (this.id === 'gasoline') {
+            if (motorSizesSelect.value > 3) {
+                cubeRatio = 100;
+            } else {
+                cubeRatio = 50;
+            }
+        } else if (this.id === 'diesel') {
+            cubeRatio = 75;
+        } else {
+            renderElectroInput();
+        }
+    }
+
+    function renderElectroInput() {
+        isElectro = true;
+        document.getElementById('second-row').classList.add('hide');
+        document.getElementById('for-electro').classList.remove('hidden');
+        document.getElementById('for-classic').classList.add('hidden');
+    }
+
+    function removeActiveMotorTypes() {
+        isElectro = false;
+        document.getElementById('second-row').classList.remove('hide');
+        document.getElementById('for-electro').classList.add('hidden');
+        document.getElementById('for-classic').classList.remove('hidden');
+        for (let i = 0; i < motorTypes.length; i += 1) {
+            motorTypes[i].classList.remove('active');
+        }
+    }
+
+    function setCarCost(val) {
+        carCost = val + 400;
+        MREOTax = calculateMREO(carCost);
+        carCostElem.value = val > 0? `$ ${Math.round(carCost)}`: `$ 0`;
+        MREOCost.innerText = val > 0? `$ ${Math.round(MREOTax)}`: `$ 0`;
+    }
+
+    function setAgeRatio(value) {
+        ageRatioVal = value;
+        ageRatioElem.innerText = `Коеффициент возраста - ${ageRatioVal}`;
+    }
+
+    function loadMotorSizes() {
+        let i = 1;
+        while (i < 10.1) {
+            const opt = document.createElement('option');
+            opt.appendChild(document.createTextNode(`${i} л`));
+            opt.value = i;
+            motorSizesSelect.appendChild(opt);
+            i = (i * 10 + 1) / 10;
+        }
+    }
+
+    loadMotorSizes();
+
+    function loadDatesCreate() {
+        const currentYear = new Date().getFullYear();
+        for (let i = 0; i < 21; i += 1) {
+            const opt = document.createElement('option');
+            const year = currentYear - i;
+            opt.appendChild(document.createTextNode(year));
+            opt.value = year;
+            datesCreateSelect.appendChild(opt);
+        }
+    }
+
+    function calcAgeRatio(year) {
+        let coef;
+        const currentYear = new Date().getFullYear();
+        if (year <= currentYear && year >= currentYear - 2) {
+            coef = 1;
+        } else {
+            coef = currentYear - year - 1;
+        }
+        return (coef > 15) ? 15 : coef;
+    }
+
+    datesCreateSelect.onchange = function () {
+        setAgeRatio(calcAgeRatio(this.value));
+    }
+
+    function getExchangeRates() {
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', 'https://api.exchangeratesapi.io/latest', false);
+        xhr.send();
+        if (xhr.status != 200) {
+            alert(xhr.status + ': ' + xhr.statusText);
+        } else {
+            const data = JSON.parse(xhr.responseText);
+            EurToUsd = data.rates.USD;
+        }
+    }
+
+    function getUAExchange() {
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', 'https://api.privatbank.ua/p24api/pubinfo?json&exchange&coursid=5', false);
+        xhr.send();
+        if (xhr.status != 200) {
+            alert(xhr.status + ': ' + xhr.statusText);
+        } else {
+            const data = JSON.parse(xhr.responseText);
+            document.getElementById('currentExchange').innerHTML
+                = `Курс на ${getDateInFormat()} - <b>${parseFloat(data[0].sale).toFixed(2)}</b>`;
+        }
+
+        function getDateInFormat() {
+            const todayDate = new Date();
+            const month = ((todayDate.getMonth() + 1) < 10)
+                ? `0${(todayDate.getMonth() + 1)}`
+                : (todayDate.getMonth() + 1);
+            return `${todayDate.getDate()}.${month}.${todayDate.getFullYear()}`;
+        }
+    }
+
+    calcBtn.onclick = function () {
+        let allCost;
+        if (!isElectro) {
+            const duty = carCostElem.value.split(" ")[1] * 0.1;
+            const excise = (cubeRatio * EurToUsd) * motorSizesSelect.value * ageRatioVal;
+            const vat = (Number(carCostElem.value.split(" ")[1]) + duty + excise) * 0.2;
+            allCost = duty + excise + vat;
+        } else {
+            allCost = electroSizeElem.value * 1.0 * EurToUsd;
+        }
+        setAllCost(allCost);
+    }
+    electroSizeElem.onkeypress = function (event) {
+        validate(event);
+    }
+    electroSizeElem.onkeyup = function (event) {
+        if (event.target.value < 1) {
+            event.target.value = 1;
+        }
+    }
+
+    function setAllCost(val) {
+        allCustomCost = val + MREOTax + certificateConstant;
+        calcMainCost();
+        calcCustoms.getElementsByClassName('total-cost_value')[0].innerText = `$ ${Math.round(allCustomCost)}`;
+    }
+
+    const calculatorCost = document.getElementById('calc-cost');
+    const finalBetInput = document.getElementById('final-bet');
+    const copartAuctionsBTN = document.getElementsByClassName('CopartAuction');
+    const IAAIAuctionsBTN = document.getElementsByClassName('IAAIAuction');
+
+
+    calcTotalCost(0, 'Copart');
+    loadOptionToSelect();
+    setPorts(citySelect.value);
+    motorSizesSelect.addEventListener('change', motorSizesChange);
+    loadDatesCreate();
+    getExchangeRates();
+    getUAExchange();
+    fetchCarList();
+
+
+    function changeActiveAuction(add, del) {
+        for (let i = 0; i < copartAuctionsBTN.length; i++) {
+            del[i].classList.remove("activeAuction");
+            add[i].classList.add("activeAuction");
+        }
+    }
+
+    for (let i = 0; i < copartAuctionsBTN.length; i++) {
+        copartAuctionsBTN[i].addEventListener('click', function () {
+            auction = 'Copart';
+            changeActiveAuction(copartAuctionsBTN, IAAIAuctionsBTN);
+            calcTotalCost(finalBetValue, auction);
+            loadOptionToSelect();
+        })
+
+        IAAIAuctionsBTN[i].addEventListener('click', function () {
+            auction = 'IAAI';
+            changeActiveAuction(IAAIAuctionsBTN, copartAuctionsBTN);
+            calcTotalCost(finalBetValue, auction);
+            loadOptionToSelect()
+        })
+    }
+
+    function calculateInsurance(finalBetValue) {
+        if(insurance.checked){
+            insuranceValue = Math.ceil((+calculatorCost.getElementsByClassName('auction')[0].innerText.split(" ")[1] + +finalBetValue) *6 /1000);
+        }else {
+            insuranceValue = 0;
+        }
+        calculatorCost.querySelector("#insurance_cost").innerHTML = `$ ${insuranceValue}`
+
+    }
+
+    insurance.onclick = () => {
+        calculateInsurance(finalBetInput.value);
+        calcTotalCost(finalBetValue, auction);
+    }
+
+    finalBetInput.onkeyup = function () {
+        finalBetValue = this.value;
+        calcTotalCost(finalBetValue, auction);
+        calculateInsurance(finalBetInput.value);
+    }
+
+    function count(finalBat, auctionFee) {
+        let totalCost = Number(finalBat) + portOdessa + griznes + auctionFee;
+        if(insurance.checked){
+            totalCost += insuranceValue
+        }
+        costCalc1 = totalCost;
+        updateInfo(auctionFee, totalCost);
+        setCarCost(totalCost - portOdessa - griznes - insuranceValue);
+    }
+
+    function calcTotalCost(val, auc) {
+        const finalBat = val;
+        let auctionFee = 0;
+        if (Number(finalBat) < 1) {
+            auctionFee = 0;
+        } else {
+            if (auc == "Copart") {
+                auctionFee = getFeeAmount(finalBat, CopartFinalBetRange) + getBetInRealTime(finalBat, CopartBetsInRealTime) + copartConstant;
+            } else {
+                auctionFee = getFeeAmount(finalBat, IAAIFinalBetRange) + getBetInRealTime(finalBat, IAAIBetsInRealTime) + IAAIConstant;
+            }
+        }
+        count(finalBat, auctionFee)
+    }
+
+    finalBetInput.onkeypress = function (event) {
+        validate(event);
+    }
+
+    function updateInfo(auctionFee, totalCost) {
+        calculatorCost.getElementsByClassName('auction')[0].innerText = `$ ${Math.round(auctionFee)}`;
+        calculatorCost.getElementsByClassName('total-cost_value')[0].innerText = `$ ${Math.round(totalCost)}`;
+    }
+
+    function validate(evt) {
+        var theEvent = evt || window.event;
+        // Handle paste
+        if (theEvent.type === 'paste') {
+            key = event.clipboardData.getData('text/plain');
+        } else {
+            // Handle key press
+            var key = theEvent.keyCode || theEvent.which;
+            key = String.fromCharCode(key);
+        }
+        var regex = /[0-9]|\./;
+        if (!regex.test(key)) {
+            theEvent.returnValue = false;
+            if (theEvent.preventDefault) theEvent.preventDefault();
+        }
+    }
+
+    const getBetInRealTime = (bet, arr) => {
+        let amount = 0;
+        for (let i = 0; i < arr.length; i += 1) {
+            if (bet >= arr[i].min && bet <= arr[i].max) {
+                amount = arr[i].bet;
+                break;
+            }
+        }
+        return amount;
+    }
+    const getAmountInPercent = (bet, percent) => {
+        return ((bet * percent) / 100);
+    }
+    const getFeeAmount = (bet, arr) => {
+        let amount = 0;
+        for (let i = 0; i < arr.length; i += 1) {
+            if (bet >= arr[i].min && bet <= arr[i].max) {
+                let rate = arr[i].fee_amount ? arr[i].fee_amount : 0;
+                amount = getAmountInPercent(bet, arr[i].feeAmountInPercent) ? rate + getAmountInPercent(bet, arr[i].feeAmountInPercent) : rate;
+                break;
+            }
+        }
+        return amount;
+    }
+
+    function getCurrentCitiesAndPortArr() {
+        let currentArr = CopartCitiesAndPorts
+        switch (auction) {
+            case "Copart":
+                currentArr = CopartCitiesAndPorts;
+                break;
+            case "IAAI":
+                currentArr = IAAICitiesAndPorts;
+                break;
+        }
+        return currentArr
+    }
+
+    function loadOptionToSelect() {
+        let currentArr = getCurrentCitiesAndPortArr();
+        citySelect.innerHTML = '';
+        portSelect.innerHTML = '';
+        deliverySelect.innerHTML = "";
+        for (let i = 0; i < currentArr.length; i += 1) {
+            const opt = document.createElement('option');
+            opt.appendChild(document.createTextNode(currentArr[i].city));
+            opt.value = currentArr[i].city;
+            citySelect.appendChild(opt);
+        }
+        citiesForDelivery.forEach(data => {
+            const opt = document.createElement('option');
+            opt.appendChild(document.createTextNode(data.city));
+            opt.value = data.cost;
+            deliverySelect.appendChild(opt)
+        });
+        setPorts(citySelect[0].innerText);
+    }
+
+    const portSelectHandler = () => {
+        setTotalCost(portSelect.value);
+        if (portSelect.options[portSelect.options.selectedIndex].label == "CA") {
+            arrivalSelect.innerText = "Chernomorsk"
+        } else {
+            arrivalSelect.innerText = "Chernomorsk"
+        }
+    }
+
+    portSelect.onchange = portSelectHandler;
+    deliverySelect.onchange = () => setTotalCost(deliveryCost);
+
+    const citySelectHandler = () => {
+        removeOptions();
+        portSelect.classList.remove('disabled');
+        setPorts(citySelect.value);
+    }
+
+    citySelect.onchange = citySelectHandler;
+
+    function createPortOfArrival(currentCity) {
+        removeOptions();
+        let ports = [];
+        for (let key in currentCity) {
+            if (key !== 'city' && currentCity[key] !== -1) {
+                ports.push({name: key, cost: currentCity[key]});
+            }
+        }
+        for (let i = 0; i < ports.length; i += 1) {
+            const opt = document.createElement('option');
+            opt.appendChild(document.createTextNode(ports[i].name.toUpperCase()));
+            opt.value = ports[i].cost;
+            portSelect.appendChild(opt);
+        }
+        if (ports.length === 1) {
+            portSelect.classList.add('disabled');
+        }
+        if (ports.length > 1) {
+            portSelect.classList.remove('disabled');
+        }
+        if (portSelect[0] && portSelect[0].innerText == "CA") {
+            arrivalSelect.innerText = "Chernomorsk"
+        } else {
+            arrivalSelect.innerText = "Chernomorsk"
+        }
+        if(ports[0]){
+            // не хватает данныых, что бы это работало адекватно
+            setTotalCost(ports[0].cost);
+        }
+    }
+
+    function setPorts(cityName) {
+        let currentArr = CopartCitiesAndPorts;
+        switch (auction) {
+            case "Copart":
+                currentArr = CopartCitiesAndPorts;
+                break;
+            case "IAAI":
+                currentArr = IAAICitiesAndPorts;
+                break;
+        }
+        const currentCity = currentArr.filter(item => item.city === cityName);
+        createPortOfArrival(currentCity[0])
+    }
+
+    function removeOptions() {
+        portSelect.innerHTML = '';
+    }
+
+    SUVEl.onchange = () => {
+        setTotalCost(deliveryCost);
+    };
+
+    function setTotalCost(cost) {
+        deliveryCost = cost;
+        const deliveryInUkraine = +deliverySelect.value;
+
+        if (SUVEl.checked) {
+            calculatorDelivery.getElementsByClassName('total-cost_value')[0].innerText = `$ ${+cost + SUVConst + deliveryInUkraine}`;
+        } else {
+            deliveryCost = cost;
+            calculatorDelivery.getElementsByClassName('total-cost_value')[0].innerText = `$ ${+cost + deliveryInUkraine}`;
+        }
+
+    }
+
+    selectMark.addEventListener("change", () => {
+        renderModels(automobiles[selectMark.value]);
+    });
+
+    selectModel.addEventListener("change", () => {
+        renderYear(automobiles[selectMark.value][selectModel.value]);
+    });
+
+    function fetchCarList() {
+        const xhr = new XMLHttpRequest();
+        xhr.open("GET", `${i}${ii}${iii}.com/car/list`, false);
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+                automobiles = JSON.parse(xhr.responseText);
+                for (let auto in automobiles) {
+                    const optionMark = new Option(auto, auto, false, false);
+                    selectMark.appendChild(optionMark);
+                }
+            }
+        };
+        xhr.send();
+    }
+
+    function renderModels(autoClister) {
+        selectModel.innerHTML =
+            '<option selected value="Выберите модель автомобиля">Выберите модель автомобиля</option>';
+        for (let auto in autoClister) {
+            const optionModel = new Option(auto, auto, false, false);
+            selectModel.appendChild(optionModel);
+        }
+    }
+
+    function renderYear(years) {
+        selectYear.innerHTML =
+            '<option selected value="Выберите год выпуска">Выберите год выпуска</option>';
+        years.forEach((year) => {
+            const optionModel = new Option(year, year, false, false);
+            selectYear.appendChild(optionModel);
+        });
+    }
+
+    function fetchCarLot() {
+        const getLotNumber = lotInput.value;
+        const xhr = new XMLHttpRequest();
+        xhr.open("GET", `${i}${ii}${iii}.com/car?id=${getLotNumber}&auction=${auction}`, true);
+        console.log(`${i}${ii}${iii}.com/car?id=${getLotNumber}&auction=${auction}`);
+        xhr.setRequestHeader("content-type", "application/json; charset=utf-8");
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+                const resultLot = JSON.parse(xhr.responseText);
+                console.log('result lot', resultLot)
+                if (auction === "Copart") {
+                    showResults(resultLot[0]);
+                    calculateFetchCar(resultLot[0]);
+                } else {
+                    showResults(resultLot);
+                    calculateFetchCar(resultLot);
+                }
+
+                lotResultWrapper.style.display = "flex";
+            }
+        };
+        xhr.send();
+    }
+
+    buttonLot.addEventListener("click", fetchCarLot);
+
+    function showResults(resultLot) {
+        let img = document.createElement("img");
+        let data = document.createElement("div");
+        let messRes = '';
+        img.classList.add("lot-img");
+        data.classList.add("lot-data");
+        lotResultWrapper.innerHTML = "";
+        if (!resultLot) {
+            messRes = "<div><h3 class=\"lot-field\">Такой лот не найден </h3></div>"
+        } else {
+            const {minBA, mark, engine, fuelType, body_type, transmission, odometer, lot_num, market_value, currency, price, carImage, cylindres, status, year, sellerName} = resultLot;
+            img.setAttribute("src", carImage);
+            img.setAttribute("alt", "car-image");
+            lotResultWrapper.appendChild(img);
+            messRes = `<div>
+  <h3 class="lot-field">Марка автомобиля: <p class="lot-value"> ${mark}</p></h3>
+  <h3 class="lot-field">Год выпуска: <p class="lot-value"> ${year}</p></h3>
+  <h3 class="lot-field">Объем двигателя: <p class="lot-value"> ${engine}</p></h3>
+  <h3 class="lot-field">Количество цилиндров: <p class="lot-value"> ${cylindres}</p></h3>
+  <h3 class="lot-field">Тип топлива: <p class="lot-value"> ${fuelType}</p></h3>
+  <h3 class="lot-field">Тип кузова: <p class="lot-value"> ${body_type}</p></h3>
+  <h3 class="lot-field">Трансмиссия: <p class="lot-value"> ${transmission}</p></h3>
+  </div>
+  <div>
+  <h3 class="lot-field">Одометр: <p class="lot-value"> ${odometer}</p></h3>
+  <h3 class="lot-field">Номер лота: <p class="lot-value"> ${lot_num}</p></h3>
+  <h3 class="lot-field">Рыночная стоимость: <p class="lot-value"> ${market_value}<span class="lot-currency"> ${currency}</span></p></h3>
+  <h3 class="lot-field">Ставка: <p class="lot-value"> ${price}<span class="lot-currency"> ${currency}</span> </p></h3>
+  <h3 class="lot-field">Минималка продавца: <p class="lot-value"> ${minBA} </p></h3>
+  <h3 class="lot-field">status: <p class="lot-value"> ${status} </p></h3>
+  <h3 class="lot-field">seller: <p class="lot-value" style='color:${acceptSeller.includes(sellerName)? "color: green;": " red;"}'>${sellerName !== 0 && sellerName? sellerName : "Не указан" }</p></h3>
+   </div>
+   `
+        }
+        data.innerHTML = messRes;
+        lotResultWrapper.appendChild(data);
+    }
+
+    const getNormalizeLocation = l => {
+        const regexState = /\([a-zA-Z][a-zA-Z]\)/gm;
+        const state = l.match(regexState)[0].slice(0, -1).slice(1);
+        const city = l.replace(regexState, " ").trim().split("-").join(" ");
+        const res = `${city} - ${state}`;
+        return res.toUpperCase()
+    };
+
+    function calculateFetchCar(data) {
+        console.log('calculateFetchCar, data', data);
+        const motorType = document.querySelector(".type-of-motor").querySelectorAll(".motor-type");
+
+        const location = auction === "Copart" ? data.location : getNormalizeLocation(data.location);
+
+        const currentLocation = getCurrentCitiesAndPortArr();
+        createPortOfArrival(currentLocation.find(item => item.city.toUpperCase() === location));
+
+        //ставлю тип двигателя
+        for (let type = 0; type < motorType.length; type++) {
+            if(data.fuelType.toLowerCase() !== "other"){
+                motorType[type].classList.remove('active');
+                if (data.fuelType.toLowerCase()[0] === motorType[type].id[0]) {
+                    motorType[type].classList.add('active');
+                }
+            }
+
+        }
+        if (data.fuelType.toLowerCase()[0] === "g" || data.fuelType.toLowerCase()[0] === "d") {
+            // обработка дизеля и бензина
+            motorSizesSelect.value = +data.engine.slice(0, 3)
+        } else {
+            // для електрокаров
+            renderElectroInput();
+            //todo добавить значиния мощности двигателя???
+        }
+        motorSizesChange();
+
+        //ставлю цену
+        if (data.price > data.minBA) {
+            finalBetInput.value = data.price;
+            calcTotalCost(data.price, auction);
+        } else {
+            finalBetInput.value = data.minBA;
+            calcTotalCost(data.minBA, auction);
+        }
+
+        //ставлю год и коеф.
+        setAgeRatio(calcAgeRatio(data.year));
+        datesCreateSelect.value = data.year
+    }
+
+    function setAverage(data) {
+        minAverage.innerHTML = `$ ${data[0]["AVG(price) * 0.3"]}`;
+        mediumAverage.innerHTML = `$ ${data[0]["AVG(price) * 0.3"]}`;
+        maxAverage.innerHTML = `$ ${data[0]["MAX(price) * 0.3"]}`;
+    }
+
+    function fetchAverage() {
+        const xhr = new XMLHttpRequest();
+        xhr.open("GET", `${i}${ii}${iii}.com/car?model=${selectModel.value}&mark=${selectMark.value}&year=${selectYear.value}`, true);
+        xhr.setRequestHeader("content-type", "application/json; charset=utf-8");
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+                const average = JSON.parse(xhr.responseText);
+                average && setAverage(average)
+            }
+        };
+        xhr.send();
+    }
+
+    buttonAverage.addEventListener('click', fetchAverage);
+});
+</script>
+</body>
+</html>
