@@ -12,9 +12,9 @@ const fs = require('fs');
 
 const connection = mysql.createConnection({
     host: "localhost",
-    user: "parser",
+    user: "parser", // parser
     database: "excel_car_parser", 
-    password: "G1o49gxmmt@"
+    password: "G1o49gxmmt@" // G1o49gxmmt@
 });
 
 /* FOR LOGIN */
@@ -75,7 +75,6 @@ const upload = multer({
     storage: storage,
     fileFilter: function (req, file, callback){
         var ext = path.extname(file.originalname);
-        console.log(ext);
         if(ext !== '.xlsx') {
             return callback(new Error('Only excel files are allowed'))
         }
@@ -111,7 +110,7 @@ app.set('view engine', 'ejs');
 /* ROUTES */
   
 app.get('/', (req, res) => {
-    res.render('./pages/index.ejs', {data: null, error: false});
+    res.render('./pages/index.ejs', {data: null, error: false, user: req.session.passport});
 });
 
 app.get('/login', (req, res) => {
@@ -176,20 +175,27 @@ app.post('/loadFile', passport.authenticationMiddleware(), upload.single('excel'
 });
 
 app.post('/getInfo', (req, res) => {
-    const password = req.body.password, 
-    vin = req.body.vin;
+    const vin = req.body.vin.trim(),
+    user = req.session.passport;
+    if(vin){
 
-    if(password || vin){
-        const query = `SELECT * FROM car_arrival, users WHERE car_arrival.vin = '${vin}' AND users.password='${password}' ORDER BY car_arrival.id DESC;`;
+        let query = '';
+        if(user){
+            query = `SELECT * FROM car_arrival, users WHERE car_arrival.vin = '${vin}' ORDER BY car_arrival.id DESC;`;
+        }else{
+            const password = req.body.password.trim();
+            query = `SELECT * FROM car_arrival, users WHERE car_arrival.vin = '${vin}' AND users.password='${password}' ORDER BY car_arrival.id DESC;`;
+        }
+
         connection.query(query, (e, r, f) => {
             if(r.length > 0){
-                res.render('./pages/index.ejs', {data: r[0], error: false});  
+                res.render('./pages/index.ejs', {data: r[0], error: false, user: user});  
             }else{
-                res.render('./pages/index.ejs', {data: null, error: true}); 
+                res.render('./pages/index.ejs', {data: null, error: true, user: user}); 
             } 
         });
     }else{
-        res.render('./pages/index.ejs', {data: null, error: true}); 
+        res.render('./pages/index.ejs', {data: null, error: true, user: user}); 
     }
 });
 

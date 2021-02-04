@@ -12,9 +12,9 @@ const fs = require('fs');
 
 const connection = mysql.createConnection({
     host: "localhost",
-    user: "root", // calc
+    user: "calc", // calc
     database: "calc_db", 
-    password: "legdev" // calcpass
+    password: "calcpass" // calcpass
 });
 
 /* FOR LOGIN */
@@ -137,7 +137,7 @@ app.get('/getCalcData', passport.authenticationMiddleware(), (req, res) => {
                 connection.query(`SELECT min, max, fee_amount, feeAmountInPercent FROM iaaifinalbetrange WHERE user='${user}';`, (e4, r4, f4) => {
                     connection.query(`SELECT min, max, bet FROM copartbetsinrealtime WHERE user='${user}';`, (e5, r5, f5) => {
                         connection.query(`SELECT city, cost FROM citiesfordelivery WHERE user='${user}';`, (e6, r6, f6) => {
-                            connection.query(`SELECT certificate_constant, port_odessa, griznes, copart_constant, IAAI_constant, SUV_const FROM settings WHERE user='${user}';`, (e7, r7, f7) => {
+                            connection.query(`SELECT certificate_constant, port_odessa, griznes, copart_constant, IAAI_constant, SUV_const, date FROM settings WHERE user='${user}';`, (e7, r7, f7) => {
                                 connection.query(`SELECT seller FROM acceptseller WHERE user='${user}';`, (e8, r8, f8) => {
                                     connection.query(`SELECT min, max, bet FROM iaaibetsinrealtime WHERE user='${user}';`, (e9, r9, f9) => {
                                         const data = [r1, r2, r3, r4, r5, r6, r7, r8, r9];
@@ -170,12 +170,16 @@ app.get('/logout', function (req, res){
   });
 
 app.get('/admin', passport.authenticationMiddleware('admin'), (req, res) => {
-    res.render('./pages/admin.ejs');
+    connection.query(`SELECT date FROM settings ORDER BY date DESC LIMIT 1;`, (error, result, f) => {
+        res.render('./pages/admin.ejs', {date: result[0].date});
+    });
 });
 
 app.post('/loadFile', passport.authenticationMiddleware('admin'), upload.single('excel'), (req, res) => {
     let file = req.file;
     const user = req.body.user;
+    const date = req.body.date;
+
     readXlsxFile(fs.createReadStream(__dirname + "/files/excel/" + file.filename)).then((rows) => {
 
         let CopartCitiesAndPorts = [],
@@ -210,6 +214,7 @@ app.post('/loadFile', passport.authenticationMiddleware('admin'), upload.single(
         }
         
         consts[0].push(user);
+        consts[0].push(date);
 
         const newDataArray = [
             ['copartcitiesandports', CopartCitiesAndPorts],
@@ -231,8 +236,7 @@ app.post('/loadFile', passport.authenticationMiddleware('admin'), upload.single(
                 });
             });
         }
-
-        res.render('./pages/admin.ejs');
+        res.render('./pages/admin.ejs', {date: date});
       });
 });
 

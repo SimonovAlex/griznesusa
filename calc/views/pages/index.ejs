@@ -873,7 +873,7 @@
         </div>
     </div>
     <div id="calc-delivery" class="calculator">
-        <span class="calculator-title">Калькулятор доставки c 1.02.21</span><br>
+        <span class="calculator-title calc-date">Калькулятор доставки c 1.02.21</span><br>
         <div class="selectAuction">
             <span>Aукцион:</span>
             <button class="CopartAuction activeAuction">Copart</button>
@@ -1027,6 +1027,10 @@
         const calcBtn = document.getElementById('calculate');
         const electroSizeElem = document.getElementById('electro-size');
         const MREOCost = document.getElementById('MREOCost');
+        const calcDate = document.querySelector('.calc-date');
+
+        consts.date = consts.date ? consts.date : '1.02.21'
+        calcDate.textContent = `Калькулятор доставки c ${consts.date}`;
 
         const certificateConstant = consts.certificate_constant;
         const portOdessa = consts.port_odessa;

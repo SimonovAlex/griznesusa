@@ -11,7 +11,9 @@
                 <form action="/getInfo" method="POST">
                     <input type="text" name="vin" placeholder="VIN">
                     <br>
+                    <%if(!user){%>
                     <input type="password" name="password" placeholder="password">
+                    <% } %>
                     <input type="submit" value="Поиск">
                 </form>
             </div>

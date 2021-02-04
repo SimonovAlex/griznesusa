@@ -100,6 +100,18 @@ body{
     background-color: white;
     color: #00d400;
 }
+#newFile > form > select{
+    font-size: 1.1em;
+    padding: 5px 10px;
+    border: solid 1px gray;
+    border-radius: 5px;
+}
+#newFile > form > input[type="text"]{
+    font-size: 1.1em;
+    padding: 5px 10px;
+    border: solid 1px gray;
+    border-radius: 5px;
+}
 
 .container{
     width: 100%;
