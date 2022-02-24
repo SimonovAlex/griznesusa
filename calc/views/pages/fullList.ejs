@@ -1,0 +1,53 @@
+<html>
+    <head>
+        <title>trackyourvin</title>
+        <meta charset="utf-8">
+        <meta name="robots" content="noindex, nofollow"/>
+        <link rel="stylesheet" href="../css/main.css">
+    </head>
+    <body>
+        <section id="fullList">
+            <h1>Полный список лотов</h1>
+            <table class="fullList-table">
+                <tr>
+                    <th>id</th>
+                    <th>Клиент</th>
+                    <th>Авто</th>
+                    <th>Vin</th>
+                    <th>Доставка</th>
+                    <th>Остаток услуг</th>
+                    <th>Портовые</th>
+                    <th>Итого к оплате</th>
+                    <th>Оплата</th>
+                    <th>Дата прихода</th>
+                    <th>Ремонт город</th>
+                    <th>Эвакуатор</th>
+                    <th>Ссылка</th>
+                </tr>
+                <tr>
+                    <% for(var i=0;i<list.length;i++) {%>
+                        <tr>
+                            <td><%= list[i].id %></td>
+                            <td><%= list[i].client %></td>
+                            <td><%= list[i].car %></td>
+                            <td><%= list[i].vin %></td>
+                            <td><%= list[i].delivery %></td>
+                            <td><%= list[i].bServices %></td>
+                            <td><%= list[i].portCost %></td>
+                            <td><%= list[i].totalCost %></td>
+                            <td><%= list[i].payment %></td>
+                            <td><%= list[i].date %></td>
+                            <td><%= list[i].fixCity %></td>
+                            <td><%= list[i].towTruck %></td>
+                            <% if(list[i].ship_link){ %>
+                                <td><a href="<%= list[i].ship_link %>"><img src="../../img/ship.png"></a></td>
+                            <% }else{ %>
+                            <td><a href="#"><img src="../../img/ship.png"></a></td>
+                            <%} %>
+                        </tr>
+                    <%} %>
+                </tr>
+            </table>
+        </section>
+    </body>
+</html>

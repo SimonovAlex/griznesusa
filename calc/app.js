@@ -8,6 +8,7 @@ const LocalStrategy = require('passport-local').Strategy
 const session = require('express-session');
 const bcrypt = require('bcrypt');
 const readXlsxFile = require('read-excel-file/node');
+const axios = require('axios');
 const fs = require('fs');
 
 const connection = mysql.createConnection({
@@ -173,6 +174,17 @@ app.get('/admin', passport.authenticationMiddleware('admin'), (req, res) => {
     connection.query(`SELECT date FROM settings ORDER BY date DESC LIMIT 1;`, (error, result, f) => {
         res.render('./pages/admin.ejs', {date: result[0].date});
     });
+});
+
+app.get('/admin/fullList', passport.authenticationMiddleware('admin'), (req, res) => {
+    axios.get('http://82.148.28.182/fullList')
+    .then(function(response) {
+        if(response.data.length > 0){
+            res.render('./pages/fullList.ejs', {list: response.data});  
+        }else{
+            res.render('./pages/fullList.ejs', {list: []}); 
+        } 
+    })
 });
 
 app.post('/loadFile', passport.authenticationMiddleware('admin'), upload.single('excel'), (req, res) => {

@@ -1230,7 +1230,7 @@
 
     function getExchangeRates() {
         var xhr = new XMLHttpRequest();
-        xhr.open('GET', 'https://api.exchangeratesapi.io/latest', false);
+        xhr.open('GET', 'https://api.ratesapi.io/api/latest', false);
         xhr.send();
         if (xhr.status != 200) {
             alert(xhr.status + ': ' + xhr.statusText);

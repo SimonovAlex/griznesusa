@@ -133,6 +133,17 @@ app.get('/admin', passport.authenticationMiddleware(), (req, res) => {
     res.render('./pages/admin.ejs');
 });
 
+app.get('/fullList', (req, res) => {
+    const query = `SELECT * FROM car_arrival`;
+    connection.query(query, (e, r, f) => {
+        if(r.length > 0){
+            res.send(r); 
+        }else{
+            res.send([]); 
+        } 
+    });
+});
+
 app.get('/admin/fullList', passport.authenticationMiddleware(), (req, res) => {
     const query = `SELECT * FROM car_arrival`;
     connection.query(query, (e, r, f) => {
